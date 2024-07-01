@@ -105,6 +105,8 @@ interface IBentoBoxV1 {
 
     function registerProtocol() external;
 
+    function setMasterContractOf(address market, address masterContract) external;
+
     function setMasterContractApproval(
         address user,
         address masterContract,

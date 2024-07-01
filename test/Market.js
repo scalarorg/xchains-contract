@@ -38,7 +38,7 @@ describe("Cauldron contract", function () {
     // Deploy oracle
     const Oracle = await ethers.getContractFactory("FixedPriceOracle");
     const decimals = 8;
-    const fixedPrice = 339854000000;
+    const fixedPrice = 3500.18 * 1e8;
     const desc = "ETH/USD";
     const oracle = await Oracle.deploy(desc, fixedPrice, decimals);
     await oracle.deployed();
@@ -72,10 +72,10 @@ describe("Cauldron contract", function () {
     const collateralAddress = weth.address; // Address of the collateral token
     const oracleAddress = oracleProxy.address; // Address of the oracle
     const oracleData = "0x"; // Data required by the oracle
-    const INTEREST_PER_SECOND = ethers.BigNumber.from(600); // Example value
-    const LIQUIDATION_MULTIPLIER = ethers.BigNumber.from(600); // Example value
-    const COLLATERIZATION_RATE = ethers.BigNumber.from(8000); // Example value
-    const BORROW_OPENING_FEE = ethers.BigNumber.from(25); // Example value
+    const INTEREST_PER_SECOND = (ethers.BigNumber.from(600) * 316880878) / 100; // Example value
+    const LIQUIDATION_MULTIPLIER = ethers.BigNumber.from(600) * 1e1 + 1e5; // Example value
+    const COLLATERIZATION_RATE = ethers.BigNumber.from(8000) * 1e1; // Example value
+    const BORROW_OPENING_FEE = ethers.BigNumber.from(50) * 1e1; // Example value
 
     // ABI encode the values
     const initData = ethers.utils.defaultAbiCoder.encode(
@@ -230,8 +230,8 @@ describe("Cauldron contract", function () {
       const maxUint256 = ethers.constants.MaxUint256;
 
       // Approve degenBox to spend WETH tokens
-      const tx = await weth.approve(degenBox.address, maxUint256);
-      await tx.wait();
+      const txWETH = await weth.approve(degenBox.address, maxUint256);
+      await txWETH.wait();
 
       // mint WETH
       expect(await weth.balanceOf(deployer.address)).to.equal(0);
@@ -284,8 +284,13 @@ describe("Cauldron contract", function () {
         degenBox,
         deployer,
         cauldronV4,
+        oracleProxy,
       } = await loadFixture(deployFixture);
       const maxUint256 = ethers.constants.MaxUint256;
+
+      // Approve degenBox to spend STK tokens
+      const txSTK = await token.approve(degenBox.address, maxUint256);
+      await txSTK.wait();
 
       // Approve degenBox to spend WETH tokens
       const tx = await weth.approve(degenBox.address, maxUint256);
@@ -311,7 +316,10 @@ describe("Cauldron contract", function () {
       expect(
         await degenBox.balanceOf(weth.address, wETHMarketContract.address)
       ).to.equal(0);
-
+      console.log(
+        "WETH balance: ",
+        await degenBox.balanceOf(weth.address, deployer.address)
+      );
       const etherAddress = ethers.constants.AddressZero;
       // Deposit WETH tokens to the market
       // amount = 100 token
@@ -332,6 +340,24 @@ describe("Cauldron contract", function () {
         await degenBox.balanceOf(weth.address, wETHMarketContract.address)
       ).to.equal(amount);
 
+      // Deposit STK tokens to the market
+      // amount = 100000 token
+      console.log(
+        "STK balance of master box: ",
+        await degenBox.balanceOf(token.address, cauldronV4.address)
+      );
+      const amountSTK = ethers.utils.parseUnits("10000", 18);
+      const txSTKDeposit = await degenBox.deposit(
+        token.address,
+        deployer.address,
+        wETHMarketContract.address,
+        amountSTK,
+        0
+      );
+      await txSTKDeposit.wait();
+      expect(
+        await degenBox.balanceOf(token.address, wETHMarketContract.address)
+      ).to.equal(amountSTK);
       // Set masterContract approval to user1
 
       const txApproval = await degenBox
@@ -346,10 +372,6 @@ describe("Cauldron contract", function () {
         );
       await txApproval.wait();
 
-      // Approve degenBox to spend STK tokens
-      const tx3 = await token.approve(degenBox.address, maxUint256);
-      await tx3.wait();
-
       // Check the allowance
       const allowance2 = await token.allowance(
         deployer.address,
@@ -360,12 +382,8 @@ describe("Cauldron contract", function () {
       expect(await degenBox.balanceOf(token.address, user1.address)).to.equal(
         0
       );
-      console.log(
-        "Master contract of deployer: ",
-        await degenBox.whitelistedMasterContracts(cauldronV4.address)
-      );
 
-      // mint wETT to user1
+      // mint wETH to user1
       const oneETH = ethers.utils.parseEther("1");
       const txMint = {
         to: weth.address,
@@ -373,14 +391,19 @@ describe("Cauldron contract", function () {
       };
       await user1.sendTransaction(txMint);
       console.log("User1 weth balance: ", await weth.balanceOf(user1.address));
+
       // User deposit ETH to the market
       // amount = 100 token
-      const amount2 = ethers.utils.parseEther("0.1");
+      const depositAmount = ethers.utils.parseEther("1");
       const tx4 = await degenBox
         .connect(user1)
-        .deposit(etherAddress, user1.address, user1.address, amount2, 0, {
-          value: amount2,
+        .deposit(etherAddress, user1.address, user1.address, depositAmount, 0, {
+          value: depositAmount,
         });
+      console.log(
+        "User1 weth balance after deposit: ",
+        await weth.balanceOf(user1.address)
+      );
       // deposit function return (uint256 amountOut, uint256 shareOut), get the shareOut
       const receipt = await tx4.wait();
       const event = receipt.events.find(
@@ -390,18 +413,59 @@ describe("Cauldron contract", function () {
       expect(shareAmount).to.not.equal(0);
 
       // Add collateral for user1
-      console.log(
-        "User1 collateral share: ",
+      expect(
         await wETHMarketContract.userCollateralShare(user1.address)
-      );
+      ).to.equal(0);
+      console.log("Share amount: ", shareAmount);
       const tx5 = await wETHMarketContract
         .connect(user1)
         .addCollateral(user1.address, false, shareAmount);
       await tx5.wait();
-      // console.log(
-      //   "User1 collateral share: ",
-      //   await wETHMarketContract.userCollateralShare(user1.address)
-      // );
+      expect(
+        await wETHMarketContract.userCollateralShare(user1.address)
+      ).to.not.equal(0);
+
+      // Calculate the borrow amount
+
+      const oracleData = await wETHMarketContract.oracleData();
+      const [_, oracleRate] = await oracleProxy.callStatic.get(oracleData);
+      const amountOut = (depositAmount * oracleRate) / 1e18;
+      console.log("depositAmount: ", depositAmount);
+      console.log("oracleRate: ", oracleRate);
+      console.log("Amount out: ", amountOut);
+      const borrowAmount = (amountOut * 50) / 100;
+      console.log("Borrow amount: ", borrowAmount);
+      const txBorrow = await wETHMarketContract
+        .connect(user1)
+        .borrow(user1.address, borrowAmount);
+      const receiptBorrow = await txBorrow.wait();
+
+      const eventBorrow = receiptBorrow.events.find(
+        (event) => event.event === "LogBorrow"
+      );
+      const borrowTotalAmount = eventBorrow.args[2];
+      console.log("Borrow total amount: ", borrowTotalAmount);
+
+      // Check the borrow amount
+      const txCheckBorrow = await degenBox.toAmount(
+        token.address,
+        borrowTotalAmount,
+        true
+      );
+      console.log("Check amount: ", txCheckBorrow);
+      console.log(
+        "User collateral share: ",
+        await wETHMarketContract.userCollateralShare(user1.address)
+      );
+      console.log(
+        "User borrow part:",
+        await wETHMarketContract.userBorrowPart(user1.address)
+      );
+      console.log(
+        "User STK balance: ",
+        await degenBox.balanceOf(token.address, user1.address)
+      );
+      console.log("Total of box:", await degenBox.totals(token.address));
     });
   });
 });

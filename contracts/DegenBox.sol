@@ -124,10 +124,7 @@ contract DegenBox is MasterContractManager, BoringBatchable {
     modifier allowed(address from) {
         if (from != msg.sender && from != address(this)) {
             // From is sender or you are skimming
-            console.log("from: %s", from);
-            console.log("msg.sender: %s", msg.sender);
             address masterContract = masterContractOf[msg.sender];
-            console.log("MasterContract: %s", masterContract);
             require(masterContract != address(0), "BentoBox: no masterContract");
             require(masterContractApproved[masterContract][from], "BentoBox: Transfer not approved");
         }
@@ -299,7 +296,6 @@ contract DegenBox is MasterContractManager, BoringBatchable {
         // Effects
         balanceOf[token][from] = balanceOf[token][from].sub(share);
         balanceOf[token][to] = balanceOf[token][to].add(share);
-
         emit LogTransfer(token, from, to, share);
     }
 

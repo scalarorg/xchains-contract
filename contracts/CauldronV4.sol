@@ -250,8 +250,6 @@ contract CauldronV4 is Owned, IMasterContract {
         if (skim) {
             require(share <= bentoBox.balanceOf(token, address(this)).sub(total), "Cauldron: Skim too much");
         } else {
-            console.log("msg.sender: %s", msg.sender);
-            console.log("address(this): %s", address(this));
             bentoBox.transfer(token, msg.sender, address(this), share);
         }
     }
@@ -316,7 +314,7 @@ contract CauldronV4 is Owned, IMasterContract {
         _preBorrowAction(to, amount, newBorrowPart, part);
 
         userBorrowPart[msg.sender] = newBorrowPart;
-
+        
         // As long as there are tokens on this contract you can 'mint'... this enables limiting borrows
         share = bentoBox.toShare(magicInternetMoney, amount, false);
         bentoBox.transfer(magicInternetMoney, address(this), to, share);
@@ -328,6 +326,7 @@ contract CauldronV4 is Owned, IMasterContract {
     /// @return part Total part of the debt held by borrowers.
     /// @return share Total amount in shares borrowed.
     function borrow(address to, uint256 amount) public solvent returns (uint256 part, uint256 share) {
+        console.log("Borrowing amount: %s", amount);
         accrue();
         (part, share) = _borrow(to, amount);
     }

@@ -754,8 +754,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\interfaces\\IBentoBoxV1.sol": {
-      "lastModificationDate": 1719288572071,
-      "contentHash": "ea479423363b4969a8edafb5369484f6",
+      "lastModificationDate": 1719801731578,
+      "contentHash": "ab43ac662661a3aebd1ec567d7d2ea95",
       "sourceName": "contracts/interfaces/IBentoBoxV1.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -1094,8 +1094,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\DegenBox.sol": {
-      "lastModificationDate": 1719570285860,
-      "contentHash": "64889231ff8e7b8dcf28224144afc41d",
+      "lastModificationDate": 1719817488762,
+      "contentHash": "6d76ea761d8977569111226e2180e16c",
       "sourceName": "contracts/DegenBox.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -1181,8 +1181,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\mixins\\MasterContractManager.sol": {
-      "lastModificationDate": 1719572277744,
-      "contentHash": "a1a8801c4b7d0d9c9a4f2af58fee3333",
+      "lastModificationDate": 1719572563324,
+      "contentHash": "d4e0c548db6192723ebb3481f18abaa0",
       "sourceName": "contracts/mixins/MasterContractManager.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -1450,8 +1450,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\CauldronV4.sol": {
-      "lastModificationDate": 1719572234415,
-      "contentHash": "e416f0671caf07793fc1eaa7065bb8bb",
+      "lastModificationDate": 1719817477092,
+      "contentHash": "f309dc4443ea10cc93fc862171e53247",
       "sourceName": "contracts/CauldronV4.sol",
       "solcConfig": {
         "version": "0.8.24",
