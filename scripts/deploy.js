@@ -1,4 +1,4 @@
-//const path = require("path");
+const path = require("path");
 async function main() {
   // This is just a convenience check
 
@@ -212,25 +212,20 @@ async function main() {
   console.log("Borrow total amount: ", borrowTotalAmount);
 
   // Save the contract's artifacts and address in the frontend directory
-  // saveFrontendFiles([
-  //   { name: "ScalarToken", address: token.address },
-  //   { name: "WETH", address: weth.address },
-  //   { name: "DegenBox", address: degenBox.address },
-  //   { name: "CauldronV4", address: cauldronV4.address },
-  //   { name: "FixedPriceOracle", address: oracle.address },
-  //   { name: "ProxyOracle", address: oracleProxy.address },
-  //   { name: "CauldronFactory", address: cauldronFactory.address },
-  // ]);
+  saveFrontendFiles([
+    { name: "ScalarToken", address: token.address },
+    { name: "WETH", address: weth.address },
+    { name: "DegenBox", address: degenBox.address },
+    { name: "CauldronV4", address: cauldronV4.address },
+    { name: "FixedPriceOracle", address: oracle.address },
+    { name: "ProxyOracle", address: oracleProxy.address },
+    { name: "CauldronFactory", address: cauldronFactory.address },
+  ]);
 }
 
 function saveFrontendFiles(contracts) {
-  const contractsDir = path.join(
-    __dirname,
-    "..",
-    "frontend",
-    "src",
-    "contracts"
-  );
+  const fs = require("fs");
+  const contractsDir = path.join(__dirname, "..", "frontend", "src", "abis");
 
   if (!fs.existsSync(contractsDir)) {
     fs.mkdirSync(contractsDir);
