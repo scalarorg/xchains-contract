@@ -326,7 +326,6 @@ contract CauldronV4 is Owned, IMasterContract {
     /// @return part Total part of the debt held by borrowers.
     /// @return share Total amount in shares borrowed.
     function borrow(address to, uint256 amount) public solvent returns (uint256 part, uint256 share) {
-        console.log("Borrowing amount: %s", amount);
         accrue();
         (part, share) = _borrow(to, amount);
     }

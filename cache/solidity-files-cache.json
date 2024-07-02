@@ -1094,8 +1094,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\DegenBox.sol": {
-      "lastModificationDate": 1719817488762,
-      "contentHash": "6d76ea761d8977569111226e2180e16c",
+      "lastModificationDate": 1719915365811,
+      "contentHash": "630298503f1505a11b5da84b2ac30ff4",
       "sourceName": "contracts/DegenBox.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -1411,8 +1411,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\WETH.sol": {
-      "lastModificationDate": 1719559823599,
-      "contentHash": "e8433a091fb2ba4aad1c815656daead0",
+      "lastModificationDate": 1719912507218,
+      "contentHash": "a5d4c32fd991b8870aa8a44ae36e9871",
       "sourceName": "contracts/WETH.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -1439,6 +1439,7 @@
         }
       },
       "imports": [
+        "hardhat/console.sol",
         "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "hardhat/console.sol"
       ],
@@ -1450,8 +1451,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\CauldronV4.sol": {
-      "lastModificationDate": 1719817477092,
-      "contentHash": "f309dc4443ea10cc93fc862171e53247",
+      "lastModificationDate": 1719910543886,
+      "contentHash": "5c8f47f8a89b245054c4ed8708770a6e",
       "sourceName": "contracts/CauldronV4.sol",
       "solcConfig": {
         "version": "0.8.24",

@@ -256,7 +256,6 @@ contract DegenBox is MasterContractManager, BoringBatchable {
             // amount may be lower than the value of share due to rounding, that's ok
             amount = total.toElastic(share, false);
         }
-
         balanceOf[token][from] = balanceOf[token][from].sub(share);
         total.elastic = total.elastic.sub(amount.to128());
         total.base = total.base.sub(share.to128());
