@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { JsonRpcProvider, ethers } from "ethers";
+import { ethers } from "ethers";
 
 const WalletConnect = ({ setProvider, setSigner, setSignerAddress }) => {
   const [connected, setConnected] = useState(false);
@@ -19,8 +19,15 @@ const WalletConnect = ({ setProvider, setSigner, setSignerAddress }) => {
   };
 
   return (
-    <div>
-      <button onClick={connectWallet}>
+    <div className="flex items-center justify-center bg-gray-100">
+      <button
+        onClick={connectWallet}
+        className={`px-6 py-3 font-bold text-white rounded-lg ${
+          connected
+            ? "bg-green-500 hover:bg-green-600"
+            : "bg-blue-500 hover:bg-blue-600"
+        } transition-colors duration-300 ease-in-out`}
+      >
         {connected ? "Wallet Connected" : "Connect Wallet"}
       </button>
     </div>

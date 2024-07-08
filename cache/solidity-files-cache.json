@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\ScalarToken.sol": {
-      "lastModificationDate": 1719225839342,
-      "contentHash": "88c69f749b8996dfbd3fea8102210d3d",
+      "lastModificationDate": 1720066017893,
+      "contentHash": "7fd6e1c6f70762191bbc5891a6e5a288",
       "sourceName": "contracts/ScalarToken.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -30,9 +30,9 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "@openzeppelin/contracts/access/Ownable.sol",
-        "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol"
+        "../lib/BoringSolidity/contracts/ERC20.sol",
+        "../lib/BoringSolidity/contracts/BoringOwnable.sol",
+        "../lib/BoringSolidity/contracts/libraries/BoringMath.sol"
       ],
       "versionPragmas": [
         "^0.8.20"
@@ -1056,8 +1056,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\lib\\BoringSolidity\\contracts\\libraries\\BoringERC20.sol": {
-      "lastModificationDate": 1719218231986,
-      "contentHash": "2bb7f7567d6f8daa2e71f635cb45e71e",
+      "lastModificationDate": 1720068128583,
+      "contentHash": "4afddfe8a53db80f044c38af160b7d9b",
       "sourceName": "lib/BoringSolidity/contracts/libraries/BoringERC20.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -1084,7 +1084,8 @@
         }
       },
       "imports": [
-        "../interfaces/IERC20.sol"
+        "../interfaces/IERC20.sol",
+        "hardhat/console.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
@@ -1094,8 +1095,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\DegenBox.sol": {
-      "lastModificationDate": 1719915365811,
-      "contentHash": "630298503f1505a11b5da84b2ac30ff4",
+      "lastModificationDate": 1720067017381,
+      "contentHash": "5b0ddf3ec4ccdb49986cd2d4b722e23a",
       "sourceName": "contracts/DegenBox.sol",
       "solcConfig": {
         "version": "0.8.24",

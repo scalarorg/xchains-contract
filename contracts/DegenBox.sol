@@ -186,7 +186,7 @@ contract DegenBox is MasterContractManager, BoringBatchable {
         _onBeforeDeposit(token, from, to, amount, share);
         
         Rebase memory total = totals[token];
-
+        console.log("token: ", address(token));
         // If a new token gets added, the tokenSupply call checks that this is a deployed contract. Needed for security.
         require(total.elastic != 0 || token.totalSupply() > 0, "BentoBox: No tokens");
         if (share == 0) {
@@ -222,6 +222,7 @@ contract DegenBox is MasterContractManager, BoringBatchable {
         } else if (from != address(this)) {
             // X2 - If there is an error, could it cause a DoS. Like balanceOf causing revert. (SWC-113)
             // X2: If the token implementation is faulty or malicious, it may block adding tokens. Good.
+            console.log("amount", amount);
             token.safeTransferFrom(from, address(this), amount);
         }
 
