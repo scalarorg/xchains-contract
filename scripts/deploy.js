@@ -1,3 +1,4 @@
+const { ethers } = require("hardhat");
 const path = require("path");
 async function main() {
   // This is just a convenience check
@@ -10,22 +11,26 @@ async function main() {
 
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  // Deploy the ScalarToken contract
-  const Token = await ethers.getContractFactory("ScalarToken");
-  const initialOwner = await deployer.getAddress();
+  // Deploy the ScalarCoin contract
+  const Token = await ethers.getContractFactory("ScalarCoin");
   const token = await Token.deploy();
   await token.deployed();
-
+  console.log("Token address:", token.address);
   // Deploy the WETH contract
   const WETH = await ethers.getContractFactory("WETH");
   const weth = await WETH.deploy();
   await weth.deployed();
-
+  console.log("WETH address:", weth.address);
+  // Deploy the sBTC contract
+  const SBTC = await ethers.getContractFactory("sBTC");
+  const sbtc = await SBTC.deploy();
+  await sbtc.deployed();
+  console.log("sBTC address:", sbtc.address);
   // Deploy the DegenBox contract
   const DegenBox = await ethers.getContractFactory("DegenBox");
   const degenBox = await DegenBox.deploy(weth.address);
   await degenBox.deployed();
-
+  console.log("DegenBox address:", degenBox.address);
   // Deploy the CauldronV4 contract
   const CauldronV4 = await ethers.getContractFactory("CauldronV4");
   const cauldronV4 = await CauldronV4.deploy(degenBox.address, token.address);
@@ -34,8 +39,8 @@ async function main() {
   // Deploy oracle
   const Oracle = await ethers.getContractFactory("FixedPriceOracle");
   const decimals = 8;
-  const fixedPrice = 339854000000;
-  const desc = "ETH/USD";
+  const fixedPrice = 17471700000000;
+  const desc = "sBTC/USD";
   const oracle = await Oracle.deploy(desc, fixedPrice, decimals);
   await oracle.deployed();
 
@@ -49,23 +54,23 @@ async function main() {
     "Oracle Implementation address before set:",
     await oracleProxy.oracleImplementation()
   );
-  await oracleProxy.changeOracleImplementation(oracle.address);
+  const txChangeOracle = await oracleProxy.changeOracleImplementation(
+    oracle.address
+  );
+  await txChangeOracle.wait();
+
   console.log(
     "Oracle Implementation address:",
     await oracleProxy.oracleImplementation()
   );
-  const data = "0x";
-
-  // Fetch the price using the ProxyOracle
-  const [success, price] = await oracleProxy.callStatic.get(data);
 
   // Clone CauldronV4
   const CauldronFactory = await ethers.getContractFactory("CauldronFactory");
   const cauldronFactory = await CauldronFactory.deploy(cauldronV4.address);
   await cauldronFactory.deployed();
-
-  // Setting variables for wETH market
-  const collateralAddress = weth.address; // Address of the collateral token
+  console.log("CauldronFactory address:", cauldronFactory.address);
+  // Setting variables for sBTC market
+  const collateralAddress = sbtc.address; // Address of the collateral token
   const oracleAddress = oracleProxy.address; // Address of the oracle
   const oracleData = "0x"; // Data required by the oracle
   const INTEREST_PER_SECOND = (ethers.BigNumber.from(600) * 316880878) / 100; // Example value
@@ -87,20 +92,20 @@ async function main() {
     ]
   );
 
-  // Clone CauldronV4 for WETH
+  // Clone CauldronV4 for sBTC market
   const tx = await cauldronFactory.createCauldron(initData);
   const receipt = await tx.wait();
   const event = receipt.events.find(
     (event) => event.event === "CauldronCloned"
   );
-  const wETHMarketAddress = event.args[0];
-  console.log("Clone address:", wETHMarketAddress);
+  const sBTCMarketAddress = event.args[0];
+  console.log("Clone address:", sBTCMarketAddress);
 
   const contractName = "CauldronV4";
   const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
-  const wETHMarketContract = new ethers.Contract(
-    wETHMarketAddress,
+  const sBTCMarketContract = new ethers.Contract(
+    sBTCMarketAddress,
     contractABI,
     deployer
   );
@@ -117,36 +122,55 @@ async function main() {
   );
   const maxUint256 = ethers.constants.MaxUint256;
 
-  // Approve degenBox to spend STK tokens
-  const txApproveSTK = await token.approve(degenBox.address, maxUint256);
-  await txApproveSTK.wait();
+  // Approve degenBox to spend ScalarCoin
+  const txApproveSCL = await token.approve(degenBox.address, maxUint256);
+  await txApproveSCL.wait();
+
+  // Approve degenBox to spend sBTC tokens
+  const txApproveSBTC = await sbtc.approve(degenBox.address, maxUint256);
+  await txApproveSBTC.wait();
 
   // Approve degenBox to spend WETH tokens
   const txApproveWETH = await weth.approve(degenBox.address, maxUint256);
   await txApproveWETH.wait();
 
-  // mint WETH to deployer
-  const ethAmount = ethers.utils.parseEther("100.0");
-  const tx1 = {
-    to: weth.address,
-    value: ethAmount,
-  };
-  await deployer.sendTransaction(tx1);
-  await token.mint(deployer.address, ethers.utils.parseUnits("100000", 18));
+  // mint sBTC to deployer
+  const txMintsBTC = await sbtc.mint(
+    deployer.address,
+    ethers.utils.parseEther("10000")
+  );
+  console.log("Mint sBTC tx hash: ", txMintsBTC);
+  await txMintsBTC.wait();
+  const txMintSCL = await token.mint(
+    deployer.address,
+    ethers.utils.parseUnits("3000000", 18)
+  );
+  await txMintSCL.wait();
   const etherAddress = ethers.constants.AddressZero;
 
-  // Deposit STK tokens to the market
-  // amount = 100000 token
-  const amountSTK = ethers.utils.parseUnits("100000", 18);
-  const txSTKDeposit = await degenBox.deposit(
+  // Deposit SCL tokens to the market
+  // amount = 3000000 token
+  const amountSCL = ethers.utils.parseUnits("3000000", 18);
+  const txSCLDeposit = await degenBox.deposit(
     token.address,
     deployer.address,
-    wETHMarketContract.address,
-    amountSTK,
+    sBTCMarketContract.address,
+    amountSCL,
     0
   );
-  await txSTKDeposit.wait();
+  await txSCLDeposit.wait();
 
+  // Deploy the MarketLens contract
+  const MarketLens = await ethers.getContractFactory("MarketLens");
+  const marketLens = await MarketLens.deploy();
+  await marketLens.deployed();
+  console.log(
+    await marketLens.getMarketInfoCauldronV3(sBTCMarketContract.address)
+  );
+  const collateralPrice = await marketLens.getCollateralPrice(
+    sBTCMarketContract.address
+  );
+  console.log("Collateral price: ", ethers.utils.formatUnits(collateralPrice));
   // Client-side test
 
   // Set masterContract approval to user1
@@ -197,7 +221,7 @@ async function main() {
   //   (await user1.getBalance()).toString()
   // );
   // // Add collateral for user1
-  // const tx5 = await wETHMarketContract
+  // const tx5 = await sBTCMarketContract
   //   .connect(user1)
   //   .addCollateral(user1.address, false, shareAmount);
   // await tx5.wait();
@@ -206,13 +230,13 @@ async function main() {
   //   (await degenBox.balanceOf(weth.address, user1.address)).toString()
   // );
   // // Calculate the borrow amount
-  // const oracleDataTemp = await wETHMarketContract.oracleData();
+  // const oracleDataTemp = await sBTCMarketContract.oracleData();
   // const [_, oracleRate] = await oracleProxy.callStatic.get(oracleDataTemp);
   // const amountOut = (depositAmount * oracleRate) / 1e18;
   // // const amountOut = (1e8 * depositAmount) / oracleRate;
   // const borrowAmount = Math.floor((amountOut * 50) / 100);
   // // User1 borrow
-  // const txBorrow = await wETHMarketContract
+  // const txBorrow = await sBTCMarketContract
   //   .connect(user1)
   //   .borrow(user1.address, borrowAmount);
   // const receiptBorrow = await txBorrow.wait();
@@ -224,7 +248,7 @@ async function main() {
 
   // // Withdraw
   // console.log(
-  //   "User1 STK before withdraw: ",
+  //   "User1 SCL before withdraw: ",
   //   (await degenBox.balanceOf(token.address, user1.address)).toString()
   // );
   // console.log(
@@ -244,19 +268,21 @@ async function main() {
   // Save the contract's artifacts and address in the frontend directory
   saveFrontendFiles(
     [
-      { name: "ScalarToken", address: token.address },
+      { name: "ScalarCoin", address: token.address },
       { name: "WETH", address: weth.address },
+      { name: "sBTC", address: sbtc.address },
       { name: "DegenBox", address: degenBox.address },
       { name: "CauldronV4", address: cauldronV4.address },
       { name: "FixedPriceOracle", address: oracle.address },
       { name: "ProxyOracle", address: oracleProxy.address },
       { name: "CauldronFactory", address: cauldronFactory.address },
+      { name: "MarketLens", address: marketLens.address },
     ],
-    wETHMarketAddress
+    sBTCMarketAddress
   );
 }
 
-function saveFrontendFiles(contracts, wETHMarketAddress) {
+function saveFrontendFiles(contracts, sBTCMarketAddress) {
   const fs = require("fs");
   const contractsDir = path.join(__dirname, "..", "frontend", "src", "abis");
 
@@ -277,8 +303,8 @@ function saveFrontendFiles(contracts, wETHMarketAddress) {
       JSON.stringify(ContractArtifact, null, 2)
     );
   });
-  // Save WETH market address
-  contractAddresses["WETHMarket"] = wETHMarketAddress;
+  // Save SBTC market address
+  contractAddresses["sBTCMarket"] = sBTCMarketAddress;
   // Save all contract addresses in a single file
   fs.writeFileSync(
     path.join(contractsDir, "contract-addresses.json"),

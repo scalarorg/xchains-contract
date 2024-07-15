@@ -1,46 +1,6 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\ScalarToken.sol": {
-      "lastModificationDate": 1720066017893,
-      "contentHash": "7fd6e1c6f70762191bbc5891a6e5a288",
-      "sourceName": "contracts/ScalarToken.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../lib/BoringSolidity/contracts/ERC20.sol",
-        "../lib/BoringSolidity/contracts/BoringOwnable.sol",
-        "../lib/BoringSolidity/contracts/libraries/BoringMath.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "ScalarToken"
-      ]
-    },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\ERC20Permit.sol": {
       "lastModificationDate": 1719225879684,
       "contentHash": "d3f7511a1805398723f36799db2af4e1",
@@ -1412,8 +1372,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\WETH.sol": {
-      "lastModificationDate": 1719912507218,
-      "contentHash": "a5d4c32fd991b8870aa8a44ae36e9871",
+      "lastModificationDate": 1720695888969,
+      "contentHash": "a7a869da0c368be035cac8bd60176a30",
       "sourceName": "contracts/WETH.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -1445,7 +1405,7 @@
         "hardhat/console.sol"
       ],
       "versionPragmas": [
-        "^0.8.20"
+        "^0.8.0"
       ],
       "artifacts": [
         "WETH"
@@ -1684,6 +1644,328 @@
       ],
       "artifacts": [
         "console"
+      ]
+    },
+    "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\libraries\\CauldronLib.sol": {
+      "lastModificationDate": 1720684918998,
+      "contentHash": "41ef2a5243e3f58ad6d0b246006a2fe8",
+      "sourceName": "contracts/libraries/CauldronLib.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../lib/BoringSolidity/contracts/interfaces/IERC20.sol",
+        "../../lib/BoringSolidity/contracts/libraries/BoringRebase.sol",
+        "../../lib/BoringSolidity/contracts/libraries/BoringERC20.sol",
+        "../interfaces/IBentoBoxV1.sol",
+        "../interfaces/ICauldronV2.sol",
+        "../interfaces/ICauldronV3.sol",
+        "../interfaces/ICauldronV4.sol",
+        "../interfaces/IOracle.sol",
+        "./MathLib.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.13"
+      ],
+      "artifacts": [
+        "CauldronLib"
+      ]
+    },
+    "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\interfaces\\ICauldronV2.sol": {
+      "lastModificationDate": 1720682519116,
+      "contentHash": "21d4ea608faa9577e438d02dd0f64af0",
+      "sourceName": "contracts/interfaces/ICauldronV2.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../lib/BoringSolidity/contracts/interfaces/IERC20.sol",
+        "./IOracle.sol",
+        "../../lib/BoringSolidity/contracts/libraries/BoringRebase.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.0"
+      ],
+      "artifacts": [
+        "ICauldronV2"
+      ]
+    },
+    "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\interfaces\\ICauldronV3.sol": {
+      "lastModificationDate": 1720682550037,
+      "contentHash": "e051d55101d1f36ffd0c2afbe6ff18f5",
+      "sourceName": "contracts/interfaces/ICauldronV3.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./ICauldronV2.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.0"
+      ],
+      "artifacts": [
+        "ICauldronV3"
+      ]
+    },
+    "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\interfaces\\ICauldronV4.sol": {
+      "lastModificationDate": 1720684685701,
+      "contentHash": "57cdc59f0a9a8f2053020899801c5451",
+      "sourceName": "contracts/interfaces/ICauldronV4.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./ICauldronV3.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.0"
+      ],
+      "artifacts": [
+        "ICauldronV4"
+      ]
+    },
+    "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\libraries\\MathLib.sol": {
+      "lastModificationDate": 1720682668917,
+      "contentHash": "6461c478871c04e4e5b225c5cf6b5f18",
+      "sourceName": "contracts/libraries/MathLib.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.0"
+      ],
+      "artifacts": [
+        "MathLib"
+      ]
+    },
+    "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\lens\\MarketLens.sol": {
+      "lastModificationDate": 1720684753048,
+      "contentHash": "eb458648d826a25fe5bfeb75bdb83df4",
+      "sourceName": "contracts/lens/MarketLens.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IBentoBoxV1.sol",
+        "../interfaces/ICauldronV2.sol",
+        "../interfaces/ICauldronV3.sol",
+        "../../lib/BoringSolidity/contracts/interfaces/IERC20.sol",
+        "../libraries/MathLib.sol",
+        "../libraries/CauldronLib.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "MarketLens"
+      ]
+    },
+    "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\ScalarCoin.sol": {
+      "lastModificationDate": 1720750486148,
+      "contentHash": "4f3b6d011579428be260923784bf6a06",
+      "sourceName": "contracts/ScalarCoin.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IBentoBoxV1.sol",
+        "../lib/BoringSolidity/contracts/ERC20.sol",
+        "../lib/BoringSolidity/contracts/BoringOwnable.sol",
+        "../lib/BoringSolidity/contracts/libraries/BoringMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ScalarCoin"
+      ]
+    },
+    "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\sBTC.sol": {
+      "lastModificationDate": 1720695878593,
+      "contentHash": "3af43489fb091196d0b7f8de8bbf789e",
+      "sourceName": "contracts/sBTC.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../lib/BoringSolidity/contracts/ERC20.sol",
+        "../lib/BoringSolidity/contracts/BoringOwnable.sol",
+        "../lib/BoringSolidity/contracts/libraries/BoringMath.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "sBTC"
       ]
     }
   }
