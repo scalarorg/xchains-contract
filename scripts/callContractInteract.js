@@ -1,3 +1,4 @@
+const { ethers } = require("hardhat");
 const path = require("path");
 async function main() {
   const [deployer, user1, user2] = await ethers.getSigners();
@@ -12,8 +13,35 @@ async function main() {
     contractABI,
     deployer
   );
-  console.log("Contract deployed to address:", callContract.address);
-  console.log("source chain:", await callContract.gasService());
+  const axlContractName = "AxelarGateway";
+  const axlContractArtifact = require(`../artifacts/contracts/axelar/${axlContractName}.sol/${axlContractName}.json`);
+  const axlContractABI = axlContractArtifact.abi;
+  const axlContract = new ethers.Contract(
+    "0x70b9E1B98fb9cDd0221778c1E4d72e7a386D9CCe",
+    axlContractABI,
+    deployer
+  );
+
+  const { params, commandId, sourceChain, sourceAddress, payloadHash } =
+    prepareTxParams();
+
+  // ApproveContractCall
+  const txApproveContractCall = await axlContract.approveContractCall(
+    params,
+    commandId
+  );
+  console.log("Transaction hash:", txApproveContractCall.hash);
+  await txApproveContractCall.wait();
+  console.log("Transaction confirmed");
+  // Check if the contract call is approved
+  const validateResult = await axlContract.isContractCallApproved(
+    commandId,
+    sourceChain,
+    sourceAddress,
+    callContract.address,
+    payloadHash
+  );
+  console.log("Validation result:", validateResult);
 }
 // function saveFrontendFiles(contracts) {
 //   const fs = require("fs");
@@ -50,7 +78,33 @@ async function main() {
 //     JSON.stringify(contractAddresses, undefined, 2)
 //   );
 // }
+function prepareTxParams() {
+  const sourceChain = "Bitcoin";
+  const sourceAddress = "0xBitcoinSourceAddress";
+  const contractAddress = "0xefD9094E9260793Fb970543b19dFe95F5D12Eec9";
+  const payloadHash = ethers.utils.keccak256(
+    ethers.utils.toUtf8Bytes("Hello dascy")
+  );
+  const sourceTxHash = ethers.utils.keccak256(
+    ethers.utils.toUtf8Bytes("0xBitcoinSourceTxHash")
+  );
+  const sourceEventIndex = 1; // Example value, use the actual event index
+  const params = ethers.utils.defaultAbiCoder.encode(
+    ["string", "string", "address", "bytes32", "bytes32", "uint256"],
+    [
+      sourceChain,
+      sourceAddress,
+      contractAddress,
+      payloadHash,
+      sourceTxHash,
+      sourceEventIndex,
+    ]
+  );
+  // Define the commandId
 
+  const commandId = ethers.utils.randomBytes(32);
+  return { params, commandId, sourceChain, sourceAddress, payloadHash };
+}
 main()
   .then(() => process.exit(0))
   .catch((error) => {
