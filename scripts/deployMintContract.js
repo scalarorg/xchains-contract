@@ -1,28 +1,41 @@
 const path = require("path");
 async function main() {
-  const [deployer, user1, user2] = await ethers.getSigners();
+  const [deployer] = await ethers.getSigners();
   console.log(
     "Deploying the contracts with the account:",
     await deployer.getAddress()
   );
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  // Deploy the MarketLens contract
-  const gatewayAddress = "0x70b9E1B98fb9cDd0221778c1E4d72e7a386D9CCe";
-  const gasServiceAddress = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
-  const CallContract = await ethers.getContractFactory("CallContract");
-  const callContract = await CallContract.deploy(
-    gatewayAddress,
-    gasServiceAddress
+  // Deploy the MintContract
+  // const gatewayAddress = "0x70b9E1B98fb9cDd0221778c1E4d72e7a386D9CCe";
+  // const gasServiceAddress = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
+  // const sbtcAddress = "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B";
+
+  // const MintContract = await ethers.getContractFactory("MintContract");
+  // const mintContract = await MintContract.deploy(
+  //   gatewayAddress,
+  //   gasServiceAddress,
+  //   sbtcAddress
+  // );
+  // await mintContract.deployed();
+  const contractName = "MintContract";
+  const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
+  const contractABI = contractArtifact.abi;
+  const mintContract = new ethers.Contract(
+    "0x06a7bC868068f75eae0753981d748518AD604a62",
+    contractABI,
+    deployer
   );
-  await callContract.deployed();
-  console.log("CallContract address:", callContract.address);
-  saveFrontendFiles([
-    {
-      name: "CallContract",
-      address: callContract.address,
-    },
-  ]);
+  console.log("mintContract address:", mintContract.address);
+  console.log("sbtc address:", await mintContract.sbtc());
+
+  // saveFrontendFiles([
+  //   {
+  //     name: "MintContract",
+  //     address: callContract.address,
+  //   },
+  // ]);
 }
 function saveFrontendFiles(contracts) {
   const fs = require("fs");

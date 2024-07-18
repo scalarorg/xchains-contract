@@ -13,12 +13,11 @@ import {sBTC} from "./sBTC.sol";
  */
 contract MintContract is AxelarExecutable, BoringOwnable {
     sBTC public sbtc;
-    string public message;
     string public sourceChain;
     string public sourceAddress;
     IAxelarGasService public immutable gasService;
 
-    event Executed(string _from, string _message);
+    event Executed(string _from, address _to, uint256 _amount);
 
     /**
      *
@@ -30,30 +29,30 @@ contract MintContract is AxelarExecutable, BoringOwnable {
         sbtc = sBTC(_sBTC);
     }
 
-    /**
-     * @notice Send message from chain A to chain B
-     * @dev message param is passed in as gmp message
-     * @param destinationChain name of the dest chain (ex. "Fantom")
-     * @param destinationAddress address on dest chain this tx is going to
-     * @param _message message to be sent
-     */
-    function setRemoteValue(
-        string calldata destinationChain,
-        string calldata destinationAddress,
-        string calldata _message
-    ) external payable {
-        require(msg.value > 0, 'Gas payment is required');
+    // /**
+    //  * @notice Send message from chain A to chain B
+    //  * @dev message param is passed in as gmp message
+    //  * @param destinationChain name of the dest chain (ex. "Fantom")
+    //  * @param destinationAddress address on dest chain this tx is going to
+    //  * @param _message message to be sent
+    //  */
+    // function setRemoteValue(
+    //     string calldata destinationChain,
+    //     string calldata destinationAddress,
+    //     string calldata _message
+    // ) external payable {
+    //     require(msg.value > 0, 'Gas payment is required');
 
-        bytes memory payload = abi.encode(_message);
-        gasService.payNativeGasForContractCall{ value: msg.value }(
-            address(this),
-            destinationChain,
-            destinationAddress,
-            payload,
-            msg.sender
-        );
-        gateway.callContract(destinationChain, destinationAddress, payload);
-    }
+    //     bytes memory payload = abi.encode(_message);
+    //     gasService.payNativeGasForContractCall{ value: msg.value }(
+    //         address(this),
+    //         destinationChain,
+    //         destinationAddress,
+    //         payload,
+    //         msg.sender
+    //     );
+    //     gateway.callContract(destinationChain, destinationAddress, payload);
+    // }
 
     /**
      * @notice logic to be executed on dest chain
@@ -63,11 +62,13 @@ contract MintContract is AxelarExecutable, BoringOwnable {
      * @param _payload encoded gmp message sent from src chain
      */
     function _execute(string calldata _sourceChain, string calldata _sourceAddress, bytes calldata _payload) internal override {
-        (message) = abi.decode(_payload, (string));
+        address to;
+        uint256 amount;
+        (to, amount) = abi.decode(_payload, (address, uint256));
         sourceChain = _sourceChain;
         sourceAddress = _sourceAddress;
-
-        emit Executed(sourceAddress, message);
+        sbtc.mint(to, amount);
+        emit Executed(sourceAddress, to, amount);
     }
 
     function transferMintOwnership(address newOwner) public onlyOwner {
