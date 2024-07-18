@@ -16,6 +16,7 @@ contract CallContract is AxelarExecutable {
     string public sourceAddress;
     IAxelarGasService public immutable gasService;
 
+    event ExecuteCall(bytes32 commandId, string sourceChain, string sourceAddress, bytes32 payloadHash, address contractAddress);
     event Executed(string _from, string _message);
 
     /**
@@ -65,5 +66,20 @@ contract CallContract is AxelarExecutable {
         sourceAddress = _sourceAddress;
 
         emit Executed(sourceAddress, message);
+    }
+
+    function myExecute(
+        bytes32 commandId,
+        string calldata _sourceChain,
+        string calldata _sourceAddress,
+        bytes calldata payload
+    ) external {
+        bytes32 payloadHash = keccak256(payload);
+        
+        if (!gateway.validateContractCall(commandId, _sourceChain, _sourceAddress, payloadHash))
+            revert NotApprovedByGateway();
+
+        emit ExecuteCall(commandId, _sourceChain, _sourceAddress, payloadHash, address(this));
+        _execute(_sourceChain, _sourceAddress, payload);
     }
 }

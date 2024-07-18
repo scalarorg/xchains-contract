@@ -8,7 +8,7 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   // Deploy the MarketLens contract
-  const gatewayAddress = "0xe432150cce91c13a887f7D836923d5597adD8E31";
+  const gatewayAddress = "0x70b9E1B98fb9cDd0221778c1E4d72e7a386D9CCe";
   const gasServiceAddress = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
   const CallContract = await ethers.getContractFactory("CallContract");
   const callContract = await CallContract.deploy(
@@ -32,7 +32,7 @@ function saveFrontendFiles(contracts) {
     "frontend",
     "src",
     "abis",
-    "axelar"
+    "call"
   );
 
   if (!fs.existsSync(contractsDir)) {

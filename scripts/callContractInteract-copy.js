@@ -2,10 +2,8 @@ const { ethers } = require("hardhat");
 const path = require("path");
 const { setTimeout } = require("timers/promises");
 async function main() {
-  const [deployer, user1, user2] = await ethers.getSigners();
-  const provider = ethers.getDefaultProvider(
-    "https://eth-sepolia.g.alchemy.com/v2/nNbspp-yjKP9GtAcdKi8xcLnBTptR2Zx"
-  );
+  const [deployer] = await ethers.getSigners();
+
   console.log("Signer account:", await deployer.getAddress());
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
@@ -13,7 +11,7 @@ async function main() {
   const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
   const callContract = new ethers.Contract(
-    "0x10769E9B46Eb87af28f1566B6aee2FFA38fc6fF3",
+    "0xE5216E6B3F6f461297d85f87ECFEA96967566AdD",
     contractABI,
     deployer
   );
@@ -61,11 +59,6 @@ async function main() {
     console.log("payload hash:", payloadHash);
     console.log("call contract gateway:", await callContract.gateway());
 
-    axlContract.on("ContractCallExecuted", (cmdId) => {
-      console.log(
-        `ContractCallExecuted event detected for commandId = ${cmdId}`
-      );
-    });
     // Call execute function
     console.log("Message before execute:", await callContract.message());
     const txExecute = await callContract.execute(
@@ -93,28 +86,17 @@ async function main() {
   } catch (error) {
     console.error("Error executing transaction:", error);
   }
-  // // Call execute
-  // console.log("Message before execute:", await callContract.message());
-  // const txExecute = await callContract.execute(
-  //   commandId,
-  //   sourceChain,
-  //   sourceAddress,
-  //   payloadBytes
-  // );
-  // console.log("Transaction hash:", txExecute.hash);
-  // await txExecute.wait();
-  // console.log("Transaction confirmed");
-  // console.log("Message after execute:", await callContract.message());
 }
 
 function prepareTxParams() {
   const sourceChain = "Bitcoin";
   const sourceAddress = "0xBitcoinSourceAddress";
-  const contractAddress = "0x10769E9B46Eb87af28f1566B6aee2FFA38fc6fF3";
-  const payloadHash = ethers.utils.keccak256(
-    ethers.utils.toUtf8Bytes("Hello dascy")
+  const contractAddress = "0xE5216E6B3F6f461297d85f87ECFEA96967566AdD";
+  const payloadBytes = ethers.utils.defaultAbiCoder.encode(
+    ["string"],
+    ["Goodbye dascy"]
   );
-  const payloadBytes = ethers.utils.toUtf8Bytes("Hello dascy");
+  const payloadHash = ethers.utils.keccak256(payloadBytes);
   const sourceTxHash = ethers.utils.keccak256(
     ethers.utils.toUtf8Bytes("0xBitcoinSourceTxHash")
   );

@@ -1969,8 +1969,8 @@
       ]
     },
     "C:\\Users\\ACER\\Desktop\\scratch-hardhat\\contracts\\CallContract.sol": {
-      "lastModificationDate": 1721033119968,
-      "contentHash": "aff25bd748bb35f52fe400ed56794828",
+      "lastModificationDate": 1721289982210,
+      "contentHash": "7b1a266226a0946202b46817242d52ea",
       "sourceName": "contracts/CallContract.sol",
       "solcConfig": {
         "version": "0.8.24",
