@@ -46,10 +46,8 @@ async function main() {
 
   console.log("mintContract address:", mintContract.address);
   console.log("sbtc owner:", await sbtc.owner());
-  const txTransferOwnership = await sbtc.transferOwnership(
-    mintContract.address,
-    true,
-    false
+  const txTransferOwnership = await mintContract.transferMintOwnership(
+    "0x4bAbD4440dF34D47783f33A9F016567bD3cBB1d7"
   );
   await txTransferOwnership.wait();
   console.log("sbtc owner:", await sbtc.owner());

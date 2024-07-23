@@ -8,25 +8,25 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   // Deploy the MintContract
-  // const gatewayAddress = "0x70b9E1B98fb9cDd0221778c1E4d72e7a386D9CCe";
-  // const gasServiceAddress = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
-  // const sbtcAddress = "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B";
+  const gatewayAddress = "0xe432150cce91c13a887f7D836923d5597adD8E31";
+  const gasServiceAddress = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
+  const sbtcAddress = "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B";
 
-  // const MintContract = await ethers.getContractFactory("MintContract");
-  // const mintContract = await MintContract.deploy(
-  //   gatewayAddress,
-  //   gasServiceAddress,
-  //   sbtcAddress
-  // );
-  // await mintContract.deployed();
-  const contractName = "MintContract";
-  const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
-  const contractABI = contractArtifact.abi;
-  const mintContract = new ethers.Contract(
-    "0x06a7bC868068f75eae0753981d748518AD604a62",
-    contractABI,
-    deployer
+  const MintContract = await ethers.getContractFactory("MintContract");
+  const mintContract = await MintContract.deploy(
+    gatewayAddress,
+    gasServiceAddress,
+    sbtcAddress
   );
+  await mintContract.deployed();
+  // const contractName = "MintContract";
+  // const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
+  // const contractABI = contractArtifact.abi;
+  // const mintContract = new ethers.Contract(
+  //   "0x06a7bC868068f75eae0753981d748518AD604a62",
+  //   contractABI,
+  //   deployer
+  // );
   console.log("mintContract address:", mintContract.address);
   console.log("sbtc address:", await mintContract.sbtc());
 

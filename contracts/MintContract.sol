@@ -29,30 +29,32 @@ contract MintContract is AxelarExecutable, BoringOwnable {
         sbtc = sBTC(_sBTC);
     }
 
-    // /**
-    //  * @notice Send message from chain A to chain B
-    //  * @dev message param is passed in as gmp message
-    //  * @param destinationChain name of the dest chain (ex. "Fantom")
-    //  * @param destinationAddress address on dest chain this tx is going to
-    //  * @param _message message to be sent
-    //  */
-    // function setRemoteValue(
-    //     string calldata destinationChain,
-    //     string calldata destinationAddress,
-    //     string calldata _message
-    // ) external payable {
-    //     require(msg.value > 0, 'Gas payment is required');
-
-    //     bytes memory payload = abi.encode(_message);
-    //     gasService.payNativeGasForContractCall{ value: msg.value }(
-    //         address(this),
-    //         destinationChain,
-    //         destinationAddress,
-    //         payload,
-    //         msg.sender
-    //     );
-    //     gateway.callContract(destinationChain, destinationAddress, payload);
-    // }
+    /**
+     * @notice Send payload from chain A to chain B
+     * @dev payload param is passed in as gmp message
+     * @param destinationChain name of the dest chain (ex. "Fantom")
+     * @param destinationAddress address on dest chain this tx is going to
+     * @param _to address of the recipient
+     * @param _amount amount to mint
+     */
+    function callMint(
+        string calldata destinationChain,
+        string calldata destinationAddress,
+        address _to,
+        uint256 _amount
+    ) external payable {
+        require(msg.value > 0, 'Gas payment is required');
+        
+        bytes memory payload = abi.encode(_to, _amount);
+        gasService.payNativeGasForContractCall{ value: msg.value }(
+            address(this),
+            destinationChain,
+            destinationAddress,
+            payload,
+            msg.sender
+        );
+        gateway.callContract(destinationChain, destinationAddress, payload);
+    }
 
     /**
      * @notice logic to be executed on dest chain
