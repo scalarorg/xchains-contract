@@ -1,6 +1,6 @@
 ## Description
 
-Solidity code and scripts for deploying and interacting with Axelar Network
+Solidity code and scripts for deploying and interacting with MintContract
 
 ## Sepolia Contract Address
 
