@@ -14,6 +14,7 @@
     "@axelar-network/axelar-cgp-solidity": "^6.3.1",
     "@axelar-network/axelar-gmp-sdk-solidity": "^5.9.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
-    "@openzeppelin/contracts": "^5.0.2"
+    "@openzeppelin/contracts": "^5.0.2",
+    "dotenv": "^16.4.5"
   }
 }
