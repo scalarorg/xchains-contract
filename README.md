@@ -12,6 +12,10 @@ Solidity code and scripts for deploying and interacting with MintContract
 
 **MintContract**: "0x4bAbD4440dF34D47783f33A9F016567bD3cBB1d7"
 
+**MyAxelarGateway**: "0xF67bF4e7D24db77e83cDe18f4C6c193993935481"
+
+**MyMintContract**: "0xA504d9fAC86CE82E5b4e2CEe6B2a2b1a6eE9a229"
+
 ## Quick start
 
 The first things you need to do are cloning this repository and installing its

@@ -8,7 +8,7 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   // Deploy the MintContract
-  const gatewayAddress = "0xe432150cce91c13a887f7D836923d5597adD8E31";
+  const gatewayAddress = "0xF67bF4e7D24db77e83cDe18f4C6c193993935481"; // TODO: Update this address
   const gasServiceAddress = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
   const sbtcAddress = "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B";
 
@@ -30,23 +30,16 @@ async function main() {
   console.log("mintContract address:", mintContract.address);
   console.log("sbtc address:", await mintContract.sbtc());
 
-  // saveFrontendFiles([
-  //   {
-  //     name: "MintContract",
-  //     address: callContract.address,
-  //   },
-  // ]);
+  saveABI([
+    {
+      name: "MintContract",
+      address: mintContract.address,
+    },
+  ]);
 }
-function saveFrontendFiles(contracts) {
+function saveABI(contracts) {
   const fs = require("fs");
-  const contractsDir = path.join(
-    __dirname,
-    "..",
-    "frontend",
-    "src",
-    "abis",
-    "call"
-  );
+  const contractsDir = path.join(__dirname, "..", "abis", "mint-contract");
 
   if (!fs.existsSync(contractsDir)) {
     fs.mkdirSync(contractsDir);

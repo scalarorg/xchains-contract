@@ -95,6 +95,11 @@ contract AxelarGateway is IAxelarGateway, Implementation, EternalStorage {
     /**
      * @notice Ensures that the caller of the function is the gateway contract itself.
      */
+    modifier onlySelf() {
+        if (msg.sender != address(this)) revert NotSelf();
+
+        _;
+    }
 
     /**
      * @notice Ensures that the caller of the function is the governance address.
@@ -539,7 +544,7 @@ contract AxelarGateway is IAxelarGateway, Implementation, EternalStorage {
      * @dev If the token address is specified, the token is marked as External.
      * @dev Emits a TokenDeployed event with the symbol and token address.
      */
-    function deployToken(bytes calldata params, bytes32) external {
+    function deployToken(bytes calldata params, bytes32) external onlySelf {
         (string memory name, string memory symbol, uint8 decimals, uint256 cap, address tokenAddress, uint256 mintLimit) = abi.decode(
             params,
             (string, string, uint8, uint256, address, uint256)
@@ -585,7 +590,7 @@ contract AxelarGateway is IAxelarGateway, Implementation, EternalStorage {
      * @dev If the token type is External, a safe transfer is performed to the recipient account.
      * @dev If the token type is Internal (InternalBurnable or InternalBurnableFrom), the mint function is called on the token address.
      */
-    function mintToken(bytes calldata params, bytes32) external {
+    function mintToken(bytes calldata params, bytes32) external onlySelf {
         (string memory symbol, address account, uint256 amount) = abi.decode(params, (string, address, uint256));
 
         _mintToken(symbol, account, amount);
@@ -595,7 +600,7 @@ contract AxelarGateway is IAxelarGateway, Implementation, EternalStorage {
      * @notice Burns tokens of a given symbol, either through an external deposit handler or a token defined burn method.
      * @param params Encoded parameters including the token symbol and a salt value for the deposit handler
      */
-    function burnToken(bytes calldata params, bytes32) external {
+    function burnToken(bytes calldata params, bytes32) external onlySelf {
         (string memory symbol, bytes32 salt) = abi.decode(params, (string, bytes32));
 
         address tokenAddress = tokenAddresses(symbol);
@@ -628,7 +633,7 @@ contract AxelarGateway is IAxelarGateway, Implementation, EternalStorage {
      * @param params Encoded parameters including the source chain, source address, contract address, payload hash, transaction hash, and event index
      * @param commandId to associate with the approval
      */
-    function approveContractCall(bytes calldata params, bytes32 commandId) external {
+    function approveContractCall(bytes calldata params, bytes32 commandId) external onlySelf {
         (
             string memory sourceChain,
             string memory sourceAddress,
@@ -648,7 +653,7 @@ contract AxelarGateway is IAxelarGateway, Implementation, EternalStorage {
      * token amount, transaction hash, and event index.
      * @param commandId to associate with the approval
      */
-    function approveContractCallWithMint(bytes calldata params, bytes32 commandId) external {
+    function approveContractCallWithMint(bytes calldata params, bytes32 commandId) external onlySelf {
         (
             string memory sourceChain,
             string memory sourceAddress,
@@ -678,7 +683,7 @@ contract AxelarGateway is IAxelarGateway, Implementation, EternalStorage {
      * @notice Transfers operatorship with the provided data by calling the transferOperatorship function on the auth module.
      * @param newOperatorsData Encoded data for the new operators
      */
-    function transferOperatorship(bytes calldata newOperatorsData, bytes32) external {
+    function transferOperatorship(bytes calldata newOperatorsData, bytes32) external onlySelf {
         emit OperatorshipTransferred(newOperatorsData);
 
         IAxelarAuth(authModule).transferOperatorship(newOperatorsData);

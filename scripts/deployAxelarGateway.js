@@ -1,6 +1,6 @@
 const path = require("path");
 async function main() {
-  const [deployer, user1, user2] = await ethers.getSigners();
+  const [deployer] = await ethers.getSigners();
   console.log(
     "Deploying the contracts with the account:",
     await deployer.getAddress()
@@ -10,21 +10,23 @@ async function main() {
   // Deploy the AxelarGateway contract
   const authModule = "0x1a920b29ebd437074225caee44f78fc700b27a5d";
   const tokenDeployer = "0xD2aDceFd0496449E3FDE873A2332B18A0F0FCADf";
+
   const AxelarGateway = await ethers.getContractFactory("AxelarGateway");
   const axelarGateway = await AxelarGateway.deploy(authModule, tokenDeployer);
   await axelarGateway.deployed();
   console.log("AxelarGateway deployed to:", axelarGateway.address);
   console.log(await axelarGateway.contractId());
-  //   saveFrontendFiles([
-  //     {
-  //       name: "MarketLens",
-  //       address: marketLens.address,
-  //     },
-  //   ]);
+
+  saveABI([
+    {
+      name: "AxelarGateway",
+      address: axelarGateway.address,
+    },
+  ]);
 }
-function saveFrontendFiles(contracts) {
+function saveABI(contracts) {
   const fs = require("fs");
-  const contractsDir = path.join(__dirname, "..", "frontend", "src", "abis");
+  const contractsDir = path.join(__dirname, "..", "abis", "gateway");
 
   if (!fs.existsSync(contractsDir)) {
     fs.mkdirSync(contractsDir);
