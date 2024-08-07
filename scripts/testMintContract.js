@@ -11,7 +11,7 @@ async function main() {
   const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
   const mintContract = new ethers.Contract(
-    "0xA504d9fAC86CE82E5b4e2CEe6B2a2b1a6eE9a229", // TODO
+    "0x768E8De8cf0c7747D41f75F83C914a19C5921Cf3", // TODO: update Gateway address
     contractABI,
     deployer
   );
@@ -33,7 +33,7 @@ async function main() {
   );
 
   const destinationChain = "ethereum-sepolia";
-  const destinationAddress = "0xA504d9fAC86CE82E5b4e2CEe6B2a2b1a6eE9a229"; // TODO
+  const destinationAddress = "0x768E8De8cf0c7747D41f75F83C914a19C5921Cf3"; // TODO
   const to = "0x130C4810D57140e1E62967cBF742CaEaE91b6ecE";
   const amount = ethers.utils.parseUnits("1", 18);
   console.log("destinationChain:", mintContract.destinationChain);

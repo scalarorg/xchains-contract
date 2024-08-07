@@ -39,7 +39,7 @@ async function main() {
   const mintContractArtifact = require(`../artifacts/contracts/${mintContractName}.sol/${mintContractName}.json`);
   const mintContractABI = mintContractArtifact.abi;
   const mintContract = new ethers.Contract(
-    "0x06a7bC868068f75eae0753981d748518AD604a62",
+    "0x3AE131F593C603c152f419f954C49f8A742bEC8c", // TODO: Update this address to old mintContract address
     mintContractABI,
     deployer
   );
@@ -47,7 +47,7 @@ async function main() {
   console.log("mintContract address:", mintContract.address);
   console.log("sbtc owner:", await sbtc.owner());
   const txTransferOwnership = await mintContract.transferMintOwnership(
-    "0x4bAbD4440dF34D47783f33A9F016567bD3cBB1d7"
+    "0x768E8De8cf0c7747D41f75F83C914a19C5921Cf3" // TODO: Update this address to new mintContract address
   );
   await txTransferOwnership.wait();
   console.log("sbtc owner:", await sbtc.owner());

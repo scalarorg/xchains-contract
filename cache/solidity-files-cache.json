@@ -3382,8 +3382,8 @@
       ]
     },
     "/Users/admin/code/sbtc-minting-contract/contracts/axelar/AxelarGateway.sol": {
-      "lastModificationDate": 1721979707724,
-      "contentHash": "da8cddde2bb83ac8ff29ec10b6d9a233",
+      "lastModificationDate": 1723000325254,
+      "contentHash": "14b38be39f5eb0114254925daae392c3",
       "sourceName": "contracts/axelar/AxelarGateway.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -3947,6 +3947,122 @@
       ],
       "artifacts": [
         "IOwnable"
+      ]
+    },
+    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol": {
+      "lastModificationDate": 1721979583397,
+      "contentHash": "eb71621fafd383de2e8b4d5ec08cc7e5",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IOwnable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/AxelarAuthWeighted.sol": {
+      "lastModificationDate": 1722827488245,
+      "contentHash": "6bcb9bb0ad10f7c6e4c00751d2a911b3",
+      "sourceName": "contracts/axelar/AxelarAuthWeighted.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IAexelarAuthWeighted.sol",
+        "./ECDSA.sol",
+        "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AxelarAuthWeighted"
+      ]
+    },
+    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IAexelarAuthWeighted.sol": {
+      "lastModificationDate": 1722593925152,
+      "contentHash": "f3af42505e24834b490f22101b90d16b",
+      "sourceName": "contracts/axelar/interfaces/IAexelarAuthWeighted.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IAxelarAuth.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAxelarAuthWeighted"
       ]
     }
   }
