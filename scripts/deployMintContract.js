@@ -8,7 +8,7 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   // Deploy the MintContract
-  const gatewayAddress = "0xF67bF4e7D24db77e83cDe18f4C6c193993935481"; // TODO: Update this address
+  const gatewayAddress = "0xd70943944567979d99800DD14b441B1D3A601A1D"; // TODO: Update this address
   const gasServiceAddress = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
   const sbtcAddress = "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B";
 

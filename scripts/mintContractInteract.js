@@ -13,7 +13,7 @@ async function main() {
   const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
   const mintContract = new ethers.Contract(
-    "0x06a7bC868068f75eae0753981d748518AD604a62", // TODO
+    "0x3AE131F593C603c152f419f954C49f8A742bEC8c", // TODO
     contractABI,
     deployer
   );
@@ -21,7 +21,7 @@ async function main() {
   const axlContractArtifact = require(`../artifacts/contracts/axelar/${axlContractName}.sol/${axlContractName}.json`);
   const axlContractABI = axlContractArtifact.abi;
   const axlContract = new ethers.Contract(
-    "0x70b9E1B98fb9cDd0221778c1E4d72e7a386D9CCe",
+    "0x74f50131dE1784c57D076230f90bf2687f7f76C3",
     axlContractABI,
     deployer
   );
@@ -98,7 +98,7 @@ async function main() {
 function prepareTxParams() {
   const sourceChain = "Bitcoin";
   const sourceAddress = "0xBitcoinSourceAddress";
-  const contractAddress = "0x06a7bC868068f75eae0753981d748518AD604a62"; // TODO
+  const contractAddress = "0x3AE131F593C603c152f419f954C49f8A742bEC8c"; // TODO
   const payloadBytes = ethers.utils.defaultAbiCoder.encode(
     ["address", "uint256"],
     [

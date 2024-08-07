@@ -7,22 +7,29 @@ async function main() {
   );
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  // Deploy the AxelarGateway contract
-  const authModule = "0x71b7B290B14D7A8EB8071e35e3457b192b4a7fB6"; // TODO: update AxelarAuthWeighted address
-  const tokenDeployer = "0xD2aDceFd0496449E3FDE873A2332B18A0F0FCADf";
+  // Get the AxelarGateway contract
 
-  const AxelarGateway = await ethers.getContractFactory("AxelarGateway");
-  const axelarGateway = await AxelarGateway.deploy(authModule, tokenDeployer);
-  await axelarGateway.deployed();
-  console.log("AxelarGateway deployed to:", axelarGateway.address);
-  console.log(await axelarGateway.contractId());
-
-  // saveABI([
-  //   {
-  //     name: "AxelarGateway",
-  //     address: axelarGateway.address,
-  //   },
-  // ]);
+  const axlContractName = "AxelarGateway";
+  const axlContractArtifact = require(`../artifacts/contracts/axelar/${axlContractName}.sol/${axlContractName}.json`);
+  const axlContractABI = axlContractArtifact.abi;
+  const axlContract = new ethers.Contract(
+    "0xBA3e5B0EebF14f895114EE6b0f12b6a49295515e", //TODO
+    axlContractABI,
+    deployer
+  );
+  axlContract.on("*", (event) => {
+    console.log("Event:", event);
+  });
+  setTimeout(() => {
+    contract.removeAllListeners();
+    console.log("All listeners removed");
+  }, 300000);
+  //   saveABI([
+  //     {
+  //       name: "AxelarGateway",
+  //       address: axelarGateway.address,
+  //     },
+  //   ]);
 }
 function saveABI(contracts) {
   const fs = require("fs");
@@ -54,7 +61,10 @@ function saveABI(contracts) {
 }
 
 main()
-  .then(() => process.exit(0))
+  .then(() => {
+    // Prevent the script from exiting
+    process.stdin.resume();
+  })
   .catch((error) => {
     console.error(error);
     process.exit(1);
