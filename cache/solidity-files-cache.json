@@ -1,1104 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/admin/code/abracadabra-clone/contracts/CallContract.sol": {
-      "lastModificationDate": 1721615232531,
-      "contentHash": "6b0259ba95c8541fda37cf42d777e678",
-      "sourceName": "contracts/CallContract.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "CallContract"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol": {
-      "lastModificationDate": 1721616574282,
-      "contentHash": "01c9e79b4847815cc5f0759e7e71d82a",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../interfaces/IAxelarGateway.sol",
-        "../interfaces/IAxelarExecutable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "AxelarExecutable"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol": {
-      "lastModificationDate": 1721616574289,
-      "contentHash": "3da2d37fba8aac11a55c3e5a2dfb8390",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IGovernable.sol",
-        "./IImplementation.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IAxelarGateway"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol": {
-      "lastModificationDate": 1721616574288,
-      "contentHash": "711bae34afd4c3210fd7c250a0459c1b",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../types/GasEstimationTypes.sol",
-        "./IInterchainGasEstimation.sol",
-        "./IUpgradable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IAxelarGasService"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol": {
-      "lastModificationDate": 1721616574291,
-      "contentHash": "a0e1a9afa9d0b1cffeaf1d16c8a15287",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC20"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarExecutable.sol": {
-      "lastModificationDate": 1721616574288,
-      "contentHash": "2bf91caadece73810d1e7bc537174f04",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarExecutable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IAxelarGateway.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IAxelarExecutable"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol": {
-      "lastModificationDate": 1721616574291,
-      "contentHash": "b30a7eb7b4a4d39878a8ad7d93d33f37",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IContractIdentifier.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IImplementation"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IGovernable.sol": {
-      "lastModificationDate": 1721616574291,
-      "contentHash": "cff1f78967ee150487afdfcc5689c7c4",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IGovernable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IGovernable"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol": {
-      "lastModificationDate": 1721616574290,
-      "contentHash": "35cfec878fe72edd2f3d752aab6f56b9",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IContractIdentifier"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/types/GasEstimationTypes.sol": {
-      "lastModificationDate": 1721616574287,
-      "contentHash": "e5c2978c99d4414a0413c2cb59779bbb",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/types/GasEstimationTypes.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": []
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IInterchainGasEstimation.sol": {
-      "lastModificationDate": 1721616574291,
-      "contentHash": "86a4d4a3535fe9f38a3a4908bb2abae4",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IInterchainGasEstimation.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../types/GasEstimationTypes.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IInterchainGasEstimation"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IUpgradable.sol": {
-      "lastModificationDate": 1721616574294,
-      "contentHash": "f20af70b01876dd45652bbb357ef1264",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IUpgradable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IOwnable.sol",
-        "./IImplementation.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IUpgradable"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol": {
-      "lastModificationDate": 1721616574293,
-      "contentHash": "079a01f47174cf9ed191f6cb21a74a0f",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IOwnable"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol": {
-      "lastModificationDate": 1721616574296,
-      "contentHash": "ac0279b5635a6cdf3ff426890e3a7e56",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../interfaces/IERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "SafeTokenCall",
-        "SafeTokenTransfer",
-        "SafeTokenTransferFrom"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/AxelarGateway.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "84defb062eed342a40b799987644f576",
-      "sourceName": "contracts/axelar/AxelarGateway.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol",
-        "./interfaces/IAxelarAuth.sol",
-        "./interfaces/IBurnableMintableCappedERC20.sol",
-        "./interfaces/ITokenDeployer.sol",
-        "./ECDSA.sol",
-        "./DepositHandler.sol",
-        "./EternalStorage.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "AxelarGateway"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/interfaces/IAxelarAuth.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "cb83881506007224f932a4e23335f654",
-      "sourceName": "contracts/axelar/interfaces/IAxelarAuth.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IAxelarAuth"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/interfaces/ITokenDeployer.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "7511ef74aedd55bbf4bcfc338d115493",
-      "sourceName": "contracts/axelar/interfaces/ITokenDeployer.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ITokenDeployer"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/interfaces/IBurnableMintableCappedERC20.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "f9a3e499c3c27c3faffc975347417653",
-      "sourceName": "contracts/axelar/interfaces/IBurnableMintableCappedERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IERC20Burn.sol",
-        "./IERC20BurnFrom.sol",
-        "./IMintableCappedERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "IBurnableMintableCappedERC20"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/ECDSA.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "ac13f84944a07ae8b7a156f425005633",
-      "sourceName": "contracts/axelar/ECDSA.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "ECDSA"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/EternalStorage.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "bba396895ca3ec3d6f90b35dbeae8d2c",
-      "sourceName": "contracts/axelar/EternalStorage.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "EternalStorage"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/DepositHandler.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "07c8f2f2acadda411092c290ba914ecc",
-      "sourceName": "contracts/axelar/DepositHandler.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "DepositHandler"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol": {
-      "lastModificationDate": 1721616574292,
-      "contentHash": "4ef7d1925465ba98e022ca42563bfba0",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../interfaces/IImplementation.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Implementation"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol": {
-      "lastModificationDate": 1721616574284,
-      "contentHash": "7b646146cf0fd6a4ff80734bd498b592",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ContractAddress"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/interfaces/IERC20Burn.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "bf56de89dbff881ab4e2fa63b665a53e",
-      "sourceName": "contracts/axelar/interfaces/IERC20Burn.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "IERC20Burn"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/interfaces/IMintableCappedERC20.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "45901cdcccaf0ff910f70f0e070d7e26",
-      "sourceName": "contracts/axelar/interfaces/IMintableCappedERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IERC20.sol",
-        "./IERC20Permit.sol",
-        "./IOwnable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "IMintableCappedERC20"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/interfaces/IERC20BurnFrom.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "8f02381b69eb0385d41ab2e54c646510",
-      "sourceName": "contracts/axelar/interfaces/IERC20BurnFrom.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "IERC20BurnFrom"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/interfaces/IERC20.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "44eae9aec640d032d51e188229f61fed",
-      "sourceName": "contracts/axelar/interfaces/IERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "IERC20"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/interfaces/IERC20Permit.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "2bcc06bcfc551a8ff35622288f7f3be6",
-      "sourceName": "contracts/axelar/interfaces/IERC20Permit.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "IERC20Permit"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/axelar/interfaces/IOwnable.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "998e17b8487fedc9fcbf6aa53dcc8d06",
-      "sourceName": "contracts/axelar/interfaces/IOwnable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "IOwnable"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/MintContract.sol": {
-      "lastModificationDate": 1721617575653,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/MintContract.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "03d6036a3f3704a19892cb61ab9ea374",
       "sourceName": "contracts/MintContract.sol",
       "solcConfig": {
@@ -1140,8 +44,8 @@
         "MintContract"
       ]
     },
-    "/Users/admin/code/abracadabra-clone/contracts/sBTC.sol": {
-      "lastModificationDate": 1721615232534,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/sBTC.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "283a23db2e94b2d49fc4b20a8e4890d9",
       "sourceName": "contracts/sBTC.sol",
       "solcConfig": {
@@ -1180,8 +84,8 @@
         "sBTC"
       ]
     },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/BoringOwnable.sol": {
-      "lastModificationDate": 1721617313020,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/lib/BoringSolidity/contracts/BoringOwnable.sol": {
+      "lastModificationDate": 1722588907748,
       "contentHash": "97ae985da59b96883c00a834eca1d77e",
       "sourceName": "lib/BoringSolidity/contracts/BoringOwnable.sol",
       "solcConfig": {
@@ -1217,1569 +121,8 @@
         "BoringOwnableData"
       ]
     },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/ERC20.sol": {
-      "lastModificationDate": 1721617313021,
-      "contentHash": "688ee38b39922e26f7754627ad19838e",
-      "sourceName": "lib/BoringSolidity/contracts/ERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interfaces/IERC20.sol",
-        "./Domain.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ERC20",
-        "ERC20Data",
-        "ERC20WithSupply"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/libraries/BoringMath.sol": {
-      "lastModificationDate": 1721617313021,
-      "contentHash": "c7126ecc8db48c8ebc8360928d49017b",
-      "sourceName": "lib/BoringSolidity/contracts/libraries/BoringMath.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "BoringMath",
-        "BoringMath112",
-        "BoringMath128",
-        "BoringMath224",
-        "BoringMath32",
-        "BoringMath64"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/interfaces/IERC20.sol": {
-      "lastModificationDate": 1721617313021,
-      "contentHash": "39a5e0412608b8207e69f34dfe8bdf13",
-      "sourceName": "lib/BoringSolidity/contracts/interfaces/IERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC20",
-        "IStrictERC20"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/Domain.sol": {
-      "lastModificationDate": 1721617313020,
-      "contentHash": "09c8823172ab2170941e34845bd55161",
-      "sourceName": "lib/BoringSolidity/contracts/Domain.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Domain"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/libraries/BoringRebase.sol": {
-      "lastModificationDate": 1721617313022,
-      "contentHash": "69d2516727ae24f24f371b0f323a374b",
-      "sourceName": "lib/BoringSolidity/contracts/libraries/BoringRebase.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./BoringMath.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "RebaseLibrary"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/libraries/CauldronLib.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "d4619db0000b75a7bbe8c2a61cadfd8a",
-      "sourceName": "contracts/libraries/CauldronLib.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../lib/BoringSolidity/contracts/interfaces/IERC20.sol",
-        "../../lib/BoringSolidity/contracts/libraries/BoringRebase.sol",
-        "../../lib/BoringSolidity/contracts/libraries/BoringERC20.sol",
-        "../interfaces/IBentoBoxV1.sol",
-        "../interfaces/ICauldronV2.sol",
-        "../interfaces/ICauldronV3.sol",
-        "../interfaces/ICauldronV4.sol",
-        "../interfaces/IOracle.sol",
-        "./MathLib.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.13"
-      ],
-      "artifacts": [
-        "CauldronLib"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/interfaces/IBentoBoxV1.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "41ff41428b439b716ba7fb604528dbff",
-      "sourceName": "contracts/interfaces/IBentoBoxV1.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../lib/BoringSolidity/contracts/interfaces/IERC20.sol",
-        "../../lib/BoringSolidity/contracts/libraries/BoringRebase.sol",
-        "./IStrategy.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "IBatchFlashBorrower",
-        "IBentoBoxV1",
-        "IFlashBorrower"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/interfaces/ICauldronV2.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "866e7230e4ee6ea5170dd19c3418d484",
-      "sourceName": "contracts/interfaces/ICauldronV2.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../lib/BoringSolidity/contracts/interfaces/IERC20.sol",
-        "./IOracle.sol",
-        "../../lib/BoringSolidity/contracts/libraries/BoringRebase.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "ICauldronV2"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/interfaces/ICauldronV3.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "670087db27f3c1c1e7028e1d342073d8",
-      "sourceName": "contracts/interfaces/ICauldronV3.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./ICauldronV2.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "ICauldronV3"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/interfaces/ICauldronV4.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "d8d64566a13f93eaa485f14a087b6722",
-      "sourceName": "contracts/interfaces/ICauldronV4.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./ICauldronV3.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "ICauldronV4"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/interfaces/IOracle.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "17ac858b9b0a601fdef8aab36fbaf555",
-      "sourceName": "contracts/interfaces/IOracle.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "IOracle"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/libraries/MathLib.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "74e10c8fe0a6d47453bd3ec1425823dc",
-      "sourceName": "contracts/libraries/MathLib.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "MathLib"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/libraries/BoringERC20.sol": {
-      "lastModificationDate": 1721617313021,
-      "contentHash": "fc9be89528dc481e2efc26cd5c93cda0",
-      "sourceName": "lib/BoringSolidity/contracts/libraries/BoringERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../interfaces/IERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "BoringERC20"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/interfaces/IStrategy.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "46099a3c0250e3799e79e615740e7a3a",
-      "sourceName": "contracts/interfaces/IStrategy.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "IStrategy"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/BoringBatchable.sol": {
-      "lastModificationDate": 1721617313020,
-      "contentHash": "d2de56340bbd6adb74bcab872a537bea",
-      "sourceName": "lib/BoringSolidity/contracts/BoringBatchable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interfaces/IERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "BaseBoringBatchable",
-        "BoringBatchable"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/DegenBox.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "83661600db78aa42e223de84e1d6d472",
-      "sourceName": "contracts/DegenBox.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../lib/BoringSolidity/contracts/ERC20.sol",
-        "../lib/BoringSolidity/contracts/libraries/BoringERC20.sol",
-        "../lib/BoringSolidity/contracts/libraries/BoringRebase.sol",
-        "../lib/BoringSolidity/contracts/BoringOwnable.sol",
-        "../lib/BoringSolidity/contracts/BoringBatchable.sol",
-        "../lib/BoringSolidity/contracts/libraries/BoringMath.sol",
-        "./interfaces/IStrategy.sol",
-        "./interfaces/IBentoBoxV1.sol",
-        "./interfaces/IWETH.sol",
-        "./mixins/MasterContractManager.sol",
-        "hardhat/console.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "DegenBox"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/interfaces/IWETH.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "bf235a24d12fca1ef077b2dd886c8e2f",
-      "sourceName": "contracts/interfaces/IWETH.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../lib/BoringSolidity/contracts/interfaces/IERC20.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "IWETH",
-        "IWETHAlike"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/mixins/MasterContractManager.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "c4f26fe0cd559a4664989baf27e2c87f",
-      "sourceName": "contracts/mixins/MasterContractManager.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../lib/BoringSolidity/contracts/BoringOwnable.sol",
-        "../../lib/BoringSolidity/contracts/BoringFactory.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "MasterContractManager"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/hardhat/console.sol": {
-      "lastModificationDate": 1721616567649,
-      "contentHash": "896f68942c3a20e9ae3c3c5bfd3add54",
-      "sourceName": "hardhat/console.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.22 <0.9.0"
-      ],
-      "artifacts": [
-        "console"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/BoringFactory.sol": {
-      "lastModificationDate": 1721617313020,
-      "contentHash": "e471fbaa25b1dcd7ac470c3a978ba12e",
-      "sourceName": "lib/BoringSolidity/contracts/BoringFactory.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interfaces/IMasterContract.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "BoringFactory"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/lib/BoringSolidity/contracts/interfaces/IMasterContract.sol": {
-      "lastModificationDate": 1721617313021,
-      "contentHash": "e8683ce0138f26a0713b78997ad5a152",
-      "sourceName": "lib/BoringSolidity/contracts/interfaces/IMasterContract.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IMasterContract"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/WETH.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "c1ac051f664776c3cd3526003bb5d38e",
-      "sourceName": "contracts/WETH.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "hardhat/console.sol",
-        "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-        "hardhat/console.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "WETH"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol": {
-      "lastModificationDate": 1721616569331,
-      "contentHash": "c6375ef25e84c90b3d15f9ec4eef218f",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IERC20.sol",
-        "./extensions/IERC20Metadata.sol",
-        "../../utils/Context.sol",
-        "../../interfaces/draft-IERC6093.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "ERC20"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@openzeppelin/contracts/utils/Context.sol": {
-      "lastModificationDate": 1721616569327,
-      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
-      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Context"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
-      "lastModificationDate": 1721616569327,
-      "contentHash": "4aefc698f77ecbace7f401257dfe182d",
-      "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "IERC1155Errors",
-        "IERC20Errors",
-        "IERC721Errors"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
-      "lastModificationDate": 1721616569338,
-      "contentHash": "5517c8678c18eb1a8ba58810e7ca39ca",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "IERC20"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
-      "lastModificationDate": 1721616569338,
-      "contentHash": "4c02fa6f7ae7b6c289cef80424f0c875",
-      "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../IERC20.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "IERC20Metadata"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/CauldronV4.sol": {
-      "lastModificationDate": 1721615232531,
-      "contentHash": "6edb1ad67e3c5715e3678fa91f74ae24",
-      "sourceName": "contracts/CauldronV4.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../lib/solmate/src/auth/Owned.sol",
-        "../lib/BoringSolidity/contracts/interfaces/IERC20.sol",
-        "./interfaces/IOracle.sol",
-        "./interfaces/ISwapperV2.sol",
-        "./interfaces/IBentoBoxV1.sol",
-        "../lib/BoringSolidity/contracts/interfaces/IMasterContract.sol",
-        "../lib/BoringSolidity/contracts/libraries/BoringRebase.sol",
-        "../lib/BoringSolidity/contracts/libraries/BoringMath.sol",
-        "hardhat/console.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "CauldronV4"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/interfaces/ISwapperV2.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "b910f44a43091200bbc53f4406e21b4c",
-      "sourceName": "contracts/interfaces/ISwapperV2.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "ISwapperV2"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/lib/solmate/src/auth/Owned.sol": {
-      "lastModificationDate": 1721617336956,
-      "contentHash": "11fec455b72d2743b77d783d6017e1e9",
-      "sourceName": "lib/solmate/src/auth/Owned.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "Owned"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/oracles/ProxyOracle.sol": {
-      "lastModificationDate": 1721615232534,
-      "contentHash": "20241caafc9ae3054eda8ac8ee9657fa",
-      "sourceName": "contracts/oracles/ProxyOracle.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../lib/solmate/src/auth/Owned.sol",
-        "../interfaces/IOracle.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "ProxyOracle"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/oracles/FixedPriceOracle.sol": {
-      "lastModificationDate": 1721615232534,
-      "contentHash": "840cf928bdab676b973b2c05b18efeea",
-      "sourceName": "contracts/oracles/FixedPriceOracle.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../lib/solmate/src/auth/Owned.sol",
-        "../interfaces/IOracle.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.0"
-      ],
-      "artifacts": [
-        "FixedPriceOracle"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/lens/MarketLens.sol": {
-      "lastModificationDate": 1721615232533,
-      "contentHash": "e299ccaa4c3489da4213998e950c5d3c",
-      "sourceName": "contracts/lens/MarketLens.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../interfaces/IBentoBoxV1.sol",
-        "../interfaces/ICauldronV2.sol",
-        "../interfaces/ICauldronV3.sol",
-        "../../lib/BoringSolidity/contracts/interfaces/IERC20.sol",
-        "../libraries/MathLib.sol",
-        "../libraries/CauldronLib.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "MarketLens"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/ScalarCoin.sol": {
-      "lastModificationDate": 1721615232532,
-      "contentHash": "7c6acc6c886c695fe5c087ce0241700b",
-      "sourceName": "contracts/ScalarCoin.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interfaces/IBentoBoxV1.sol",
-        "../lib/BoringSolidity/contracts/ERC20.sol",
-        "../lib/BoringSolidity/contracts/BoringOwnable.sol",
-        "../lib/BoringSolidity/contracts/libraries/BoringMath.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ScalarCoin"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/contracts/CauldronFactory.sol": {
-      "lastModificationDate": 1721615232531,
-      "contentHash": "cfcf6cd5e92e45c09e427e10e37e5746",
-      "sourceName": "contracts/CauldronFactory.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/proxy/Clones.sol",
-        "./CauldronV4.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "CauldronFactory"
-      ]
-    },
-    "/Users/admin/code/abracadabra-clone/node_modules/@openzeppelin/contracts/proxy/Clones.sol": {
-      "lastModificationDate": 1721616569327,
-      "contentHash": "3f126cc3806f04f2c7530211ada54b1e",
-      "sourceName": "@openzeppelin/contracts/proxy/Clones.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Clones"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/contracts/MintContract.sol": {
-      "lastModificationDate": 1721979460281,
-      "contentHash": "03d6036a3f3704a19892cb61ab9ea374",
-      "sourceName": "contracts/MintContract.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol",
-        "../lib/BoringSolidity/contracts/BoringOwnable.sol",
-        "./sBTC.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "MintContract"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/contracts/sBTC.sol": {
-      "lastModificationDate": 1721979460282,
-      "contentHash": "283a23db2e94b2d49fc4b20a8e4890d9",
-      "sourceName": "contracts/sBTC.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../lib/BoringSolidity/contracts/ERC20.sol",
-        "../lib/BoringSolidity/contracts/BoringOwnable.sol",
-        "../lib/BoringSolidity/contracts/libraries/BoringMath.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "sBTC"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/lib/BoringSolidity/contracts/BoringOwnable.sol": {
-      "lastModificationDate": 1721980120279,
-      "contentHash": "97ae985da59b96883c00a834eca1d77e",
-      "sourceName": "lib/BoringSolidity/contracts/BoringOwnable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "BoringOwnable",
-        "BoringOwnableData"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol": {
-      "lastModificationDate": 1721979583373,
-      "contentHash": "3da2d37fba8aac11a55c3e5a2dfb8390",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IGovernable.sol",
-        "./IImplementation.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IAxelarGateway"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol": {
-      "lastModificationDate": 1721979583381,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol": {
+      "lastModificationDate": 1722587194627,
       "contentHash": "a0e1a9afa9d0b1cffeaf1d16c8a15287",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol",
       "solcConfig": {
@@ -2814,8 +157,8 @@
         "IERC20"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol": {
-      "lastModificationDate": 1721979583336,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol": {
+      "lastModificationDate": 1722587194615,
       "contentHash": "01c9e79b4847815cc5f0759e7e71d82a",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
       "solcConfig": {
@@ -2853,8 +196,47 @@
         "AxelarExecutable"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol": {
-      "lastModificationDate": 1721979583373,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol": {
+      "lastModificationDate": 1722587194627,
+      "contentHash": "3da2d37fba8aac11a55c3e5a2dfb8390",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IGovernable.sol",
+        "./IImplementation.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAxelarGateway"
+      ]
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol": {
+      "lastModificationDate": 1722587194627,
       "contentHash": "711bae34afd4c3210fd7c250a0459c1b",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol",
       "solcConfig": {
@@ -2893,8 +275,8 @@
         "IAxelarGasService"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/lib/BoringSolidity/contracts/ERC20.sol": {
-      "lastModificationDate": 1721980120280,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/lib/BoringSolidity/contracts/ERC20.sol": {
+      "lastModificationDate": 1722588907748,
       "contentHash": "688ee38b39922e26f7754627ad19838e",
       "sourceName": "lib/BoringSolidity/contracts/ERC20.sol",
       "solcConfig": {
@@ -2934,8 +316,8 @@
         "ERC20WithSupply"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/lib/BoringSolidity/contracts/libraries/BoringMath.sol": {
-      "lastModificationDate": 1721980120281,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/lib/BoringSolidity/contracts/libraries/BoringMath.sol": {
+      "lastModificationDate": 1722588907748,
       "contentHash": "c7126ecc8db48c8ebc8360928d49017b",
       "sourceName": "lib/BoringSolidity/contracts/libraries/BoringMath.sol",
       "solcConfig": {
@@ -2975,8 +357,8 @@
         "BoringMath64"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/lib/BoringSolidity/contracts/Domain.sol": {
-      "lastModificationDate": 1721980120280,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/lib/BoringSolidity/contracts/Domain.sol": {
+      "lastModificationDate": 1722588907748,
       "contentHash": "09c8823172ab2170941e34845bd55161",
       "sourceName": "lib/BoringSolidity/contracts/Domain.sol",
       "solcConfig": {
@@ -3011,8 +393,8 @@
         "Domain"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/lib/BoringSolidity/contracts/interfaces/IERC20.sol": {
-      "lastModificationDate": 1721980120280,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/lib/BoringSolidity/contracts/interfaces/IERC20.sol": {
+      "lastModificationDate": 1722588907748,
       "contentHash": "39a5e0412608b8207e69f34dfe8bdf13",
       "sourceName": "lib/BoringSolidity/contracts/interfaces/IERC20.sol",
       "solcConfig": {
@@ -3048,118 +430,8 @@
         "IStrictERC20"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol": {
-      "lastModificationDate": 1721979583382,
-      "contentHash": "b30a7eb7b4a4d39878a8ad7d93d33f37",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IContractIdentifier.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IImplementation"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IGovernable.sol": {
-      "lastModificationDate": 1721979583382,
-      "contentHash": "cff1f78967ee150487afdfcc5689c7c4",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IGovernable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IGovernable"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol": {
-      "lastModificationDate": 1721979583379,
-      "contentHash": "35cfec878fe72edd2f3d752aab6f56b9",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IContractIdentifier"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarExecutable.sol": {
-      "lastModificationDate": 1721979583372,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarExecutable.sol": {
+      "lastModificationDate": 1722587194627,
       "contentHash": "2bf91caadece73810d1e7bc537174f04",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarExecutable.sol",
       "solcConfig": {
@@ -3196,8 +468,190 @@
         "IAxelarExecutable"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IUpgradable.sol": {
-      "lastModificationDate": 1721979583391,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol": {
+      "lastModificationDate": 1722587194627,
+      "contentHash": "b30a7eb7b4a4d39878a8ad7d93d33f37",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IContractIdentifier.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IImplementation"
+      ]
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IGovernable.sol": {
+      "lastModificationDate": 1722587194627,
+      "contentHash": "cff1f78967ee150487afdfcc5689c7c4",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IGovernable.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IGovernable"
+      ]
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol": {
+      "lastModificationDate": 1722587194627,
+      "contentHash": "35cfec878fe72edd2f3d752aab6f56b9",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IContractIdentifier"
+      ]
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/types/GasEstimationTypes.sol": {
+      "lastModificationDate": 1722587194623,
+      "contentHash": "e5c2978c99d4414a0413c2cb59779bbb",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/types/GasEstimationTypes.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": []
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IInterchainGasEstimation.sol": {
+      "lastModificationDate": 1722587194627,
+      "contentHash": "86a4d4a3535fe9f38a3a4908bb2abae4",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IInterchainGasEstimation.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../types/GasEstimationTypes.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IInterchainGasEstimation"
+      ]
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IUpgradable.sol": {
+      "lastModificationDate": 1722587194631,
       "contentHash": "f20af70b01876dd45652bbb357ef1264",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IUpgradable.sol",
       "solcConfig": {
@@ -3235,80 +689,8 @@
         "IUpgradable"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/types/GasEstimationTypes.sol": {
-      "lastModificationDate": 1721979583369,
-      "contentHash": "e5c2978c99d4414a0413c2cb59779bbb",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/types/GasEstimationTypes.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": []
-    },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IInterchainGasEstimation.sol": {
-      "lastModificationDate": 1721979583383,
-      "contentHash": "86a4d4a3535fe9f38a3a4908bb2abae4",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IInterchainGasEstimation.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../types/GasEstimationTypes.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IInterchainGasEstimation"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol": {
-      "lastModificationDate": 1721979583389,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol": {
+      "lastModificationDate": 1722587194631,
       "contentHash": "079a01f47174cf9ed191f6cb21a74a0f",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol",
       "solcConfig": {
@@ -3343,8 +725,8 @@
         "IOwnable"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol": {
-      "lastModificationDate": 1721979583385,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol": {
+      "lastModificationDate": 1722587194631,
       "contentHash": "4ef7d1925465ba98e022ca42563bfba0",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol",
       "solcConfig": {
@@ -3381,8 +763,8 @@
         "Implementation"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/AxelarGateway.sol": {
-      "lastModificationDate": 1723000325254,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/AxelarGateway.sol": {
+      "lastModificationDate": 1723006365541,
       "contentHash": "14b38be39f5eb0114254925daae392c3",
       "sourceName": "contracts/axelar/AxelarGateway.sol",
       "solcConfig": {
@@ -3431,8 +813,44 @@
         "AxelarGateway"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IAxelarAuth.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/ITokenDeployer.sol": {
+      "lastModificationDate": 1722587172030,
+      "contentHash": "7511ef74aedd55bbf4bcfc338d115493",
+      "sourceName": "contracts/axelar/interfaces/ITokenDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ITokenDeployer"
+      ]
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/IAxelarAuth.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "cb83881506007224f932a4e23335f654",
       "sourceName": "contracts/axelar/interfaces/IAxelarAuth.sol",
       "solcConfig": {
@@ -3469,8 +887,8 @@
         "IAxelarAuth"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IBurnableMintableCappedERC20.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/IBurnableMintableCappedERC20.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "f9a3e499c3c27c3faffc975347417653",
       "sourceName": "contracts/axelar/interfaces/IBurnableMintableCappedERC20.sol",
       "solcConfig": {
@@ -3509,8 +927,8 @@
         "IBurnableMintableCappedERC20"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/ECDSA.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/ECDSA.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "ac13f84944a07ae8b7a156f425005633",
       "sourceName": "contracts/axelar/ECDSA.sol",
       "solcConfig": {
@@ -3545,80 +963,8 @@
         "ECDSA"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/DepositHandler.sol": {
-      "lastModificationDate": 1721979460282,
-      "contentHash": "07c8f2f2acadda411092c290ba914ecc",
-      "sourceName": "contracts/axelar/DepositHandler.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "DepositHandler"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/ITokenDeployer.sol": {
-      "lastModificationDate": 1721979460282,
-      "contentHash": "7511ef74aedd55bbf4bcfc338d115493",
-      "sourceName": "contracts/axelar/interfaces/ITokenDeployer.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ITokenDeployer"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/EternalStorage.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/EternalStorage.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "bba396895ca3ec3d6f90b35dbeae8d2c",
       "sourceName": "contracts/axelar/EternalStorage.sol",
       "solcConfig": {
@@ -3653,8 +999,80 @@
         "EternalStorage"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol": {
-      "lastModificationDate": 1721979583399,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/DepositHandler.sol": {
+      "lastModificationDate": 1722587172030,
+      "contentHash": "07c8f2f2acadda411092c290ba914ecc",
+      "sourceName": "contracts/axelar/DepositHandler.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "DepositHandler"
+      ]
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol": {
+      "lastModificationDate": 1722587194623,
+      "contentHash": "7b646146cf0fd6a4ff80734bd498b592",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ContractAddress"
+      ]
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol": {
+      "lastModificationDate": 1722587194635,
       "contentHash": "ac0279b5635a6cdf3ff426890e3a7e56",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol",
       "solcConfig": {
@@ -3693,44 +1111,8 @@
         "SafeTokenTransferFrom"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol": {
-      "lastModificationDate": 1721979583360,
-      "contentHash": "7b646146cf0fd6a4ff80734bd498b592",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ContractAddress"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IERC20Burn.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/IERC20Burn.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "bf56de89dbff881ab4e2fa63b665a53e",
       "sourceName": "contracts/axelar/interfaces/IERC20Burn.sol",
       "solcConfig": {
@@ -3765,8 +1147,8 @@
         "IERC20Burn"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IERC20BurnFrom.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/IERC20BurnFrom.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "8f02381b69eb0385d41ab2e54c646510",
       "sourceName": "contracts/axelar/interfaces/IERC20BurnFrom.sol",
       "solcConfig": {
@@ -3801,8 +1183,8 @@
         "IERC20BurnFrom"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IMintableCappedERC20.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/IMintableCappedERC20.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "45901cdcccaf0ff910f70f0e070d7e26",
       "sourceName": "contracts/axelar/interfaces/IMintableCappedERC20.sol",
       "solcConfig": {
@@ -3841,8 +1223,8 @@
         "IMintableCappedERC20"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IERC20.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/IERC20.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "44eae9aec640d032d51e188229f61fed",
       "sourceName": "contracts/axelar/interfaces/IERC20.sol",
       "solcConfig": {
@@ -3877,8 +1259,8 @@
         "IERC20"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IERC20Permit.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/IERC20Permit.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "2bcc06bcfc551a8ff35622288f7f3be6",
       "sourceName": "contracts/axelar/interfaces/IERC20Permit.sol",
       "solcConfig": {
@@ -3913,8 +1295,8 @@
         "IERC20Permit"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IOwnable.sol": {
-      "lastModificationDate": 1721979460282,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/IOwnable.sol": {
+      "lastModificationDate": 1722587172030,
       "contentHash": "998e17b8487fedc9fcbf6aa53dcc8d06",
       "sourceName": "contracts/axelar/interfaces/IOwnable.sol",
       "solcConfig": {
@@ -3949,46 +1331,8 @@
         "IOwnable"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol": {
-      "lastModificationDate": 1721979583397,
-      "contentHash": "eb71621fafd383de2e8b4d5ec08cc7e5",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../interfaces/IOwnable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Ownable"
-      ]
-    },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/AxelarAuthWeighted.sol": {
-      "lastModificationDate": 1722827488245,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/AxelarAuthWeighted.sol": {
+      "lastModificationDate": 1723006365541,
       "contentHash": "6bcb9bb0ad10f7c6e4c00751d2a911b3",
       "sourceName": "contracts/axelar/AxelarAuthWeighted.sol",
       "solcConfig": {
@@ -4027,8 +1371,8 @@
         "AxelarAuthWeighted"
       ]
     },
-    "/Users/admin/code/sbtc-minting-contract/contracts/axelar/interfaces/IAexelarAuthWeighted.sol": {
-      "lastModificationDate": 1722593925152,
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/contracts/axelar/interfaces/IAexelarAuthWeighted.sol": {
+      "lastModificationDate": 1723006365541,
       "contentHash": "f3af42505e24834b490f22101b90d16b",
       "sourceName": "contracts/axelar/interfaces/IAexelarAuthWeighted.sol",
       "solcConfig": {
@@ -4063,6 +1407,44 @@
       ],
       "artifacts": [
         "IAxelarAuthWeighted"
+      ]
+    },
+    "/home/codelight/scalar.org/axelar-deployment/sbtc-minting-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol": {
+      "lastModificationDate": 1722587194635,
+      "contentHash": "eb71621fafd383de2e8b4d5ec08cc7e5",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IOwnable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
       ]
     }
   }
