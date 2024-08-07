@@ -1,5 +1,7 @@
 const { ethers } = require("hardhat");
+const fs = require("fs");
 const path = require("path");
+
 async function main() {
   const [deployer] = await ethers.getSigners();
 
@@ -22,52 +24,11 @@ async function main() {
   );
   try {
     // TODO: Prepare params
-    const jsonData = {
-      validators: [
-        {
-          address: "A4248F304578CA0ABD767E21F34148BFE61FBBC5",
-          pub_key: {
-            type: "tendermint/PubKeyEd25519",
-            value: "PNs3Eh+Lv9ZZoLc2xBGrM92IIIN5oihfyvZl6l4B1cc=",
-          },
-          power: "9000000000000000",
-          name: "",
-        },
-        {
-          address: "D1F90D9A029AD2AE9C7565A7D95A1DC9D4C10A25",
-          pub_key: {
-            type: "tendermint/PubKeyEd25519",
-            value: "5bEaWr9z2m1m3vUOhhieyiN1slEBdoMOKDJFqoPoPVo=",
-          },
-          power: "5000000000000",
-          name: "",
-        },
-        {
-          address: "F9E2BAE1492C290C07E5412DF320B3EBDEB433B2",
-          pub_key: {
-            type: "tendermint/PubKeyEd25519",
-            value: "fcnUoKrW8pp4lOIHMFeczytcgPhRhsVh9jrrvwx3jMc=",
-          },
-          power: "5000000000000",
-          name: "",
-        },
-        {
-          address: "E116A851C52D1C9B14A76028D60B31BD1FF23A4D",
-          pub_key: {
-            type: "tendermint/PubKeyEd25519",
-            value: "zVxRtKI6vRaCWv2IRbCtzms25iYWXP6YuBRTLHqVHBg=",
-          },
-          power: "5000000000000",
-          name: "",
-        },
-      ],
-    };
+    const jsonData = readOperatorsInfo();
 
     // Extracting addresses and powers
-    const newOperators = jsonData.validators.map(
-      (validator) => `0x${validator.address}`
-    );
-    const newWeights = jsonData.validators.map((validator) =>
+    const newOperators = jsonData.map((validator) => `0x${validator.address}`);
+    const newWeights = jsonData.map((validator) =>
       ethers.BigNumber.from(validator.power)
     );
 
@@ -110,6 +71,18 @@ async function main() {
   } catch (error) {
     console.error("Error executing transaction:", error);
   }
+}
+
+function readOperatorsInfo() {
+  const genesisFilePath = process.env.GENESIS_FILE_PATH;
+
+  console.log("Genesis file path:", genesisFilePath);
+  data = fs.readFileSync(genesisFilePath, "utf8");
+  const jsonData = JSON.parse(data);
+
+  // Extract the validators data
+  const validators = jsonData.validators;
+  return validators;
 }
 
 main()
