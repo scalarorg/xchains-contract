@@ -1,6 +1,5 @@
 const { ethers } = require("hardhat");
 const fs = require("fs");
-const path = require("path");
 
 async function main() {
   const [deployer] = await ethers.getSigners();
@@ -24,17 +23,12 @@ async function main() {
   );
   try {
     // TODO: Prepare params
-    const jsonData = readOperatorsInfo();
+    const [newOperators, newWeights, newThreshold] = readOperatorsInfo();
 
     // Extracting addresses and powers
-    const newOperators = jsonData.map((validator) => `0x${validator.address}`);
-    const newWeights = jsonData.map((validator) =>
-      ethers.BigNumber.from(validator.power)
-    );
-
     console.log(newOperators);
     console.log(newWeights);
-
+    console.log(newThreshold);
     let combinedArray = newOperators.map((address, index) => {
       return {
         address: address,
@@ -48,7 +42,6 @@ async function main() {
     });
     const sortedOperators = combinedArray.map((item) => item.address);
     const sortedWeights = combinedArray.map((item) => item.weight);
-    const newThreshold = ethers.BigNumber.from("1300000000000000");
     const types = ["address[]", "uint256[]", "uint256"];
     const encodedParams = ethers.utils.defaultAbiCoder.encode(types, [
       sortedOperators,
@@ -81,8 +74,16 @@ function readOperatorsInfo() {
   const jsonData = JSON.parse(data);
 
   // Extract the validators data
-  const validators = jsonData.validators;
-  return validators;
+  const threshold = jsonData.threshold_weight;
+  const operators = jsonData.participants.map(participant => {
+  const pubKey = '0x' + participant.pub_key;
+  return ethers.utils.computeAddress(pubKey);
+  }
+);
+  const weights = jsonData.participants.map(participant => {
+    return participant.weight;
+  });
+  return [operators, weights, threshold];
 }
 
 main()

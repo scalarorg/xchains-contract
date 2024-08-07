@@ -2,6 +2,23 @@
 
 Solidity code and scripts for deploying and interacting with MintContract
 
+## Quick start
+
+The first things you need to do are cloning this repository and installing its
+dependencies:
+
+```sh
+nvm use 16 && npm install
+```
+
+Now you can run script to set OperatorShip using:
+
+```sh
+npx hardhat run scripts/transferOperatorShip.js --network sepolia
+```
+
+## The GENESIS_FILE_PATH in .env should be replaced with key-ethereum-sepolia path
+
 ## Sepolia Contract Address
 
 **sBTC**: "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B"
@@ -16,17 +33,6 @@ Solidity code and scripts for deploying and interacting with MintContract
 
 **MyMintContract**: "0xA504d9fAC86CE82E5b4e2CEe6B2a2b1a6eE9a229"
 
-## Quick start
 
-The first things you need to do are cloning this repository and installing its
-dependencies:
 
-```sh
-npm install
-```
 
-Now you can run scripts using:
-
-```sh
-npx hardhat run scripts/script-name.js --network sepolia
-```
