@@ -18,7 +18,8 @@ contract BurnContract is AxelarExecutable, BoringOwnable {
     IAxelarGasService public immutable gasService;
 
     event Executed(string _from, string _to);
-
+    event Burned(address _from, uint256 _amount);
+    
     /**
      *
      * @param _gateway address of axl gateway on deployed chain
@@ -45,8 +46,11 @@ contract BurnContract is AxelarExecutable, BoringOwnable {
         string calldata stakerAddress
     ) external {
         require(_amount > 0, "BurnContract: amount must be greater than 0");
+        require(_amount <= sbtc.balanceOf(msg.sender), "BurnContract: insufficient balance");
+        require(bytes(stakerAddress).length > 0, "BurnContract: staker address must not be empty");
         sbtc.transferFrom(msg.sender, address(this), _amount);
         sbtc.burn(_amount);
+        emit Burned(msg.sender, _amount);
         bytes memory payload = abi.encode(stakerAddress);
         // gasService.payNativeGasForContractCall{ value: msg.value }(
         //     address(this),
@@ -72,7 +76,4 @@ contract BurnContract is AxelarExecutable, BoringOwnable {
         emit Executed(sourceAddress, stakerAddress);
     }
 
-    function transferMintOwnership(address newOwner) public onlyOwner {
-        sbtc.transferOwnership(newOwner, true, false);
-    }
 }
