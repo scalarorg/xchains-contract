@@ -482,87 +482,10 @@ contract AxelarGateway is IAxelarGateway, Implementation, EternalStorage {
         emit ExecuteInit();
         (bytes memory data, bytes memory proof) = abi.decode(input, (bytes, bytes));
         emit DecodedParam(data, proof);
-        // bytes32 messageHash = ECDSA.toEthSignedMessageHash(keccak256(data));
-
-        // // returns true for current operators
-        // // slither-disable-next-line reentrancy-no-eth
-        // bool allowOperatorshipTransfer = IAxelarAuth(authModule).validateProof(messageHash, proof);
-        // emit ProofValidated();
-        // uint256 chainId;
-        // bytes32[] memory commandIds;
-        // string[] memory commands;
-        // bytes[] memory params;
-
-        // (chainId, commandIds, commands, params) = abi.decode(data, (uint256, bytes32[], string[], bytes[]));
-        // emit DecodedData(chainId, commandIds, commands, params);
-        // if (chainId != block.chainid) revert InvalidChainId();
-
-        // uint256 commandsLength = commandIds.length;
-
-        // if (commandsLength != commands.length || commandsLength != params.length) revert InvalidCommands();
-
-        // for (uint256 i; i < commandsLength; ++i) {
-        //     bytes32 commandId = commandIds[i];
-
-        //     // Ignore if duplicate commandId received
-        //     if (isCommandExecuted(commandId)) continue;
-
-        //     bytes4 commandSelector;
-        //     bytes32 commandHash = keccak256(abi.encodePacked(commands[i]));
-
-        //     if (commandHash == SELECTOR_DEPLOY_TOKEN) {
-        //         commandSelector = AxelarGateway.deployToken.selector;
-        //     } else if (commandHash == SELECTOR_MINT_TOKEN) {
-        //         commandSelector = AxelarGateway.mintToken.selector;
-        //     } else if (commandHash == SELECTOR_APPROVE_CONTRACT_CALL) {
-        //         commandSelector = AxelarGateway.approveContractCall.selector;
-        //     } else if (commandHash == SELECTOR_APPROVE_CONTRACT_CALL_WITH_MINT) {
-        //         commandSelector = AxelarGateway.approveContractCallWithMint.selector;
-        //     } else if (commandHash == SELECTOR_BURN_TOKEN) {
-        //         commandSelector = AxelarGateway.burnToken.selector;
-        //     } else if (commandHash == SELECTOR_TRANSFER_OPERATORSHIP) {
-        //         if (!allowOperatorshipTransfer) continue;
-
-        //         allowOperatorshipTransfer = false;
-        //         commandSelector = AxelarGateway.transferOperatorship.selector;
-        //     } else {
-        //         // Ignore unknown commands
-        //         continue;
-        //     }
-        //     emit CommandSelector(commandSelector);
-        //     // Prevent a re-entrancy from executing this command before it can be marked as successful.
-        //     _setCommandExecuted(commandId, true);
-        //     emit SetCommandSelectorSuccess();
-        //     // slither-disable-next-line calls-loop,reentrancy-no-eth
-        //     (bool success, ) = address(this).call(abi.encodeWithSelector(commandSelector, params[i], commandId));
-
-        //     // slither-disable-next-line reentrancy-events
-        //     if (success) emit Executed(commandId);
-        //     else _setCommandExecuted(commandId, false);
-        // }
-    }
-    function execute1(bytes calldata input) external {
-        emit ExecuteInit();
-    }
-    function execute2(bytes calldata input) external {
-        (bytes memory data, bytes memory proof) = abi.decode(input, (bytes, bytes));
-        emit DecodedParam(data, proof);
         bytes32 messageHash = ECDSA.toEthSignedMessageHash(keccak256(data));
-        emit SignMessageHash();
-    }
-    function execute3(bytes calldata input) external {
-        (bytes memory data, bytes memory proof) = abi.decode(input, (bytes, bytes));
-        emit DecodedParam(data, proof);
-        bytes32 messageHash = ECDSA.toEthSignedMessageHash(keccak256(data));
-        emit SignMessageHash();
-        bool allowOperatorshipTransfer = IAxelarAuth(authModule).validateProof(messageHash, proof);
-        emit ProofValidated();
-    }
-    function execute4(bytes calldata input) external {
-        (bytes memory data, bytes memory proof) = abi.decode(input, (bytes, bytes));
-        emit DecodedParam(data, proof);
-        bytes32 messageHash = ECDSA.toEthSignedMessageHash(keccak256(data));
-        emit SignMessageHash();
+
+        // returns true for current operators
+        // slither-disable-next-line reentrancy-no-eth
         bool allowOperatorshipTransfer = IAxelarAuth(authModule).validateProof(messageHash, proof);
         emit ProofValidated();
         uint256 chainId;
@@ -572,7 +495,53 @@ contract AxelarGateway is IAxelarGateway, Implementation, EternalStorage {
 
         (chainId, commandIds, commands, params) = abi.decode(data, (uint256, bytes32[], string[], bytes[]));
         emit DecodedData(chainId, commandIds, commands, params);
+        if (chainId != block.chainid) revert InvalidChainId();
+
+        uint256 commandsLength = commandIds.length;
+
+        if (commandsLength != commands.length || commandsLength != params.length) revert InvalidCommands();
+
+        for (uint256 i; i < commandsLength; ++i) {
+            bytes32 commandId = commandIds[i];
+
+            // Ignore if duplicate commandId received
+            if (isCommandExecuted(commandId)) continue;
+
+            bytes4 commandSelector;
+            bytes32 commandHash = keccak256(abi.encodePacked(commands[i]));
+
+            if (commandHash == SELECTOR_DEPLOY_TOKEN) {
+                commandSelector = AxelarGateway.deployToken.selector;
+            } else if (commandHash == SELECTOR_MINT_TOKEN) {
+                commandSelector = AxelarGateway.mintToken.selector;
+            } else if (commandHash == SELECTOR_APPROVE_CONTRACT_CALL) {
+                commandSelector = AxelarGateway.approveContractCall.selector;
+            } else if (commandHash == SELECTOR_APPROVE_CONTRACT_CALL_WITH_MINT) {
+                commandSelector = AxelarGateway.approveContractCallWithMint.selector;
+            } else if (commandHash == SELECTOR_BURN_TOKEN) {
+                commandSelector = AxelarGateway.burnToken.selector;
+            } else if (commandHash == SELECTOR_TRANSFER_OPERATORSHIP) {
+                if (!allowOperatorshipTransfer) continue;
+
+                allowOperatorshipTransfer = false;
+                commandSelector = AxelarGateway.transferOperatorship.selector;
+            } else {
+                // Ignore unknown commands
+                continue;
+            }
+            emit CommandSelector(commandSelector);
+            // Prevent a re-entrancy from executing this command before it can be marked as successful.
+            _setCommandExecuted(commandId, true);
+            emit SetCommandSelectorSuccess();
+            // slither-disable-next-line calls-loop,reentrancy-no-eth
+            (bool success, ) = address(this).call(abi.encodeWithSelector(commandSelector, params[i], commandId));
+
+            // slither-disable-next-line reentrancy-events
+            if (success) emit Executed(commandId);
+            else _setCommandExecuted(commandId, false);
+        }
     }
+
     /******************\
     |* Self Functions *|
     \******************/

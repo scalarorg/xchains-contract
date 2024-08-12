@@ -13,7 +13,7 @@ async function main() {
   const axlContractArtifact = require(`../artifacts/contracts/axelar/${axlContractName}.sol/${axlContractName}.json`);
   const axlContractABI = axlContractArtifact.abi;
   const axlContract = new ethers.Contract(
-    "0xBA3e5B0EebF14f895114EE6b0f12b6a49295515e", //TODO
+    "0xBC9ee019Ccac5677f60d4e3c0F7c774e9cD6932B", //TODO
     axlContractABI,
     deployer
   );
