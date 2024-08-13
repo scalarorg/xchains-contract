@@ -8,7 +8,7 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   // Deploy the AxelarGateway contract
-  const authModule = "0x71b7B290B14D7A8EB8071e35e3457b192b4a7fB6"; // TODO: update AxelarAuthWeighted address
+  const authModule = "0x410C9dF9802E084CAEcA48494f40Dd200AF5f962"; // TODO: update AxelarAuthWeighted address
   const tokenDeployer = "0xD2aDceFd0496449E3FDE873A2332B18A0F0FCADf";
 
   const AxelarGateway = await ethers.getContractFactory("AxelarGateway");
@@ -17,16 +17,16 @@ async function main() {
   console.log("AxelarGateway deployed to:", axelarGateway.address);
   console.log(await axelarGateway.contractId());
 
-  // saveABI([
-  //   {
-  //     name: "AxelarGateway",
-  //     address: axelarGateway.address,
-  //   },
-  // ]);
+  saveABI([
+    {
+      name: "AxelarGateway",
+      address: axelarGateway.address,
+    },
+  ]);
 }
 function saveABI(contracts) {
   const fs = require("fs");
-  const contractsDir = path.join(__dirname, "..", "abis", "gateway");
+  const contractsDir = path.join(__dirname, "..", "abis", "gateway-alt");
 
   if (!fs.existsSync(contractsDir)) {
     fs.mkdirSync(contractsDir);

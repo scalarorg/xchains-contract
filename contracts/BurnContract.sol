@@ -19,7 +19,7 @@ contract BurnContract is AxelarExecutable, BoringOwnable {
 
     event Executed(string _from, string _to);
     event Burned(address _from, uint256 _amount);
-    
+
     /**
      *
      * @param _gateway address of axl gateway on deployed chain
@@ -34,32 +34,24 @@ contract BurnContract is AxelarExecutable, BoringOwnable {
      * @notice Send payload from chain A to chain B
      * @dev payload param is passed in as gmp message
      * @param destinationChain name of the dest chain (ex. "WBitcoin")
-     * @param destinationTxHash Transaction hash on dest chain to unlock (Bitcoin tx hash)
+     * @param destinationAddress address on dest chain to send payload to (actually do not need this)
      * @param _amount amount to burn
-     * @param stakerAddress address of the staker
+     * @param btcTxHex Bitcoin transaction hex to unlock
      */
     // add modifier later
     function callBurn(
         string calldata destinationChain,
-        string calldata destinationTxHash,
+        string calldata destinationAddress,
         uint256 _amount,
-        string calldata stakerAddress
+        string calldata btcTxHex
     ) external {
         require(_amount > 0, "BurnContract: amount must be greater than 0");
         require(_amount <= sbtc.balanceOf(msg.sender), "BurnContract: insufficient balance");
-        require(bytes(stakerAddress).length > 0, "BurnContract: staker address must not be empty");
         sbtc.transferFrom(msg.sender, address(this), _amount);
         sbtc.burn(_amount);
         emit Burned(msg.sender, _amount);
-        bytes memory payload = abi.encode(stakerAddress);
-        // gasService.payNativeGasForContractCall{ value: msg.value }(
-        //     address(this),
-        //     destinationChain,
-        //     destinationAddress,
-        //     payload,
-        //     msg.sender
-        // );
-        gateway.callContract(destinationChain, destinationTxHash, payload);
+        bytes memory payload = abi.encode(btcTxHex);
+        gateway.callContract(destinationChain, destinationAddress, payload);
     }
 
     /**
