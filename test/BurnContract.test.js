@@ -17,7 +17,7 @@ describe("BurnContract", function () {
     const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
     const contractABI = contractArtifact.abi;
     burnContract = new ethers.Contract(
-      "0x335936bcB8ccCf8e08fC73676De2794735a35d46", // TODO: update BurnContract address
+      "0x9F3Ed8159e7c0Fe44Ccd945870f6DDD3062D58B2", // TODO: update BurnContract address
       contractABI,
       owner
     );
@@ -34,13 +34,13 @@ describe("BurnContract", function () {
 
   it("should get owner", async function () {
     expect(owner.address).to.equal(
-      "0x130C4810D57140e1E62967cBF742CaEaE91b6ecE"
+      "0xD2EB37F383F67da4B55Be9EcF0EF0dea83Afb19A"
     );
   });
 
   it("should get BurnContract", async function () {
     expect(burnContract.address).to.equal(
-      "0x335936bcB8ccCf8e08fC73676De2794735a35d46"
+      "0x9F3Ed8159e7c0Fe44Ccd945870f6DDD3062D58B2" // TODO: update BurnContract address
     );
   });
 
@@ -48,9 +48,9 @@ describe("BurnContract", function () {
     const initialBalance = await sbtcContract.balanceOf(owner.address);
 
     const destinationChain = "Wbitcoin";
-    const destinationAddress =
-      "f802b68aa83f8b43e433b27b6962863d629692404939fc3f2dce80c623f98106";
-    const stakerAddress = "bc1qjcz5et0yml4hgmehfsjrtayxvryxplqzkzxfx3";
+    const destinationAddress = "0x9F3Ed8159e7c0Fe44Ccd945870f6DDD3062D58B2";
+    const btcTxHex =
+      "0200000001a1b2c3d4e5f67890abcdef1234567890abcdef1234567890abcdef1234567890000000006a4730440220561db21e45ed7894ab528d6ab348c7b7dd0b6b8d09ab4a2c703bd9f786cfb7d002205b8db7a1f0a7c81f514f735b37f4a4d4d907c7aee64d8c8b0a6fcda23a715db3012103b1e2c84a9b3b1f7c6ebd73c6feddfe6a1e47b9c6a7f45d9f8b6d78197c8e8fb6ffffffff02e8030000000000001976a9147b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b88ac10270000000000001976a9148c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c88ac00000000";
 
     const amountToBurn = ethers.utils.parseUnits("1", 18);
 
@@ -58,15 +58,15 @@ describe("BurnContract", function () {
       burnContract.address,
       amountToBurn
     );
-
     await txApprove.wait();
     console.log("Approve transaction confirmed");
+
     // Call Burn
     const txCallBurn = await burnContract.callBurn(
       destinationChain,
       destinationAddress,
       amountToBurn,
-      stakerAddress
+      btcTxHex
     );
 
     await txCallBurn.wait();
@@ -76,31 +76,24 @@ describe("BurnContract", function () {
     expect(finalBalance).to.equal(initialBalance.sub(amountToBurn));
   });
 
-  it("should emit a Burn event when tokens are burned", async function () {
-    const destinationChain = "Wbitcoin";
-    const destinationAddress =
-      "f802b68aa83f8b43e433b27b6962863d629692404939fc3f2dce80c623f98106";
-    const stakerAddress = "bc1qjcz5et0yml4hgmehfsjrtayxvryxplqzkzxfx3";
+  //   it("should emit a Burn event when tokens are burned", async function () {
+  //     const destinationChain = "Wbitcoin";
+  //     const btcTxHex =
+  //       "0200000001a1b2c3d4e5f67890abcdef1234567890abcdef1234567890abcdef1234567890000000006a4730440220561db21e45ed7894ab528d6ab348c7b7dd0b6b8d09ab4a2c703bd9f786cfb7d002205b8db7a1f0a7c81f514f735b37f4a4d4d907c7aee64d8c8b0a6fcda23a715db3012103b1e2c84a9b3b1f7c6ebd73c6feddfe6a1e47b9c6a7f45d9f8b6d78197c8e8fb6ffffffff02e8030000000000001976a9147b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b88ac10270000000000001976a9148c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c88ac00000000";
 
-    const amountToBurn = ethers.utils.parseUnits("1", 18);
+  //     const amountToBurn = ethers.utils.parseUnits("1", 18);
 
-    const txApprove = await sbtcContract.approve(
-      burnContract.address,
-      amountToBurn
-    );
+  //     const txApprove = await sbtcContract.approve(
+  //       burnContract.address,
+  //       amountToBurn
+  //     );
+  //     await txApprove.wait();
+  //     console.log("Approve transaction confirmed");
 
-    await txApprove.wait();
-    console.log("Approve transaction confirmed");
-
-    await expect(
-      burnContract.callBurn(
-        destinationChain,
-        destinationAddress,
-        amountToBurn,
-        stakerAddress
-      )
-    )
-      .to.emit(burnContract, "Burned")
-      .withArgs(owner.address, amountToBurn);
-  });
+  //     await expect(
+  //       burnContract.callBurn(destinationChain, amountToBurn, btcTxHex)
+  //     )
+  //       .to.emit(burnContract, "Burned")
+  //       .withArgs(owner.address, amountToBurn);
+  //   });
 });

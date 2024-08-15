@@ -67,7 +67,7 @@ async function main() {
 }
 
 function readOperatorsInfo() {
-  const genesisFilePath = process.env.GENESIS_FILE_PATH;
+  const genesisFilePath = process.env.KEY_SEPOLIA_PATH;
 
   console.log("Genesis file path:", genesisFilePath);
   data = fs.readFileSync(genesisFilePath, "utf8");
@@ -75,12 +75,11 @@ function readOperatorsInfo() {
 
   // Extract the validators data
   const threshold = jsonData.threshold_weight;
-  const operators = jsonData.participants.map(participant => {
-  const pubKey = '0x' + participant.pub_key;
-  return ethers.utils.computeAddress(pubKey);
-  }
-);
-  const weights = jsonData.participants.map(participant => {
+  const operators = jsonData.participants.map((participant) => {
+    const pubKey = "0x" + participant.pub_key;
+    return ethers.utils.computeAddress(pubKey);
+  });
+  const weights = jsonData.participants.map((participant) => {
     return participant.weight;
   });
   return [operators, weights, threshold];

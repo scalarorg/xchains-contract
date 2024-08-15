@@ -10,17 +10,16 @@ async function main() {
 
   // Define the data to be encoded
   const newOperators = [
-    "0xFCC2E13FFAB2840EBD289A4A89F7DFF28E9A5373", // replace with actual addresses
-    "0xF36D6C9CFB4D22E05B23858C71A2069A41AC2348",
-    "0xF8017D7D78D24A1D1DC1D378A33DFFF14CA4A53A",
-    "0x74D34C796F095E1188DF01860DA1A8F6815C919E",
-    // more addresses as needed
+    "0x450Ef898237296Feb7A1F19ab41d4228fA55b8fd",
+    "0x583990ACa884D8F20D1D252e3027a2B03344e195",
+    "0xB002f8b7BC79E08E05FD0eB2A6449f3B4Da3E44B",
+    "0xD905FdCb01E0BB98411933425498A6afb416D3f5",
   ];
   const newWeights = [
-    ethers.BigNumber.from("900000000000000"), // replace with actual weights
-    ethers.BigNumber.from("500000000000000"),
-    ethers.BigNumber.from("500000000000000"),
-    ethers.BigNumber.from("500000000000000"),
+    ethers.BigNumber.from("10000"), // replace with actual weights
+    ethers.BigNumber.from("40000"),
+    ethers.BigNumber.from("30000"),
+    ethers.BigNumber.from("20000"),
     // more weights as needed
   ];
 
@@ -44,7 +43,7 @@ async function main() {
   const sortedWeights = combinedArray.map((item) => item.weight);
 
   // Define the new threshold
-  const newThreshold = ethers.BigNumber.from("1300000000000000"); // replace with actual threshold
+  const newThreshold = ethers.BigNumber.from("60000"); // replace with actual threshold
 
   // Define the types of the data
   const types = ["address[]", "uint256[]", "uint256"];
@@ -83,7 +82,7 @@ async function main() {
 }
 function saveABI(contracts) {
   const fs = require("fs");
-  const contractsDir = path.join(__dirname, "..", "abis", "auth");
+  const contractsDir = path.join(__dirname, "..", "abis", "auth-alt");
 
   if (!fs.existsSync(contractsDir)) {
     fs.mkdirSync(contractsDir);
