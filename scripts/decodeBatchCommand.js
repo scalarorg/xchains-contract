@@ -1,5 +1,7 @@
+// This script is used to decode neccessary data from the Batch Commands sending from Axelar.
+// Paste the content of Batch Command to the executeObject variable.
+
 const { ethers } = require("hardhat");
-const path = require("path");
 async function main() {
   const [deployer] = await ethers.getSigners();
   console.log(
@@ -8,16 +10,6 @@ async function main() {
   );
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
-  // Get the AxelarGateway contract
-
-  const axlContractName = "AxelarGateway";
-  const axlContractArtifact = require(`../artifacts/contracts/axelar/${axlContractName}.sol/${axlContractName}.json`);
-  const axlContractABI = axlContractArtifact.abi;
-  const axlContract = new ethers.Contract(
-    "0xBC9ee019Ccac5677f60d4e3c0F7c774e9cD6932B", //TODO
-    axlContractABI,
-    deployer
-  );
   const contractName = "AxelarAuthWeighted";
   const contractArtifact = require(`../artifacts/contracts/axelar/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
@@ -120,21 +112,6 @@ async function main() {
   console.log("Payload Hash:", payloadHash);
   console.log("Source Tx Hash:", sourceTxHash);
   console.log("Source Event Index:", sourceEventIndex.toString());
-  // console.log(
-  //   await axlContract.isCommandExecuted(
-  //     "0x54c016d0256792525b6bfddecc27ff98fe86a9e762ed66a1f42f05778c4bfefe"
-  //   )
-  // );
-  console.log("Execute:");
-  const txExecute = await axlContract.execute(input);
-  await txExecute.wait();
-  console.log("Tx Hash:", txExecute.hash);
-  // const txCheckExecuted = await axlContract.isCommandExecuted(
-  //   "0x54c016d0256792525b6bfddecc27ff98fe86a9e762ed66a1f42f05778c4bfefe"
-  // );
-  // console.log("Check Executed:", txCheckExecuted);
-  const checkHash = ethers.utils.keccak256("0x000000007B7D");
-  console.log("Check Hash:", checkHash);
 }
 
 main()

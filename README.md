@@ -1,38 +1,47 @@
 ## Description
 
-Solidity code and scripts for deploying and interacting with MintContract
+Solidity code and scripts for deploying and interacting with MintContract and BurnContract on Sepolia network.
 
 ## Quick start
 
 The first things you need to do are cloning this repository and installing its
-dependencies:
+dependencies (you may need to nvm use version > 16):
 
 ```sh
-nvm use 16 && npm install
+npm install
 ```
 
-Now you can run script to set OperatorShip using:
+Now you can run script in the scripts folder using:
 
 ```sh
-npx hardhat run scripts/transferOperatorShip.js --network sepolia
+npx hardhat run scripts/script-name.js --network sepolia
 ```
 
-## The GENESIS_FILE_PATH in .env should be replaced with key-ethereum-sepolia path
+## Sepolia Deployed Contract
 
-## Sepolia Contract Address
+| Contract           | Address                                    |
+| ------------------ | ------------------------------------------ |
+| sBTC               | 0xa32e5903815476Aff6E784F5644b1E0e3eE2081B |
+| AxelarGateway      | 0xd70943944567979d99800DD14b441B1D3A601A1D |
+| GasService         | 0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6 |
+| AxelarAuthWeighted | 0x71b7B290B14D7A8EB8071e35e3457b192b4a7fB6 |
+| MintContract       | 0x768E8De8cf0c7747D41f75F83C914a19C5921Cf3 |
+| BurnContract       | 0x9F3Ed8159e7c0Fe44Ccd945870f6DDD3062D58B2 |
 
-**sBTC**: "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B"
+## Note
 
-**AxelarGateway**: "0x70b9E1B98fb9cDd0221778c1E4d72e7a386D9CCe"
+Scripts to test or interact with smart contract usually begin with this pattern:
 
-**GasService**: "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6"
+```javascript
+const contractName = "BurnContract";
+const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
+const contractABI = contractArtifact.abi;
+const burnContract = new ethers.Contract(
+  "0x6F111e169710C6c3a33948c867aE425A74cDa1a3", // TODO: update BurnContract address
+  contractABI,
+  deployer
+);
+```
 
-**MintContract**: "0x4bAbD4440dF34D47783f33A9F016567bD3cBB1d7"
-
-**MyAxelarGateway**: "0xF67bF4e7D24db77e83cDe18f4C6c193993935481"
-
-**MyMintContract**: "0xA504d9fAC86CE82E5b4e2CEe6B2a2b1a6eE9a229"
-
-
-
-
+This code is used to get the contract instance by contract ABI and address.  
+When running any scripts, check the contract address and update it if necessary.
