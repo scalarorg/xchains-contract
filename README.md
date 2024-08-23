@@ -26,7 +26,7 @@ npx hardhat run scripts/script-name.js --network sepolia
 | GasService         | 0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6 |
 | AxelarAuthWeighted | 0x71b7B290B14D7A8EB8071e35e3457b192b4a7fB6 |
 | MintContract       | 0x768E8De8cf0c7747D41f75F83C914a19C5921Cf3 |
-| BurnContract       | 0x9F3Ed8159e7c0Fe44Ccd945870f6DDD3062D58B2 |
+| BurnContract       | 0x44dD1420Af56740ACeb697538227A9A787067786 |
 
 ## Scripts explain
 
