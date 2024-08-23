@@ -22,18 +22,19 @@ async function main() {
 
   try {
     // Call Mint
-    const txCallMint = await mintContract.callMint(
-      destinationChain,
-      destinationAddress,
-      to,
-      amount,
-      {
-        value: ethers.utils.parseEther("0.00005"),
-      }
-    );
-    console.log("Mint transaction hash:", txCallMint.hash);
-    await txCallMint.wait();
-    console.log("Mint transaction confirmed");
+    console.log("gateway address:", await mintContract.gateway());
+    // const txCallMint = await mintContract.callMint(
+    //   destinationChain,
+    //   destinationAddress,
+    //   to,
+    //   amount,
+    //   {
+    //     value: ethers.utils.parseEther("0.00005"),
+    //   }
+    // );
+    // console.log("Mint transaction hash:", txCallMint.hash);
+    // await txCallMint.wait();
+    // console.log("Mint transaction confirmed");
   } catch (error) {
     console.error("Error executing transaction:", error);
   }
