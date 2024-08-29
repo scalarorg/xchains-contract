@@ -11,7 +11,7 @@ async function main() {
   const contractArtifact = require(`../artifacts/contracts/axelar/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
   const axelarAuthWeightedContract = new ethers.Contract(
-    "0x71b7B290B14D7A8EB8071e35e3457b192b4a7fB6", // TODO
+    "0x1B20209EdF21c10E85a2Fee5244f0c8C2A446387", // TODO
     contractABI,
     deployer
   );
