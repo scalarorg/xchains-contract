@@ -1,4 +1,5 @@
 {
+  "name": "xchains-contracts",
   "scripts": {
     "test": "hardhat test"
   },
