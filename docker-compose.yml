@@ -1,0 +1,12 @@
+services:
+  xchains-contracts:
+    image: node:20-bookworm-slim
+    container_name: xchains-contracts
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - .env  
+    command: sleep infinity
