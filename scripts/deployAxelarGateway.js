@@ -8,21 +8,20 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   // Deploy the AxelarGateway contract
-  const authModule = "0x410C9dF9802E084CAEcA48494f40Dd200AF5f962"; // TODO: update AxelarAuthWeighted address
+  const authModule = "0x5FbDB2315678afecb367f032d93F642f64180aa3"; // TODO: update AxelarAuthWeighted address
   const tokenDeployer = "0xD2aDceFd0496449E3FDE873A2332B18A0F0FCADf";
 
   const AxelarGateway = await ethers.getContractFactory("AxelarGateway");
   const axelarGateway = await AxelarGateway.deploy(authModule, tokenDeployer);
   await axelarGateway.deployed();
   console.log("AxelarGateway deployed to:", axelarGateway.address);
-  console.log(await axelarGateway.contractId());
 
-  saveABI([
-    {
-      name: "AxelarGateway",
-      address: axelarGateway.address,
-    },
-  ]);
+  // saveABI([
+  //   {
+  //     name: "AxelarGateway",
+  //     address: axelarGateway.address,
+  //   },
+  // ]);
 }
 function saveABI(contracts) {
   const fs = require("fs");

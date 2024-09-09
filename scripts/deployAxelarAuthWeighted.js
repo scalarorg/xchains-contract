@@ -55,7 +55,7 @@ async function main() {
     newThreshold,
   ]);
 
-  console.log(encodedParams);
+  // console.log(encodedParams);
 
   // Deploy the AxelarAuthWeighted contract
 
@@ -73,12 +73,12 @@ async function main() {
     await axelarAuthWeighted.hashForEpoch(currentEpoch)
   );
 
-  saveABI([
-    {
-      name: "AxelarAuthWeighted",
-      address: axelarAuthWeighted.address,
-    },
-  ]);
+  // saveABI([
+  //   {
+  //     name: "AxelarAuthWeighted",
+  //     address: axelarAuthWeighted.address,
+  //   },
+  // ]);
 }
 function saveABI(contracts) {
   const fs = require("fs");

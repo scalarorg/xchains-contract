@@ -23,12 +23,12 @@ async function main() {
   console.log("burnContract address:", burnContract.address);
   console.log("sbtc address:", await burnContract.sbtc());
 
-  saveABI([
-    {
-      name: "BurnContract",
-      address: burnContract.address,
-    },
-  ]);
+  // saveABI([
+  //   {
+  //     name: "BurnContract",
+  //     address: burnContract.address,
+  //   },
+  // ]);
 }
 function saveABI(contracts) {
   const fs = require("fs");

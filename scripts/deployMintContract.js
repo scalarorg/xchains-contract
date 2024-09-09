@@ -8,7 +8,7 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   // Deploy the MintContract
-  const gatewayAddress = "0xd70943944567979d99800DD14b441B1D3A601A1D"; // TODO: Update this address
+  const gatewayAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"; // TODO: Update this address
   const gasServiceAddress = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
   const sbtcAddress = "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B";
 
@@ -19,23 +19,16 @@ async function main() {
     sbtcAddress
   );
   await mintContract.deployed();
-  // const contractName = "MintContract";
-  // const contractArtifact = require(`../artifacts/contracts/${contractName}.sol/${contractName}.json`);
-  // const contractABI = contractArtifact.abi;
-  // const mintContract = new ethers.Contract(
-  //   "0x06a7bC868068f75eae0753981d748518AD604a62",
-  //   contractABI,
-  //   deployer
-  // );
+
   console.log("mintContract address:", mintContract.address);
   console.log("sbtc address:", await mintContract.sbtc());
 
-  saveABI([
-    {
-      name: "MintContract",
-      address: mintContract.address,
-    },
-  ]);
+  // saveABI([
+  //   {
+  //     name: "MintContract",
+  //     address: mintContract.address,
+  //   },
+  // ]);
 }
 function saveABI(contracts) {
   const fs = require("fs");
