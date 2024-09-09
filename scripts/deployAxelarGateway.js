@@ -8,7 +8,7 @@ async function main() {
   console.log("Account balance:", (await deployer.getBalance()).toString());
 
   // Deploy the AxelarGateway contract
-  const authModule = "0x410C9dF9802E084CAEcA48494f40Dd200AF5f962"; // TODO: update AxelarAuthWeighted address
+  const authModule = "0xfFCEAD726633fDdb66d30659DefFCA56Eb753896"; // TODO: update AxelarAuthWeighted address
   const tokenDeployer = "0xD2aDceFd0496449E3FDE873A2332B18A0F0FCADf";
 
   const AxelarGateway = await ethers.getContractFactory("AxelarGateway");

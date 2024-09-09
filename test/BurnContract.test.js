@@ -3,14 +3,14 @@
 
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
-
+const { envs } = require("../envs.js");
 describe("BurnContract", function () {
   let burnContract;
   let sbtcContract;
   let owner;
 
   beforeEach(async function () {
-    const privateKey = process.env.ETHEREUM_PRIVATE_KEY;
+    const privateKey = envs.privateKeySigner;
     const provider = new ethers.providers.JsonRpcProvider(
       "https://eth-sepolia.public.blastapi.io"
     );

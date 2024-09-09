@@ -1,7 +1,8 @@
 require("@nomiclabs/hardhat-waffle");
 require("dotenv").config();
-
+const envs = require("./envs.js");
 /** @type import('hardhat/config').HardhatUserConfig */
+
 module.exports = {
   solidity: {
     version: "0.8.24",
@@ -19,7 +20,11 @@ module.exports = {
   networks: {
     sepolia: {
       url: "https://eth-sepolia.g.alchemy.com/v2/nNbspp-yjKP9GtAcdKi8xcLnBTptR2Zx",
-      accounts: [process.env.ETHEREUM_PRIVATE_KEY],
+      accounts: [envs.privateKeySigner],
+    },
+    anvil: {
+      url: "http://192.168.1.254:8545",
+      accounts: [envs.privateKeySigner],
     },
   },
 };
