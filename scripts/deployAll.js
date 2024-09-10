@@ -3,33 +3,64 @@ const yargs = require("yargs");
 const { ethers } = require("hardhat");
 
 async function main() {
-    const argv = yargs
-        .option('rpc', {
-            alias: 'r',
-            description: 'Rpc url',
-            type: 'string',
-            demandOption: true
+    const argv = yargs.command('deploy <target>', 'deploy contract choice: All, AxelarGateway, MintContract', (yargs) => {
+        yargs.positional('target', {
+            describe: 'Mục tiêu triển khai',
+            type: 'string'
         })
-        .option('privateKey', {
-            alias: 'p',
-            description: 'Private Key',
-            type: 'string',
-            demandOption: true
-        })
-        .option('newSBTC', {
-            alias: 's',
-            description: 'Deploy new sBtc',
-            type: 'bool',
-            demandOption: true
-        })
-        .argv;
-    const { rpc, privateKey, ...options } = argv;
+            .option('rpc', {
+                alias: 'r',
+                description: 'Rpc url',
+                type: 'string',
+                demandOption: true
+            })
+            .option('privateKey', {
+                alias: 'p',
+                description: 'Private Key',
+                type: 'string',
+                demandOption: true
+            })
+            .option('newSBTC', {
+                description: 'Deploy new sBtc',
+                type: 'bool',
+                default: false,
+            })
+            .option('newAxelarGateway', {
+                description: 'Deploy new AxelarGateway',
+                type: 'bool',
+                default: false,
+            })
+            .option('AxelarGatewayAddress', {
+                description: 'Input AxelarGateway',
+                type: 'string',
+                default: '',
+            })
+
+    }).argv;
+
+
+    const { target, rpc, privateKey, ...options } = argv;
     // console.log(rpc, privateKey, newSBTC);
     const provider = new ethers.providers.JsonRpcProvider(rpc);
     const wallet = new ethers.Wallet(privateKey, provider);
 
-    await deployAll(wallet, provider, options)
+
+    switch (target) {
+        case 'All':
+            await deployAll(wallet, provider, options);
+            break;
+        case 'AxelarGateway':
+            await deployAxelarAndSave(wallet, provider);
+            break;
+        case 'MintContract':
+        case 'BurnContract':
+            await deployMintBurnContractAndSave(wallet, provider, target, options);
+            break;
+
+    }
 }
+
+
 
 async function deployAll(wallet, provider, options) {
 
@@ -42,12 +73,12 @@ async function deployAll(wallet, provider, options) {
     const sBtc = options.newSBTC === 'true' ? await deploysBtc(savedAddr) : "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B";
     savedAddr["sBtc"] = sBtc;
 
-    const axelarGateway = await deployAxelarGateway(savedAddr, wallet);
+    const axelarWeighted = await deployAxelarAuthWeighted(savedAddr, wallet);
     console.log("--------------------------------------")
 
-
-    await deployAxelarAuthWeighted(savedAddr, wallet);
+    const axelarGateway = await deployAxelarGateway(axelarWeighted, savedAddr, wallet);
     console.log("--------------------------------------")
+
 
     await deployMintContract(axelarGateway, sBtc, savedAddr, wallet)
 
@@ -58,8 +89,59 @@ async function deployAll(wallet, provider, options) {
     saveAddr(savedAddr)
 }
 
+
+
+async function deployAxelarAndSave(wallet, provider, options) {
+
+
+    console.log("Account address:", await wallet.getAddress())
+    console.log("Account balance:", (await wallet.getBalance()).toString());
+
+    const savedAddr = {};
+
+    const axelarWeighted = await deployAxelarAuthWeighted(savedAddr, wallet);
+    console.log("--------------------------------------")
+
+    await deployAxelarGateway(axelarWeighted, savedAddr, wallet);
+
+    saveAddr(savedAddr)
+}
+
+async function deployMintBurnContractAndSave(wallet, provider, target, options) {
+
+
+    console.log("Account address:", await wallet.getAddress())
+    console.log("Account balance:", (await wallet.getBalance()).toString());
+
+    const savedAddr = {};
+
+    const sBtc = options.newSBTC === 'true' ? await deploysBtc(savedAddr) : "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B";
+    savedAddr["sBtc"] = sBtc;
+
+
+    if (options.newAxelarGateway === 'true') {
+        const axelarWeighted = await deployAxelarAuthWeighted(savedAddr, wallet);
+        const axelarGateway = await deployAxelarGateway(axelarWeighted, savedAddr, wallet);
+
+        target === 'MintContract' && await deployMintContract(axelarGateway, sBtc, savedAddr, wallet);
+        target === 'BurnContract' && await deployBurnContract(axelarGateway, sBtc, savedAddr, wallet)
+    } else {
+        if (options.AxelarGatewayAddress == ''){
+            console.error("Axelar Gateway Address empty")
+            process.exit(1);
+        }
+        (target === 'MintContract') && await deployMintContract(options.AxelarGatewayAddress, sBtc, savedAddr, wallet);
+        (target === 'BurnContract') && await deployBurnContract(options.AxelarGatewayAddress, sBtc, savedAddr, wallet);
+
+        savedAddr['AxelarGateway'] = options.AxelarGatewayAddress
+    }
+
+    saveAddr(savedAddr)
+}
+
+
 async function deploysBtc(wallet) {
-    console.log("DEPLOYING SBTC")
+    console.log("DEPLOYING SBTC.........")
 
     const SBTC = await ethers.getContractFactory("sBTC", wallet);
     const sBTC = await SBTC.deploy();
@@ -69,25 +151,25 @@ async function deploysBtc(wallet) {
     return sBTC.address
 }
 
-async function deployAxelarGateway(savedAddr, wallet) {
+async function deployAxelarGateway(axelarWeighted, savedAddr, wallet) {
 
-    console.log("DEPLOYING AXELAR GATEWAY")
-    const authModule = "0x410C9dF9802E084CAEcA48494f40Dd200AF5f962"; // TODO: update AxelarAuthWeighted address
+    console.log("DEPLOYING AXELAR GATEWAY..........")
+    // const authModule = "0x410C9dF9802E084CAEcA48494f40Dd200AF5f962"; // TODO: update AxelarAuthWeighted address
     const tokenDeployer = "0xD2aDceFd0496449E3FDE873A2332B18A0F0FCADf";
 
-    const AxelarGateway = await ethers.getContractFactory("AxelarGateway",wallet);
-    const axelarGateway = await AxelarGateway.deploy(authModule, tokenDeployer);
+    const AxelarGateway = await ethers.getContractFactory("AxelarGateway", wallet);
+    const axelarGateway = await AxelarGateway.deploy(axelarWeighted, tokenDeployer);
     await axelarGateway.deployed();
     console.log("AxelarGateway deployed to:", axelarGateway.address);
     // console.log(await axelarGateway.contractId());
 
 
-    // savedAddr["AxelarGateway"] = axelarGateway.address;
+    savedAddr["AxelarGateway"] = axelarGateway.address;
     return axelarGateway.address
 }
 
 async function deployAxelarAuthWeighted(savedAddr, wallet) {
-    console.log("DEPLOYING AXELAR AUTH WEIGHTED")
+    console.log("DEPLOYING AXELAR AUTH WEIGHTED...........")
     const newOperators = [
         "0x450Ef898237296Feb7A1F19ab41d4228fA55b8fd",
         "0x583990ACa884D8F20D1D252e3027a2B03344e195",
@@ -152,12 +234,12 @@ async function deployAxelarAuthWeighted(savedAddr, wallet) {
         await axelarAuthWeighted.hashForEpoch(currentEpoch)
     );
     savedAddr["AxelarAuthWeighted"] = axelarAuthWeighted.address;
-    // return axelarAuthWeighted.address
+    return axelarAuthWeighted.address
 }
 
 
 async function deployMintContract(gatewayAddr, sBtcAddr, savedAddr, wallet) {
-    console.log("DEPLOYING MINT CONTRACT")
+    console.log("DEPLOYING MINT CONTRACT...........")
 
     // const gatewayAddress = "0xd70943944567979d99800DD14b441B1D3A601A1D"; // TODO: Update this address
     const gasServiceAddress = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
