@@ -168,3 +168,17 @@ Currently, the ownership of the `sBTC` contract is set to the `MintContract`. Th
 #### Axelar Operatorship
 
 The operatorship of the Axelar network is managed by the `AxelarAuthWeighted` contract. The operator can be added by calling the `transferOperatorship()` function of this contract. Details can be found in the `scripts/transferOperatorShip.js`.
+
+#### Deploy contract batch
+
+To deploy all contract in once time.
+
+  ```bash
+  node scripts/deployAll.js deploy <target> --rpc <string> -p <string> --newSBTC <bool> --newAxelarGateway <bool> 
+  ```
+  1. <target>: choice "All, AxelarGateway, MintContract, BurnContract"
+  1. rpc: rpc url
+  1. -p: privatekey used to deploy contract
+  1. --newSBTC: a parameter to specify whether to deploy a new contract sBtc
+  1. --newAxelarGateway: a parameter to specify whether to deploy a new contract AxelarGateway when deploying Mint/Burn Contract
+  1. --AxelarGatewayAddress: input AxelarGateway address when newAxelarGateway is false
