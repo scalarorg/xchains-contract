@@ -1,6 +1,6 @@
 const { ethers } = require("hardhat");
 const fs = require("fs");
-
+const envs = require("../envs.js");
 async function main() {
   const [deployer] = await ethers.getSigners();
 
@@ -11,7 +11,7 @@ async function main() {
   const contractArtifact = require(`../artifacts/contracts/axelar/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
   const axelarAuthWeightedContract = new ethers.Contract(
-    "0x71b7B290B14D7A8EB8071e35e3457b192b4a7fB6", // TODO
+    envs.contractAddressAuthWeighted,
     contractABI,
     deployer
   );
@@ -67,7 +67,7 @@ async function main() {
 }
 
 function readOperatorsInfo() {
-  const genesisFilePath = process.env.KEY_SEPOLIA_PATH;
+  const genesisFilePath = process.env.KEY_PATH_SEPOLIA;
 
   console.log("Genesis file path:", genesisFilePath);
   data = fs.readFileSync(genesisFilePath, "utf8");

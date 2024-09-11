@@ -1,0 +1,3 @@
+[submodule "axelar-contract-deployments"]
+	path = axelar-contract-deployments
+	url = https://github.com/axelarnetwork/axelar-contract-deployments.git
