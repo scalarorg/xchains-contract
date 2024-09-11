@@ -174,10 +174,11 @@ The operatorship of the Axelar network is managed by the `AxelarAuthWeighted` co
 To deploy all contract in once time.
 
   ```bash
-  node scripts/deployAll.js deploy <target> --rpc <string> -p <string> --newSBTC <bool> --newAxelarGateway <bool> 
+  node scripts/deployAll.js deploy <target> -n <string> -p <string> --newSBTC <bool> --newAxelarGateway <bool> 
   ```
-  1. <target>: choice "All, AxelarGateway, MintContract, BurnContract"
-  1. rpc: rpc url
+
+  1. target: choice "All, AxelarGateway, MintContract, BurnContract"
+  1. n: network < sepoli, anvil>
   1. -p: privatekey used to deploy contract
   1. --newSBTC: a parameter to specify whether to deploy a new contract sBtc
   1. --newAxelarGateway: a parameter to specify whether to deploy a new contract AxelarGateway when deploying Mint/Burn Contract
