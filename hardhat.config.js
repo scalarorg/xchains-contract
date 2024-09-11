@@ -18,7 +18,7 @@ module.exports = {
   //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJlYmFzZVVzZXJJZCI6IlUwU3ZPU0tFWkRWMEhXZEJoanZ0SVM1Mnl2dDEiLCJhcGlLZXkiOiJNQzNWTVhGLTJZVjRHRTYtTlpDWkcySy1ZN0dCMTZWXHUwMDAxIiwiaWF0IjoxNzE5Mjg0NzcwfQ.G0dKlIAj1SLbg05wysuC2G8oUgPTHCNkyJ2Iv56Zy7Y",
   // },
   networks: {
-    "ethereum-sepolia": {
+    "sepolia": {
       // url: "https://eth-sepolia.g.alchemy.com/v2/nNbspp-yjKP9GtAcdKi8xcLnBTptR2Zx",
       url: envs.rpcUrlSepolia,
       accounts: [envs.privateKeySigner],
