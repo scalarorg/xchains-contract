@@ -19,7 +19,7 @@ async function main() {
                 alias: 'p',
                 description: 'Private Key',
                 type: 'string',
-                demandOption: true
+                demandOption: false
             })
             .option('newSbtc', {
                 description: 'Deploy new sBtc',
@@ -47,9 +47,11 @@ async function main() {
 
     const { wallet, provider, options } = await setup(argv);
 
+    
 
     console.log("Account address:", await wallet.getAddress())
     console.log("Account balance:", (await wallet.getBalance()).toString());
+   
 
     switch (options.target) {
         case 'All':
@@ -73,14 +75,16 @@ async function setup(argv) {
     const { network, privateKey, ...options } = argv;
     const chainConfig = await readChainConfig(network)
 
-    if (privateKey === "") {
-        privateKey = envs.privateKeySigner
-    }
+    // if (privateKey === "" || privateKey === undefined) {
+    //     privateKey = envs.privateKeySigner
+    // }
 
     // console.log(options)
     const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
-    const wallet = new ethers.Wallet(privateKey === '' ? envs.privateKeySigner : privateKey, provider);
-
+    
+  
+    const wallet = new ethers.Wallet(privateKey === '' || privateKey === undefined? envs.privateKeySigner : privateKey, provider);
+    
     options.gateway = options.newGateway === false && chainConfig.gateway;
     options.authWeighted = options.newAuthWeighted === false && chainConfig.authWeighted;
     options.sbtc = options.newSbtc === false && chainConfig.sBtc;
@@ -93,6 +97,7 @@ async function setup(argv) {
 
 async function deployAll(wallet, options) {
     const sBtc = await deploysBtc(wallet);
+    
     const tokenDeployer = await deployTokenDeployer(wallet);
     const gasService = await deployAxelarGasService(wallet);
 
@@ -108,6 +113,8 @@ async function deployAll(wallet, options) {
     console.log("--------------------------------------")
     const burnContract = await deployBurnContract(axelarGateway, gasService, sBtc, wallet)
 
+    options["tokenDeployer"]= tokenDeployer;
+    options["gasService"] = gasService;
     options["sbtc"] = sBtc;
     options["gateway"] = axelarGateway;
     options["authWeighted"] = axelarWeighted;
@@ -321,6 +328,7 @@ async function deployBurnContract(gatewayAddr, gasService, sBtcAddr, wallet) {
 }
 
 async function deployTokenDeployer(wallet) {
+    console.log("Deploy Token Deployer .....")
     const TokenDeployerService = await ethers.getContractFactory("TokenDeployer", wallet);
     const tokenDeployerService = await TokenDeployerService.deploy();
     await tokenDeployerService.deployed();
@@ -329,6 +337,7 @@ async function deployTokenDeployer(wallet) {
 }
 
 async function deployAxelarGasService(wallet) {
+    console.log("DDEPLOY AXELAR GAS SERVICE .....")
     const AxelarGasService = await ethers.getContractFactory("AxelarGasService");
     const axelarGasService = await AxelarGasService.deploy(wallet.getAddress());
     await axelarGasService.deployed();
@@ -345,13 +354,18 @@ function saveAddr(data) {
     }
     const savedAddr = {};
 
+
+    saveAddr["tokenDeployer"] = data.tokenDeployer;
+    savedAddr["gasService"] = data.gasService;
     savedAddr["gateway"] = data.gateway;
     savedAddr["authWeighted"] = data.authWeighted;
     savedAddr["sBtc"] = data.sbtc;
     savedAddr["gasService"] = data.gasService;
     savedAddr["tokenDeployer"] = data.tokenDeployer;
-    savedAddr["mintContract"] = data.mintContract && data.mintContract;
-    savedAddr["burnContract"] = data.burnContract && data.Contract;
+    savedAddr["mintContract"] = data.mintContract != undefined && data.mintContract;
+    savedAddr["burnContract"] = data.burnContract != undefined && data.burnContract;
+    
+    console.log(saveAddr["tokenDeployer"])
     fs.writeFileSync(
         path.join(contractsDir, `contract-addresses.json`),
         JSON.stringify(savedAddr, undefined, 2)
