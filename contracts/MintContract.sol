@@ -66,7 +66,7 @@ contract MintContract is AxelarExecutable, BoringOwnable {
     function _execute(string calldata _sourceChain, string calldata _sourceAddress, bytes calldata _payload) internal override {
         address to;
         uint256 amount;
-        (to, amount) = abi.decode(_payload, (address, uint256));
+        (to, amount,) = abi.decode(_payload, (address, uint256,uint256));
         sourceChain = _sourceChain;
         sourceAddress = _sourceAddress;
         sbtc.mint(to, amount);
