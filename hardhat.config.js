@@ -5,7 +5,7 @@ const envs = require("./envs.js");
 
 module.exports = {
   solidity: {
-    version: "0.8.24",
+    version: "0.8.9",
     settings: {
       optimizer: {
         enabled: true,

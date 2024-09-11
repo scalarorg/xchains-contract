@@ -46,7 +46,7 @@ async function main() {
     // const wallet = new ethers.Wallet(privateKey, provider);
 
     const { wallet, provider, options } = await setup(argv);
- 
+
 
     console.log("Account address:", await wallet.getAddress())
     console.log("Account balance:", (await wallet.getBalance()).toString());
@@ -56,7 +56,7 @@ async function main() {
             await deployAll(wallet, options);
             break;
         case "AxelarAuthWeighted":
-            await deployAxlAuthAndSave(wallet,options);
+            await deployAxlAuthAndSave(wallet, options);
             break;
         case 'AxelarGateway':
             await deployAxelarAndSave(wallet, options);
@@ -93,19 +93,20 @@ async function setup(argv) {
 
 async function deployAll(wallet, options) {
     const sBtc = await deploysBtc(wallet);
-
+    const tokenDeployer = await deployTokenDeployer(wallet);
+    const gasService = await deployAxelarGasService(wallet);
 
     const axelarWeighted = await deployAxelarAuthWeighted(wallet);
     console.log("--------------------------------------")
 
-    const axelarGateway = await deployAxelarGateway(axelarWeighted, wallet);
+    const axelarGateway = await deployAxelarGateway(axelarWeighted, tokenDeployer, wallet);
     console.log("--------------------------------------")
 
 
-    const mintContract = await deployMintContract(axelarGateway, options.gasService, sBtc, wallet)
+    const mintContract = await deployMintContract(axelarGateway, gasService, sBtc, wallet)
 
     console.log("--------------------------------------")
-    const burnContract = await deployBurnContract(axelarGateway, options.gasService, sBtc, wallet)
+    const burnContract = await deployBurnContract(axelarGateway, gasService, sBtc, wallet)
 
     options["sbtc"] = sBtc;
     options["gateway"] = axelarGateway;
@@ -116,20 +117,20 @@ async function deployAll(wallet, options) {
 
 }
 
-async function deployAxlAuthAndSave(wallet, options){
-    const axelarWeighted =  await deployAxelarAuthWeighted(wallet);
+async function deployAxlAuthAndSave(wallet, options) {
+    const axelarWeighted = await deployAxelarAuthWeighted(wallet);
     options["authWeighted"] = axelarWeighted;
     saveAddr(options)
 }
 
 
 async function deployAxelarAndSave(wallet, options) {
-    
+
 
     const axelarWeighted = options.newAuthWeighted === true ? await deployAxelarAuthWeighted(wallet) : options.authWeighted;
 
 
-    const gateway = await deployAxelarGateway(axelarWeighted, wallet);
+    const gateway = await deployAxelarGateway(axelarWeighted, options.tokenDeployer, wallet);
 
     options["gateway"] = gateway;
     options["authWeighted"] = axelarWeighted;
@@ -150,7 +151,7 @@ async function deployMintBurnContractAndSave(wallet, options) {
 
     if (options.newGateway === 'true') {
         const axelarWeighted = await deployAxelarAuthWeighted(wallet);
-        const axelarGateway = await deployAxelarGateway(axelarWeighted, wallet);
+        const axelarGateway = await deployAxelarGateway(axelarWeighted, options.tokenDeployer, wallet);
 
         options["gateway"] = axelarGateway;
         options["authWeighted"] = axelarWeighted;
@@ -192,11 +193,11 @@ async function deploysBtc(wallet) {
     return sBTC.address
 }
 
-async function deployAxelarGateway(axelarWeighted, wallet) {
+async function deployAxelarGateway(axelarWeighted, tokenDeployer, wallet) {
 
     console.log("DEPLOYING AXELAR GATEWAY..........")
     // const authModule = "0x410C9dF9802E084CAEcA48494f40Dd200AF5f962"; // TODO: update AxelarAuthWeighted address
-    const tokenDeployer = "0xD2aDceFd0496449E3FDE873A2332B18A0F0FCADf";
+    // const tokenDeployer = "0xD2aDceFd0496449E3FDE873A2332B18A0F0FCADf";
 
     const AxelarGateway = await ethers.getContractFactory("AxelarGateway", wallet);
     const axelarGateway = await AxelarGateway.deploy(axelarWeighted, tokenDeployer);
@@ -317,6 +318,23 @@ async function deployBurnContract(gatewayAddr, gasService, sBtcAddr, wallet) {
     console.log("sbtc address:", await burnContract.sbtc());
 
     return burnContract.address
+}
+
+async function deployTokenDeployer(wallet) {
+    const TokenDeployerService = await ethers.getContractFactory("TokenDeployer", wallet);
+    const tokenDeployerService = await TokenDeployerService.deploy();
+    await tokenDeployerService.deployed();
+    console.log("tokenDeployerService deployed to:", tokenDeployerService.address);
+    return tokenDeployerService.address
+}
+
+async function deployAxelarGasService(wallet) {
+    const AxelarGasService = await ethers.getContractFactory("AxelarGasService");
+    const axelarGasService = await AxelarGasService.deploy(wallet.getAddress());
+    await axelarGasService.deployed();
+    console.log("AxelarGateway deployed to:", axelarGasService.address);
+    console.log(await axelarGasService.contractId());
+    return axelarGasService.address
 }
 
 function saveAddr(data) {
