@@ -43,7 +43,7 @@ async function main() {
     // const provider = new ethers.providers.JsonRpcProvider(rpc);
     // const wallet = new ethers.Wallet(privateKey, provider);
 
-    const { wallet, provider, options } = await setup(argv);
+    const { wallet, options } = await setup(argv);
 
     console.log("Account address:", await wallet.getAddress())
     console.log("Account balance:", (await wallet.getBalance()).toString());
@@ -68,12 +68,12 @@ async function main() {
 
 async function setup(argv) {
     const { network, ...options } = argv;
+    console.log(argv)
     console.log(options)
+    console.log(network)
     const chainConfig = readChainConfig(network)
     console.log(chainConfig)
     const wallet = createWallet(chainConfig);
-    const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
-    wallet.connect(provider);
     options.target = options.target || argv._[1];
     options.network = network;
     options.gateway = options.newGateway === false && chainConfig.gateway;
@@ -81,7 +81,7 @@ async function setup(argv) {
     options.sbtc = options.newSbtc === false && chainConfig.sBtc;
     options.gasService = chainConfig.gasService;
     options.tokenDeployer = chainConfig.tokenDeployer;
-    return { wallet, provider, options }
+    return { wallet, options }
 }
 
 async function deployAll(wallet, options) {

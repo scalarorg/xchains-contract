@@ -37,14 +37,19 @@ function saveChainData(chain, data, fileName) {
 }
 
 function createWallet(chainConfig) {
-    const { mnemonic, index } = chainConfig;
-    const hdkey = require('ethereumjs-wallet/hdkey');
-    const Wallet = require('ethereumjs-wallet');
-    const hdwallet = hdkey.fromMasterSeed(mnemonic);
-    const wallet = hdwallet.derivePath(`m/44'/60'/0'/0/${index}`).getWallet();
-    if (chainConfig.rpcUrl) {
+    const { mnemonic, walletIndex} = chainConfig;
+    let wallet;
+    if (mnemonic && walletIndex !== undefined) {
+        // const {hdkey} = require('ethereumjs-wallet');
+        // const hdwallet = hdkey.fromMasterSeed(mnemonic);
+        wallet = ethers.Wallet.fromMnemonic(mnemonic, `m/44'/60'/0'/0/${walletIndex}`);
+    } else if (chainConfig.rivateKey) {
+        wallet = new ethers.Wallet(privateKey);
+    }
+    if (wallet && chainConfig.rpcUrl) {
         const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
-        wallet.provider = chainConfig.rpcUrl;
+        console.log(wallet);
+        wallet = wallet.connect(provider);
     }
     return wallet;
 }

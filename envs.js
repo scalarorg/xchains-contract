@@ -1,6 +1,4 @@
 module.exports = {
-    mnemonic: process.env.MNEMONIC,
-    walletIndex: process.env.WALLET_INDEX,
     batchCommand: process.env.BATCH_COMMAND||"",
     privateKeySigner: process.env.EVM_PRIVATE_KEY,
     configPath: process.env.CONFIG_PATH,
