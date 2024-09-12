@@ -1,7 +1,0 @@
-{
-    "chainId": "1",
-    "id": "anvil",
-    "name": "anvil",
-    "rpcUrl": "http://localhost:8545/",
-    "keyPath": "/app/chains/key-ethereum-sepolia"
-}

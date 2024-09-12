@@ -1,13 +1,12 @@
-const path = require("path");
 const yargs = require("yargs");
 const { ethers } = require("hardhat");
-const envs = require("../envs.js");
-const fs = require('fs').promises;
+const { readChainConfig, saveChainData, createWallet } = require("./utils");
 async function main() {
     const argv = yargs.command('deploy <target>', 'deploy contract choice: All, AxelarGateway, MintContract', (yargs) => {
-        yargs.positional('target', {
+        return yargs.positional('target', {
             describe: 'Target',
-            type: 'string'
+            type: 'string',
+            default: 'All'
         })
             .option('network', {
                 alias: 'n',
@@ -38,8 +37,7 @@ async function main() {
             })
 
     }).argv;
-
-
+   
     // const { target, rpc, privateKey, ...options } = argv;
     // // console.log(rpc, privateKey, newSBTC);
     // const provider = new ethers.providers.JsonRpcProvider(rpc);
@@ -47,12 +45,9 @@ async function main() {
 
     const { wallet, provider, options } = await setup(argv);
 
-    
-
     console.log("Account address:", await wallet.getAddress())
     console.log("Account balance:", (await wallet.getBalance()).toString());
    
-
     switch (options.target) {
         case 'All':
             await deployAll(wallet, options);
@@ -72,19 +67,15 @@ async function main() {
 }
 
 async function setup(argv) {
-    const { network, privateKey, ...options } = argv;
-    const chainConfig = await readChainConfig(network)
-
-    // if (privateKey === "" || privateKey === undefined) {
-    //     privateKey = envs.privateKeySigner
-    // }
-
-    // console.log(options)
+    const { network, ...options } = argv;
+    console.log(options)
+    const chainConfig = readChainConfig(network)
+    console.log(chainConfig)
+    const wallet = createWallet(chainConfig);
     const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
-    
-  
-    const wallet = new ethers.Wallet(privateKey === '' || privateKey === undefined? envs.privateKeySigner : privateKey, provider);
-    
+    wallet.connect(provider);
+    options.target = options.target || argv._[1];
+    options.network = network;
     options.gateway = options.newGateway === false && chainConfig.gateway;
     options.authWeighted = options.newAuthWeighted === false && chainConfig.authWeighted;
     options.sbtc = options.newSbtc === false && chainConfig.sBtc;
@@ -92,8 +83,6 @@ async function setup(argv) {
     options.tokenDeployer = chainConfig.tokenDeployer;
     return { wallet, provider, options }
 }
-
-
 
 async function deployAll(wallet, options) {
     const sBtc = await deploysBtc(wallet);
@@ -347,15 +336,8 @@ async function deployAxelarGasService(wallet) {
 }
 
 function saveAddr(data) {
-    const fs = require("fs");
-    const contractsDir = path.join(__dirname, "..", "config", "chains", data.n);
-    if (!fs.existsSync(contractsDir)) {
-        fs.mkdirSync(contractsDir);
-    }
     const savedAddr = {};
-
-
-    saveAddr["tokenDeployer"] = data.tokenDeployer;
+    savedAddr["tokenDeployer"] = data.tokenDeployer;
     savedAddr["gasService"] = data.gasService;
     savedAddr["gateway"] = data.gateway;
     savedAddr["authWeighted"] = data.authWeighted;
@@ -365,26 +347,10 @@ function saveAddr(data) {
     savedAddr["mintContract"] = data.mintContract != undefined && data.mintContract;
     savedAddr["burnContract"] = data.burnContract != undefined && data.burnContract;
     
-    console.log(saveAddr["tokenDeployer"])
-    fs.writeFileSync(
-        path.join(contractsDir, `contract-addresses.json`),
-        JSON.stringify(savedAddr, undefined, 2)
-    );
+    console.log(savedAddr["tokenDeployer"])
+    saveChainData(data.network, savedAddr, "addresses.json")
 }
 
-async function readChainConfig(chain) {
-    try {
-        const filePath = path.join(__dirname, "..", "config", "chains", chain, `${chain}.json`)
-        const data = await fs.readFile(filePath, 'utf8');
-        const chainConfig = JSON.parse(data);
-        return chainConfig
-
-    } catch (error) {
-        console.error('Error reading or parsing the file:', error);
-    }
-}
-
-// readChainConfig("sepolia")
 main()
     .then(() => process.exit(0))
     .catch((error) => {

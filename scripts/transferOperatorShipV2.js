@@ -3,7 +3,7 @@ const fs = require("fs").promises;
 const yargs = require('yargs');
 const envs = require("../envs.js");
 const path = require("path");
-
+const { readChainConfig } = require("./utils");
 
 async function main() {
   const argv = yargs
@@ -15,8 +15,7 @@ async function main() {
     }).argv;
 
   const chainConfig = await readChainConfig(argv.n);
-  const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
-  const wallet = new ethers.Wallet(envs.privateKeySigner, provider);
+  const wallet = createWallet(chainConfig);
 
   
   const contractName = "AxelarAuthWeighted";

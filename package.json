@@ -1,7 +1,8 @@
 {
   "name": "xchains-contracts",
   "scripts": {
-    "test": "hardhat test"
+    "test": "hardhat test",
+    "deployAll": "node scripts/deployAll.js depyloy All --network ethereum-local --newSbtc true --newAxelarGateway true"
   },
   "devDependencies": {
     "@ledgerhq/hw-transport-node-hid": "^6.27.21",
@@ -16,10 +17,10 @@
   "dependencies": {
     "@axelar-network/axelar-cgp-solidity": "^6.3.1",
     "@axelar-network/axelar-gmp-sdk-solidity": "^5.9.0",
-    "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
-    "@openzeppelin/contracts": "^5.0.2",
     "@cosmjs/cosmwasm-stargate": "^0.32.1",
     "@ledgerhq/hw-app-eth": "6.32.2",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
+    "@openzeppelin/contracts": "^5.0.2",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5"
   }
