@@ -3,7 +3,7 @@ const fs = require("fs").promises;
 const yargs = require('yargs');
 const envs = require("../envs.js");
 const path = require("path");
-
+const { readChainConfig } = require('../utils')
 
 async function main() {
   const argv = yargs
@@ -12,13 +12,18 @@ async function main() {
       description: 'network',
       type: 'string',
       demandOption: true
+    })
+    .option('inputFile', {
+      description: 'Input file chain config',
+      type: 'string',
+      // default: false,
     }).argv;
 
-  const chainConfig = await readChainConfig(argv.n);
+  const chainConfig = await readChainConfig(argv.n, argv.inputFile);
   const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
   const wallet = new ethers.Wallet(envs.privateKeySigner, provider);
 
-  
+
   const contractName = "AxelarAuthWeighted";
   const contractArtifact = require(`../artifacts/contracts/axelar/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
@@ -97,18 +102,7 @@ function readOperatorsInfo(genesisFilePath) {
   return [operators, weights, threshold];
 }
 
-async function readChainConfig(chain) {
-  try {
-      const filePath = path.join(__dirname, "..", "config", "chains", chain, `${chain}.json`)
-      console.log(chain)
-      const data = await fs.readFile(filePath, 'utf8');
-      const chainConfig = JSON.parse(data);
-      return chainConfig
 
-  } catch (error) {
-      console.error('Error reading or parsing the file:', error);
-  }
-}
 main()
   .then(() => process.exit(0))
   .catch((error) => {
