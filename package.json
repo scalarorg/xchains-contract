@@ -2,7 +2,7 @@
   "name": "xchains-contracts",
   "scripts": {
     "test": "hardhat test",
-    "deployAll": "node scripts/deployAll.js depyloy All --network ethereum-local --newSbtc true --newAxelarGateway true"
+    "deployAll": "node scripts/deployAll.js deploy All --network ethereum-local --newSbtc true --newAxelarGateway true"
   },
   "devDependencies": {
     "@ledgerhq/hw-transport-node-hid": "^6.27.21",
