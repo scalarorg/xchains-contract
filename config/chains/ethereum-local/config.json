@@ -5,5 +5,5 @@
     "mnemonic": "test test test test test test test test test test test junk",
     "walletIndex": "0",
     "rpcUrl": "http://localhost:8545/",
-    "keyPath": "/app/chains/key-ethereum-local"
+    "keyPath": "/app/chains/ethereum-local/key"
 }
