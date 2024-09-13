@@ -43,12 +43,11 @@ function createWallet(chainConfig) {
         // const {hdkey} = require('ethereumjs-wallet');
         // const hdwallet = hdkey.fromMasterSeed(mnemonic);
         wallet = ethers.Wallet.fromMnemonic(mnemonic, `m/44'/60'/0'/0/${walletIndex}`);
-    } else if (chainConfig.rivateKey) {
+    } else if (chainConfig.privateKey) {
         wallet = new ethers.Wallet(privateKey);
     }
     if (wallet && chainConfig.rpcUrl) {
         const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
-        console.log(wallet);
         wallet = wallet.connect(provider);
     }
     return wallet;

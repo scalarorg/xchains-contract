@@ -44,7 +44,6 @@ async function main() {
     // const wallet = new ethers.Wallet(privateKey, provider);
 
     const { wallet, options } = await setup(argv);
-
     console.log("Account address:", await wallet.getAddress())
     console.log("Account balance:", (await wallet.getBalance()).toString());
    
@@ -74,7 +73,6 @@ async function setup(argv) {
     const chainConfig = readChainConfig(network)
     console.log(chainConfig)
     const wallet = createWallet(chainConfig);
-    options.target = options.target || argv._[1];
     options.network = network;
     options.gateway = options.newGateway === false && chainConfig.gateway;
     options.authWeighted = options.newAuthWeighted === false && chainConfig.authWeighted;
