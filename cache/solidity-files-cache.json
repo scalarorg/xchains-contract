@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/BurnContract.sol": {
+    "/app/contracts/BurnContract.sol": {
       "lastModificationDate": 1725594533719,
       "contentHash": "146b99354d159f9e89b88ddc091f34a7",
       "sourceName": "contracts/BurnContract.sol",
@@ -43,7 +43,7 @@
         "BurnContract"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/sBTC.sol": {
+    "/app/contracts/sBTC.sol": {
       "lastModificationDate": 1723085357875,
       "contentHash": "283a23db2e94b2d49fc4b20a8e4890d9",
       "sourceName": "contracts/sBTC.sol",
@@ -82,7 +82,7 @@
         "sBTC"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/lib/BoringSolidity/contracts/BoringOwnable.sol": {
+    "/app/lib/BoringSolidity/contracts/BoringOwnable.sol": {
       "lastModificationDate": 1723085357877,
       "contentHash": "97ae985da59b96883c00a834eca1d77e",
       "sourceName": "lib/BoringSolidity/contracts/BoringOwnable.sol",
@@ -118,80 +118,7 @@
         "BoringOwnableData"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol": {
-      "lastModificationDate": 1726072502299,
-      "contentHash": "01c9e79b4847815cc5f0759e7e71d82a",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../interfaces/IAxelarGateway.sol",
-        "../interfaces/IAxelarExecutable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "AxelarExecutable"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol": {
-      "lastModificationDate": 1726072502554,
-      "contentHash": "a0e1a9afa9d0b1cffeaf1d16c8a15287",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IERC20"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol": {
       "lastModificationDate": 1726072502490,
       "contentHash": "3da2d37fba8aac11a55c3e5a2dfb8390",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol",
@@ -229,7 +156,7 @@
         "IAxelarGateway"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol": {
       "lastModificationDate": 1726072502489,
       "contentHash": "711bae34afd4c3210fd7c250a0459c1b",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol",
@@ -268,7 +195,80 @@
         "IAxelarGasService"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/lib/BoringSolidity/contracts/ERC20.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol": {
+      "lastModificationDate": 1726072502554,
+      "contentHash": "a0e1a9afa9d0b1cffeaf1d16c8a15287",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol": {
+      "lastModificationDate": 1726072502299,
+      "contentHash": "01c9e79b4847815cc5f0759e7e71d82a",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IAxelarGateway.sol",
+        "../interfaces/IAxelarExecutable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AxelarExecutable"
+      ]
+    },
+    "/app/lib/BoringSolidity/contracts/ERC20.sol": {
       "lastModificationDate": 1723085357877,
       "contentHash": "688ee38b39922e26f7754627ad19838e",
       "sourceName": "lib/BoringSolidity/contracts/ERC20.sol",
@@ -308,7 +308,7 @@
         "ERC20WithSupply"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/lib/BoringSolidity/contracts/libraries/BoringMath.sol": {
+    "/app/lib/BoringSolidity/contracts/libraries/BoringMath.sol": {
       "lastModificationDate": 1723085357878,
       "contentHash": "c7126ecc8db48c8ebc8360928d49017b",
       "sourceName": "lib/BoringSolidity/contracts/libraries/BoringMath.sol",
@@ -348,42 +348,7 @@
         "BoringMath64"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/lib/BoringSolidity/contracts/Domain.sol": {
-      "lastModificationDate": 1723085357877,
-      "contentHash": "09c8823172ab2170941e34845bd55161",
-      "sourceName": "lib/BoringSolidity/contracts/Domain.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "Domain"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/lib/BoringSolidity/contracts/interfaces/IERC20.sol": {
+    "/app/lib/BoringSolidity/contracts/interfaces/IERC20.sol": {
       "lastModificationDate": 1723085357877,
       "contentHash": "39a5e0412608b8207e69f34dfe8bdf13",
       "sourceName": "lib/BoringSolidity/contracts/interfaces/IERC20.sol",
@@ -419,10 +384,10 @@
         "IStrictERC20"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarExecutable.sol": {
-      "lastModificationDate": 1726072502486,
-      "contentHash": "2bf91caadece73810d1e7bc537174f04",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarExecutable.sol",
+    "/app/lib/BoringSolidity/contracts/Domain.sol": {
+      "lastModificationDate": 1723085357877,
+      "contentHash": "09c8823172ab2170941e34845bd55161",
+      "sourceName": "lib/BoringSolidity/contracts/Domain.sol",
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -446,17 +411,15 @@
           }
         }
       },
-      "imports": [
-        "./IAxelarGateway.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "IAxelarExecutable"
+        "Domain"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol": {
       "lastModificationDate": 1726072502558,
       "contentHash": "b30a7eb7b4a4d39878a8ad7d93d33f37",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IImplementation.sol",
@@ -493,7 +456,7 @@
         "IImplementation"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IGovernable.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IGovernable.sol": {
       "lastModificationDate": 1726072502556,
       "contentHash": "cff1f78967ee150487afdfcc5689c7c4",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IGovernable.sol",
@@ -528,7 +491,7 @@
         "IGovernable"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol": {
       "lastModificationDate": 1726072502543,
       "contentHash": "35cfec878fe72edd2f3d752aab6f56b9",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IContractIdentifier.sol",
@@ -563,7 +526,7 @@
         "IContractIdentifier"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/types/GasEstimationTypes.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/types/GasEstimationTypes.sol": {
       "lastModificationDate": 1726072502469,
       "contentHash": "e5c2978c99d4414a0413c2cb59779bbb",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/types/GasEstimationTypes.sol",
@@ -596,7 +559,7 @@
       ],
       "artifacts": []
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IInterchainGasEstimation.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IInterchainGasEstimation.sol": {
       "lastModificationDate": 1726072502563,
       "contentHash": "86a4d4a3535fe9f38a3a4908bb2abae4",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IInterchainGasEstimation.sol",
@@ -633,7 +596,7 @@
         "IInterchainGasEstimation"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IUpgradable.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IUpgradable.sol": {
       "lastModificationDate": 1726072502612,
       "contentHash": "f20af70b01876dd45652bbb357ef1264",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IUpgradable.sol",
@@ -671,7 +634,7 @@
         "IUpgradable"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol": {
       "lastModificationDate": 1726072502602,
       "contentHash": "079a01f47174cf9ed191f6cb21a74a0f",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol",
@@ -706,10 +669,10 @@
         "IOwnable"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol": {
-      "lastModificationDate": 1726072502575,
-      "contentHash": "4ef7d1925465ba98e022ca42563bfba0",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol",
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarExecutable.sol": {
+      "lastModificationDate": 1726072502486,
+      "contentHash": "2bf91caadece73810d1e7bc537174f04",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarExecutable.sol",
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -734,16 +697,53 @@
         }
       },
       "imports": [
-        "../interfaces/IImplementation.sol"
+        "./IAxelarGateway.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "Implementation"
+        "IAxelarExecutable"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Upgradable.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol": {
+      "lastModificationDate": 1726072502704,
+      "contentHash": "eb71621fafd383de2e8b4d5ec08cc7e5",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/IOwnable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Ownable"
+      ]
+    },
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Upgradable.sol": {
       "lastModificationDate": 1726072502954,
       "contentHash": "a5f7f2aba3d55b8e09394614096acd9d",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Upgradable.sol",
@@ -783,10 +783,10 @@
         "Upgradable"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol": {
-      "lastModificationDate": 1726072502704,
-      "contentHash": "eb71621fafd383de2e8b4d5ec08cc7e5",
-      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol",
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol": {
+      "lastModificationDate": 1726072502575,
+      "contentHash": "4ef7d1925465ba98e022ca42563bfba0",
+      "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Implementation.sol",
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -811,164 +811,16 @@
         }
       },
       "imports": [
-        "../interfaces/IOwnable.sol"
+        "../interfaces/IImplementation.sol"
       ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "Ownable"
+        "Implementation"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/IAxelarAuth.sol": {
-      "lastModificationDate": 1723085357875,
-      "contentHash": "cb83881506007224f932a4e23335f654",
-      "sourceName": "contracts/axelar/interfaces/IAxelarAuth.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IAxelarAuth"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/IAexelarAuthWeighted.sol": {
-      "lastModificationDate": 1723085357875,
-      "contentHash": "f3af42505e24834b490f22101b90d16b",
-      "sourceName": "contracts/axelar/interfaces/IAexelarAuthWeighted.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./IAxelarAuth.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "IAxelarAuthWeighted"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/AxelarAuthWeighted.sol": {
-      "lastModificationDate": 1723085357874,
-      "contentHash": "6bcb9bb0ad10f7c6e4c00751d2a911b3",
-      "sourceName": "contracts/axelar/AxelarAuthWeighted.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interfaces/IAexelarAuthWeighted.sol",
-        "./ECDSA.sol",
-        "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "AxelarAuthWeighted"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/ECDSA.sol": {
-      "lastModificationDate": 1723085357874,
-      "contentHash": "ac13f84944a07ae8b7a156f425005633",
-      "sourceName": "contracts/axelar/ECDSA.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "ECDSA"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/AxelarGateway.sol": {
+    "/app/contracts/axelar/AxelarGateway.sol": {
       "lastModificationDate": 1724509883015,
       "contentHash": "42ae8cf6b3638c3aae395c66dff2935d",
       "sourceName": "contracts/axelar/AxelarGateway.sol",
@@ -1017,10 +869,10 @@
         "AxelarGateway"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/ITokenDeployer.sol": {
+    "/app/contracts/axelar/interfaces/IAxelarAuth.sol": {
       "lastModificationDate": 1723085357875,
-      "contentHash": "7511ef74aedd55bbf4bcfc338d115493",
-      "sourceName": "contracts/axelar/interfaces/ITokenDeployer.sol",
+      "contentHash": "cb83881506007224f932a4e23335f654",
+      "sourceName": "contracts/axelar/interfaces/IAxelarAuth.sol",
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -1044,50 +896,17 @@
           }
         }
       },
-      "imports": [],
+      "imports": [
+        "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IOwnable.sol"
+      ],
       "versionPragmas": [
         "^0.8.0"
       ],
       "artifacts": [
-        "ITokenDeployer"
+        "IAxelarAuth"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/DepositHandler.sol": {
-      "lastModificationDate": 1723085357874,
-      "contentHash": "07c8f2f2acadda411092c290ba914ecc",
-      "sourceName": "contracts/axelar/DepositHandler.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "DepositHandler"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/IBurnableMintableCappedERC20.sol": {
+    "/app/contracts/axelar/interfaces/IBurnableMintableCappedERC20.sol": {
       "lastModificationDate": 1723085357875,
       "contentHash": "f9a3e499c3c27c3faffc975347417653",
       "sourceName": "contracts/axelar/interfaces/IBurnableMintableCappedERC20.sol",
@@ -1126,7 +945,112 @@
         "IBurnableMintableCappedERC20"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/EternalStorage.sol": {
+    "/app/contracts/axelar/interfaces/ITokenDeployer.sol": {
+      "lastModificationDate": 1723085357875,
+      "contentHash": "7511ef74aedd55bbf4bcfc338d115493",
+      "sourceName": "contracts/axelar/interfaces/ITokenDeployer.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ITokenDeployer"
+      ]
+    },
+    "/app/contracts/axelar/ECDSA.sol": {
+      "lastModificationDate": 1723085357874,
+      "contentHash": "ac13f84944a07ae8b7a156f425005633",
+      "sourceName": "contracts/axelar/ECDSA.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "ECDSA"
+      ]
+    },
+    "/app/contracts/axelar/DepositHandler.sol": {
+      "lastModificationDate": 1723085357874,
+      "contentHash": "07c8f2f2acadda411092c290ba914ecc",
+      "sourceName": "contracts/axelar/DepositHandler.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "DepositHandler"
+      ]
+    },
+    "/app/contracts/axelar/EternalStorage.sol": {
       "lastModificationDate": 1723085357874,
       "contentHash": "bba396895ca3ec3d6f90b35dbeae8d2c",
       "sourceName": "contracts/axelar/EternalStorage.sol",
@@ -1161,7 +1085,7 @@
         "EternalStorage"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol": {
       "lastModificationDate": 1726072502729,
       "contentHash": "ac0279b5635a6cdf3ff426890e3a7e56",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol",
@@ -1200,7 +1124,7 @@
         "SafeTokenTransferFrom"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol": {
       "lastModificationDate": 1726072502399,
       "contentHash": "7b646146cf0fd6a4ff80734bd498b592",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/ContractAddress.sol",
@@ -1235,7 +1159,7 @@
         "ContractAddress"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/IERC20Burn.sol": {
+    "/app/contracts/axelar/interfaces/IERC20Burn.sol": {
       "lastModificationDate": 1723085357875,
       "contentHash": "bf56de89dbff881ab4e2fa63b665a53e",
       "sourceName": "contracts/axelar/interfaces/IERC20Burn.sol",
@@ -1270,7 +1194,7 @@
         "IERC20Burn"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/IERC20BurnFrom.sol": {
+    "/app/contracts/axelar/interfaces/IERC20BurnFrom.sol": {
       "lastModificationDate": 1723085357875,
       "contentHash": "8f02381b69eb0385d41ab2e54c646510",
       "sourceName": "contracts/axelar/interfaces/IERC20BurnFrom.sol",
@@ -1305,7 +1229,7 @@
         "IERC20BurnFrom"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/IMintableCappedERC20.sol": {
+    "/app/contracts/axelar/interfaces/IMintableCappedERC20.sol": {
       "lastModificationDate": 1723085357875,
       "contentHash": "45901cdcccaf0ff910f70f0e070d7e26",
       "sourceName": "contracts/axelar/interfaces/IMintableCappedERC20.sol",
@@ -1344,7 +1268,7 @@
         "IMintableCappedERC20"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/IERC20.sol": {
+    "/app/contracts/axelar/interfaces/IERC20.sol": {
       "lastModificationDate": 1723085357875,
       "contentHash": "44eae9aec640d032d51e188229f61fed",
       "sourceName": "contracts/axelar/interfaces/IERC20.sol",
@@ -1379,7 +1303,7 @@
         "IERC20"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/IERC20Permit.sol": {
+    "/app/contracts/axelar/interfaces/IERC20Permit.sol": {
       "lastModificationDate": 1723085357875,
       "contentHash": "2bcc06bcfc551a8ff35622288f7f3be6",
       "sourceName": "contracts/axelar/interfaces/IERC20Permit.sol",
@@ -1414,7 +1338,7 @@
         "IERC20Permit"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/interfaces/IOwnable.sol": {
+    "/app/contracts/axelar/interfaces/IOwnable.sol": {
       "lastModificationDate": 1723085357875,
       "contentHash": "998e17b8487fedc9fcbf6aa53dcc8d06",
       "sourceName": "contracts/axelar/interfaces/IOwnable.sol",
@@ -1449,7 +1373,7 @@
         "IOwnable"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/AxelarGasService.sol": {
+    "/app/contracts/axelar/AxelarGasService.sol": {
       "lastModificationDate": 1726062565912,
       "contentHash": "d4b701ebca52b60c822dff2b1ab69517",
       "sourceName": "contracts/axelar/AxelarGasService.sol",
@@ -1491,7 +1415,7 @@
         "AxelarGasService"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/gas-estimation/InterchainGasEstimation.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/gas-estimation/InterchainGasEstimation.sol": {
       "lastModificationDate": 1726072502587,
       "contentHash": "2019e2f178a93c0ed4478ef081f0fd74",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/gas-estimation/InterchainGasEstimation.sol",
@@ -1529,7 +1453,7 @@
         "InterchainGasEstimation"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeNativeTransfer.sol": {
+    "/app/node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeNativeTransfer.sol": {
       "lastModificationDate": 1726072502729,
       "contentHash": "766e9e3d1893c617f50c710567b54963",
       "sourceName": "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeNativeTransfer.sol",
@@ -1564,7 +1488,7 @@
         "SafeNativeTransfer"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/MintContract.sol": {
+    "/app/contracts/MintContract.sol": {
       "lastModificationDate": 1723085357874,
       "contentHash": "03d6036a3f3704a19892cb61ab9ea374",
       "sourceName": "contracts/MintContract.sol",
@@ -1606,7 +1530,83 @@
         "MintContract"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/contracts/axelar/TokenDeployer.sol": {
+    "/app/contracts/axelar/AxelarAuthWeighted.sol": {
+      "lastModificationDate": 1723085357874,
+      "contentHash": "6bcb9bb0ad10f7c6e4c00751d2a911b3",
+      "sourceName": "contracts/axelar/AxelarAuthWeighted.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/IAexelarAuthWeighted.sol",
+        "./ECDSA.sol",
+        "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AxelarAuthWeighted"
+      ]
+    },
+    "/app/contracts/axelar/interfaces/IAexelarAuthWeighted.sol": {
+      "lastModificationDate": 1723085357875,
+      "contentHash": "f3af42505e24834b490f22101b90d16b",
+      "sourceName": "contracts/axelar/interfaces/IAexelarAuthWeighted.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IAxelarAuth.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IAxelarAuthWeighted"
+      ]
+    },
+    "/app/contracts/axelar/TokenDeployer.sol": {
       "lastModificationDate": 1726062565912,
       "contentHash": "4a7a97a43fd5bdd7585bcb88f91d82f3",
       "sourceName": "contracts/axelar/TokenDeployer.sol",
@@ -1644,7 +1644,7 @@
         "TokenDeployer"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/BurnableMintableCappedERC20.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/BurnableMintableCappedERC20.sol": {
       "lastModificationDate": 1726070180357,
       "contentHash": "fedd5496941ee9447a8ee17cc4a8f246",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/BurnableMintableCappedERC20.sol",
@@ -1684,7 +1684,42 @@
         "BurnableMintableCappedERC20"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/MintableCappedERC20.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/DepositHandler.sol": {
+      "lastModificationDate": 1726070180357,
+      "contentHash": "b50c38d957034d961c8ab7d1d4fbff6c",
+      "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/DepositHandler.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.9"
+      ],
+      "artifacts": [
+        "DepositHandler"
+      ]
+    },
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/MintableCappedERC20.sol": {
       "lastModificationDate": 1726070180358,
       "contentHash": "c984f5f3b63ac45b24115a6bc62ac2bc",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/MintableCappedERC20.sol",
@@ -1724,42 +1759,7 @@
         "MintableCappedERC20"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/DepositHandler.sol": {
-      "lastModificationDate": 1726070180357,
-      "contentHash": "b50c38d957034d961c8ab7d1d4fbff6c",
-      "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/DepositHandler.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "0.8.9"
-      ],
-      "artifacts": [
-        "DepositHandler"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IAxelarGateway.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IAxelarGateway.sol": {
       "lastModificationDate": 1726070186506,
       "contentHash": "a52fa214c10763f16a246401f7dd77ef",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/interfaces/IAxelarGateway.sol",
@@ -1794,7 +1794,7 @@
         "IAxelarGateway"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IBurnableMintableCappedERC20.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IBurnableMintableCappedERC20.sol": {
       "lastModificationDate": 1726070186507,
       "contentHash": "f9a3e499c3c27c3faffc975347417653",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/interfaces/IBurnableMintableCappedERC20.sol",
@@ -1833,10 +1833,10 @@
         "IBurnableMintableCappedERC20"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/ERC20.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/Ownable.sol": {
       "lastModificationDate": 1726070180358,
-      "contentHash": "e89ceea0f645effad18959989dd8f180",
-      "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/ERC20.sol",
+      "contentHash": "f9ab08c2200a72ff28e1ed0533651c1f",
+      "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/Ownable.sol",
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -1861,16 +1861,16 @@
         }
       },
       "imports": [
-        "./interfaces/IERC20.sol"
+        "./interfaces/IOwnable.sol"
       ],
       "versionPragmas": [
         "0.8.9"
       ],
       "artifacts": [
-        "ERC20"
+        "Ownable"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IMintableCappedERC20.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IMintableCappedERC20.sol": {
       "lastModificationDate": 1726070186508,
       "contentHash": "45901cdcccaf0ff910f70f0e070d7e26",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/interfaces/IMintableCappedERC20.sol",
@@ -1909,7 +1909,7 @@
         "IMintableCappedERC20"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/ERC20Permit.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/ERC20Permit.sol": {
       "lastModificationDate": 1726070180357,
       "contentHash": "f904dd8066ae3b9145a22945fdf5203d",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/ERC20Permit.sol",
@@ -1948,10 +1948,10 @@
         "ERC20Permit"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/Ownable.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/ERC20.sol": {
       "lastModificationDate": 1726070180358,
-      "contentHash": "f9ab08c2200a72ff28e1ed0533651c1f",
-      "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/Ownable.sol",
+      "contentHash": "e89ceea0f645effad18959989dd8f180",
+      "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/ERC20.sol",
       "solcConfig": {
         "version": "0.8.9",
         "settings": {
@@ -1976,51 +1976,16 @@
         }
       },
       "imports": [
-        "./interfaces/IOwnable.sol"
+        "./interfaces/IERC20.sol"
       ],
       "versionPragmas": [
         "0.8.9"
       ],
       "artifacts": [
-        "Ownable"
+        "ERC20"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20.sol": {
-      "lastModificationDate": 1726070186507,
-      "contentHash": "44eae9aec640d032d51e188229f61fed",
-      "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "IERC20"
-      ]
-    },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IOwnable.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IOwnable.sol": {
       "lastModificationDate": 1726070186508,
       "contentHash": "998e17b8487fedc9fcbf6aa53dcc8d06",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/interfaces/IOwnable.sol",
@@ -2055,7 +2020,7 @@
         "IOwnable"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20Permit.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20Permit.sol": {
       "lastModificationDate": 1726070186508,
       "contentHash": "2bcc06bcfc551a8ff35622288f7f3be6",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20Permit.sol",
@@ -2090,7 +2055,42 @@
         "IERC20Permit"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20BurnFrom.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20.sol": {
+      "lastModificationDate": 1726070186507,
+      "contentHash": "44eae9aec640d032d51e188229f61fed",
+      "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "IERC20"
+      ]
+    },
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20BurnFrom.sol": {
       "lastModificationDate": 1726070186508,
       "contentHash": "8f02381b69eb0385d41ab2e54c646510",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20BurnFrom.sol",
@@ -2125,7 +2125,7 @@
         "IERC20BurnFrom"
       ]
     },
-    "/Users/viettai/workspace/codelight/scalar.org/axelar-deployment/xchains-contract/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20Burn.sol": {
+    "/app/node_modules/@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20Burn.sol": {
       "lastModificationDate": 1726070186507,
       "contentHash": "bf56de89dbff881ab4e2fa63b665a53e",
       "sourceName": "@axelar-network/axelar-cgp-solidity/contracts/interfaces/IERC20Burn.sol",

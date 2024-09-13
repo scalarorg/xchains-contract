@@ -91,18 +91,6 @@ function readOperatorsInfo(keyPath) {
   return [operators, weights, threshold];
 }
 
-async function readChainConfig(chain) {
-  try {
-      const filePath = path.join(__dirname, "..", "config", "chains", chain, `${chain}.json`)
-      console.log(chain)
-      const data = await fs.readFile(filePath, 'utf8');
-      const chainConfig = JSON.parse(data);
-      return chainConfig
-
-  } catch (error) {
-      console.error('Error reading or parsing the file:', error);
-  }
-}
 main()
   .then(() => process.exit(0))
   .catch((error) => {
