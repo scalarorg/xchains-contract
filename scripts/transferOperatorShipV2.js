@@ -3,7 +3,7 @@ const fs = require("fs").promises;
 const yargs = require('yargs');
 const envs = require("../envs.js");
 const path = require("path");
-
+const { readChainConfig, getConfigPath } = require("./utils");
 
 async function main() {
   const argv = yargs
@@ -13,12 +13,10 @@ async function main() {
       type: 'string',
       demandOption: true
     }).argv;
+  const network = argv.n;
+  const chainConfig = await readChainConfig(network);
+  const wallet = createWallet(chainConfig);
 
-  const chainConfig = await readChainConfig(argv.n);
-  const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
-  const wallet = new ethers.Wallet(envs.privateKeySigner, provider);
-
-  
   const contractName = "AxelarAuthWeighted";
   const contractArtifact = require(`../artifacts/contracts/axelar/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
@@ -28,14 +26,12 @@ async function main() {
     wallet
   );
   const currentEpoch = await axelarAuthWeightedContract.currentEpoch();
-  console.log("Current Epoch:", currentEpoch.toString());
-  console.log(
-    "Current Hash:",
-    await axelarAuthWeightedContract.hashForEpoch(currentEpoch)
-  );
+  const currentHash = await axelarAuthWeightedContract.hashForEpoch(currentEpoch);
+  console.log(`Current Epoch: ${currentEpoch.toString()}, Hash: ${currentHash}`);
   try {
     // TODO: Prepare params
-    const [newOperators, newWeights, newThreshold] = readOperatorsInfo(chainConfig.keyPath);
+    const keyPath = chainConfig.keyPath || path.join(getConfigPath(), network, "key");
+    const [newOperators, newWeights, newThreshold] = readOperatorsInfo(keyPath);
 
     // Extracting addresses and powers
     console.log(newOperators);
@@ -78,11 +74,9 @@ async function main() {
   }
 }
 
-function readOperatorsInfo(genesisFilePath) {
-  // const genesisFilePath = process.env.KEY_SEPOLIA_PATH;
-
-  console.log("Genesis file path:", genesisFilePath);
-  data = fs.readFileSync(genesisFilePath, "utf8");
+function readOperatorsInfo(keyPath) {
+  console.log("Key file path:", keyPath);
+  data = fs.readFileSync(keyPath, "utf8");
   const jsonData = JSON.parse(data);
 
   // Extract the validators data
