@@ -6,6 +6,15 @@ const fs = require('fs');
 function getConfigPath() {
     return envs.configPath || path.join(__dirname, "../", "config/chains");
 }
+function getContractAddress(chainConfig, contractName) {
+    if (chainConfig[contractName]) {
+        return chainConfig[contractName];
+    }
+    const addresses = readChainData(chainConfig.id, "addresses.json");
+    if (addresses) {
+        return addresses[contractName];
+    }
+}
 function readChainData(chain, fileName) {
     try {
       const filePath = path.join(getConfigPath(), chain, fileName)
@@ -52,10 +61,34 @@ function createWallet(chainConfig) {
     }
     return wallet;
 }
+async function getAxelarContractByName(name, address) {
+  const [signer] = await ethers.getSigners();
+  const { abi } = require(`../artifacts/contracts/axelar/${name}.sol/${name}.json`);
+  const constract = new ethers.Contract(
+    address,
+    abi,
+    signer
+  );
+  return constract
+}
+
+async function getContractByName(name, address) {
+  const [signer] = await ethers.getSigners();
+  const { abi } = require(`../artifacts/contracts/${name}.sol/${name}.json`);
+  const constract = new ethers.Contract(
+    address,
+    abi,
+    signer
+  );
+  return constract
+}
 module.exports = {
     getConfigPath,
     createWallet,
     readChainData,
     readChainConfig,
-    saveChainData
+    saveChainData,
+    getContractAddress,
+    getAxelarContractByName,
+    getContractByName
 } 

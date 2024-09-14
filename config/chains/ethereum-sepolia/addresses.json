@@ -1,0 +1,9 @@
+{
+    "gateway": "0xda8367783782EC92BaDae3e534a9FCcb3fa6eF1C",
+    "gasService": "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6",
+    "authWeighted": "0xda8367783782EC92BaDae3e534a9FCcb3fa6eF1C",
+    "tokenDeployer": "0xda8367783782EC92BaDae3e534a9FCcb3fa6eF1C",
+    "sBtc": "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B",
+    "mintContract": "0x26f761c408986e49693dDE7f7E95987B5F8241b8",
+    "burnContract": "0x3c79d4DF7bD6eeACc5684F8B701c3d57e4632EC0"
+}
