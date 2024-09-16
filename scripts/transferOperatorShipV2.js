@@ -3,7 +3,7 @@ const fs = require("fs");
 const yargs = require('yargs');
 const envs = require("../envs.js");
 const path = require("path");
-const { readChainConfig, getConfigPath, createWallet, getContractAddress } = require("./utils");
+const { readChainConfig, getConfigPath, createWallet } = require("./utils");
 
 async function main() {
   const {n : network} = yargs
@@ -14,6 +14,10 @@ async function main() {
       demandOption: true
     }).argv;
   const chainConfig = await readChainConfig(network);
+  if (!chainConfig) {
+    console.error(`Chain config for network ${network} not found`);
+    return;
+  }
   const wallet = createWallet(chainConfig);
 
   const contractName = "AxelarAuthWeighted";
