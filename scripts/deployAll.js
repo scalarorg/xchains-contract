@@ -1,7 +1,7 @@
 const yargs = require("yargs");
 const { ethers } = require("hardhat");
 const { readChainConfig, saveChainData, createWallet, getContractByName } = require("./utils");
-const { transferOwnershipToMintContract } = require("./setOwnership");
+
 async function main() {
     const argv = yargs.command('deploy <target>', 'deploy contract choice: All, AxelarGateway, MintContract', (yargs) => {
         return yargs.positional('target', {
@@ -92,11 +92,16 @@ async function deployAll(wallet, options) {
     const axelarGateway = await deployAxelarGateway(axelarWeighted, tokenDeployer, wallet);
     console.log("--------------------------------------")
 
-
     const mintContract = await deployMintContract(axelarGateway, gasService, sBtc, wallet)
 
     console.log("--------------------------------------")
     const burnContract = await deployBurnContract(axelarGateway, gasService, sBtc, wallet)
+    
+    console.log("---------- Transfer TokenConytract Ownership to Service contract ----------")
+    const sBTCContract = await getContractByName("sBTC", sBtc, wallet);
+    const txTransferOwnership = await sBTCContract.transferOwnership(mintContract, true, false);
+    const txRes = await txTransferOwnership.wait();
+    console.log(txRes);
 
     options["tokenDeployer"]= tokenDeployer;
     options["gasService"] = gasService;
@@ -178,11 +183,11 @@ async function deploysBtc(wallet) {
     console.log("DEPLOYING SBTC.........")
 
     const SBTC = await ethers.getContractFactory("sBTC", wallet);
-    const sBTC = await SBTC.deploy();
+    let contract = await SBTC.deploy();
 
-    await sBTC.deployed();
-    console.log("sBTC deployed to:", sBTC.address);
-    return sBTC.address
+    contract = await contract.deployed();
+    console.log("sBTC deployed to:", contract.address);
+    return contract.address
 }
 
 async function deployAxelarGateway(axelarWeighted, tokenDeployer, wallet) {
@@ -287,17 +292,6 @@ async function deployMintContract(gatewayAddr, gasService, sBtcAddr, wallet) {
     mintContract = await mintContract.deployed();
     console.log("mintContract address:", mintContract.address);
     console.log("sbtc address:", await mintContract.sbtc());
-    await mintContract.wait();
-    console.log(`Call sBtcContract.transferOwnership to Mintcontract Address ${mintContract.address}`);
-    await transferOwnershipToMintContract(sBtcAddr, mintContract.address, wallet);
-    // sBtcContract = await getContractByName("sBTC", sBtcAddr);
-    // const owner = await sBtcContract.owner();
-    // console.log(`Current sBTC owner: ${owner}`);
-    // const txTransferOwnership = await sBtcContract.transferOwnership(mintContract.address, true, false);
-    // const res = await txTransferOwnership.wait();
-    // console.log(res);
-    // const newOwner = await sBtcContract.owner();
-    // console.log("New sBTC owner:", newOwner);
     return mintContract.address;
 
 }

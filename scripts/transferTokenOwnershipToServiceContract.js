@@ -1,36 +1,34 @@
 // set ownership for mintContract
 const path = require("path");
+const yargs = require("yargs");
 const { ethers } = require("hardhat");
 const envs = require("../envs.js");
-const { readChainConfig, getContractAddress, getContractByName } = require("./utils");
+const { readChainConfig, getContractAddress, getContractByName } = require("./utils.js");
 
-async function transferOwnershipToMintContract(sBtcAddress, mintContractAddress, signer) {
-  console.log(`transferOwnershipToMintContract ${mintContractAddress} for sBTC ${sBtcAddress}`);
-  const sBTCContract = await getContractByName("sBTC", sBtcAddress);
-  const sbct = {
-    address: sBTCContract.address,
-    totalSupply: await sBTCContract.totalSupply(),
-    owner: await sBTCContract.owner()
-  }
-  console.log(sbct);
-  const txTransferOwnership = await sBTCContract.transferOwnership(mintContractAddress, true, false);
-  await txTransferOwnership.wait();
-  console.log("New sBTC owner:", await sBTCContract.owner());
-}
-module.exports = {
-  transferOwnershipToMintContract
-}
 async function main() {
+  const {n: network } = yargs
+    .option('network', {
+      alias: 'n',
+      description: 'network',
+      type: 'string',
+      demandOption: true
+    }).argv;
   const [deployer, user1, user2] = await ethers.getSigners();
   console.log(
     "Deploying the contracts with the account:",
     await deployer.getAddress()
   );
   console.log("Account balance:", (await deployer.getBalance()).toString());
-  const chainConfig = await readChainConfig(envs.network);
-  const sBTCAddress = await getContractAddress(chainConfig, "sBtc");
+  const chainConfig = await readChainConfig(network);
+  const sBtcAddress = await getContractAddress(chainConfig, "sBtc");
   const mintContractAddress = await getContractAddress(chainConfig, "mintContract");
-  await transferOwnershipToMintContract(sBTCAddress, mintContractAddress, deployer);
+  
+  console.log(`transferOwnershipToServiceContract ${mintContractAddress} for ERC20 ${sBtcAddress}`);
+  const sBTCContract = await getContractByName("sBTC", sBtcAddress, signer);
+  const txTransferOwnership = await sBTCContract.transferOwnership(mintContractAddress, true, false);
+  const txRes = await txTransferOwnership.wait();
+  console.log(txRes);
+
   // const sBTCContract = await getContractByName("sBTC", sBTCAddress);
 
   // console.log("sbtc address:", sBTCContract.address);

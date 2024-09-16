@@ -6,14 +6,13 @@ const path = require("path");
 const { readChainConfig, getConfigPath, createWallet, getContractAddress } = require("./utils");
 
 async function main() {
-  const argv = yargs
+  const {n : network} = yargs
     .option('network', {
       alias: 'n',
       description: 'network',
       type: 'string',
       demandOption: true
     }).argv;
-  const network = argv.n;
   const chainConfig = await readChainConfig(network);
   const wallet = createWallet(chainConfig);
 
