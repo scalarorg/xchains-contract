@@ -4,10 +4,5 @@
     "name": "ethereum-sepolia",
     "privateKey": "",
     "rpcUrl": "https://eth-sepolia.g.alchemy.com/v2/nNbspp-yjKP9GtAcdKi8xcLnBTptR2Zx",
-    "keyPath": "/app/chains/ethereum-sepolia/key",
-    "gateway": "0xda8367783782EC92BaDae3e534a9FCcb3fa6eF1C",
-    "gasService": "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6",
-    "authWeighted": "0xda8367783782EC92BaDae3e534a9FCcb3fa6eF1C",
-    "tokenDeployer": "0xda8367783782EC92BaDae3e534a9FCcb3fa6eF1C",
-    "sBtc": "0xa32e5903815476Aff6E784F5644b1E0e3eE2081B"
+    "keyPath": "/app/chains/ethereum-sepolia/key"
 }

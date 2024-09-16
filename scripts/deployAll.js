@@ -1,6 +1,7 @@
 const yargs = require("yargs");
 const { ethers } = require("hardhat");
-const { readChainConfig, saveChainData, createWallet } = require("./utils");
+const { readChainConfig, saveChainData, createWallet, getContractByName } = require("./utils");
+
 async function main() {
     const argv = yargs.command('deploy <target>', 'deploy contract choice: All, AxelarGateway, MintContract', (yargs) => {
         return yargs.positional('target', {
@@ -67,9 +68,6 @@ async function main() {
 
 async function setup(argv) {
     const { network, ...options } = argv;
-    console.log(argv)
-    console.log(options)
-    console.log(network)
     const chainConfig = readChainConfig(network)
     console.log(chainConfig)
     const wallet = createWallet(chainConfig);
@@ -94,11 +92,16 @@ async function deployAll(wallet, options) {
     const axelarGateway = await deployAxelarGateway(axelarWeighted, tokenDeployer, wallet);
     console.log("--------------------------------------")
 
-
     const mintContract = await deployMintContract(axelarGateway, gasService, sBtc, wallet)
 
     console.log("--------------------------------------")
     const burnContract = await deployBurnContract(axelarGateway, gasService, sBtc, wallet)
+    
+    console.log("---------- Transfer TokenConytract Ownership to Service contract ----------")
+    const sBTCContract = await getContractByName("sBTC", sBtc, wallet);
+    const txTransferOwnership = await sBTCContract.transferOwnership(mintContract, true, false);
+    const txRes = await txTransferOwnership.wait();
+    console.log(txRes);
 
     options["tokenDeployer"]= tokenDeployer;
     options["gasService"] = gasService;
@@ -180,11 +183,11 @@ async function deploysBtc(wallet) {
     console.log("DEPLOYING SBTC.........")
 
     const SBTC = await ethers.getContractFactory("sBTC", wallet);
-    const sBTC = await SBTC.deploy();
+    let contract = await SBTC.deploy();
 
-    await sBTC.deployed();
-    console.log("sBTC deployed to:", await sBTC.address);
-    return sBTC.address
+    contract = await contract.deployed();
+    console.log("sBTC deployed to:", contract.address);
+    return contract.address
 }
 
 async function deployAxelarGateway(axelarWeighted, tokenDeployer, wallet) {
@@ -281,15 +284,14 @@ async function deployMintContract(gatewayAddr, gasService, sBtcAddr, wallet) {
     console.log("sBtc Addr:     ", sBtcAddr);
     console.log("gasService Addr:", gasService)
     const MintContract = await ethers.getContractFactory("MintContract", wallet);
-    const mintContract = await MintContract.deploy(
+    let mintContract = await MintContract.deploy(
         gatewayAddr,
         gasService,
         sBtcAddr
     );
-    await mintContract.deployed();
+    mintContract = await mintContract.deployed();
     console.log("mintContract address:", mintContract.address);
     console.log("sbtc address:", await mintContract.sbtc());
-
     return mintContract.address;
 
 }

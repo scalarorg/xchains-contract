@@ -1,27 +1,28 @@
 const { ethers } = require("hardhat");
-const fs = require("fs").promises;
+const fs = require("fs");
 const yargs = require('yargs');
 const envs = require("../envs.js");
 const path = require("path");
-const { readChainConfig, getConfigPath } = require("./utils");
+const { readChainConfig, getConfigPath, createWallet, getContractAddress } = require("./utils");
 
 async function main() {
-  const argv = yargs
+  const {n : network} = yargs
     .option('network', {
       alias: 'n',
       description: 'network',
       type: 'string',
       demandOption: true
     }).argv;
-  const network = argv.n;
   const chainConfig = await readChainConfig(network);
   const wallet = createWallet(chainConfig);
 
   const contractName = "AxelarAuthWeighted";
   const contractArtifact = require(`../artifacts/contracts/axelar/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
+  const authWeightedAddress = getContractAddress(chainConfig, "authWeighted");
+  console.log(`Auth weighted contract address: ${authWeightedAddress}`);
   const axelarAuthWeightedContract = new ethers.Contract(
-    chainConfig.authWeighted, // TODO
+    authWeightedAddress, // TODO
     contractABI,
     wallet
   );
