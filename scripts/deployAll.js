@@ -1,6 +1,7 @@
 const yargs = require("yargs");
 const { ethers } = require("hardhat");
-const { readChainConfig, saveChainData, createWallet } = require("./utils");
+const { readChainConfig, saveChainData, createWallet, getContractByName } = require("./utils");
+const { transferOwnershipToMintContract } = require("./setOwnership");
 async function main() {
     const argv = yargs.command('deploy <target>', 'deploy contract choice: All, AxelarGateway, MintContract', (yargs) => {
         return yargs.positional('target', {
@@ -67,9 +68,6 @@ async function main() {
 
 async function setup(argv) {
     const { network, ...options } = argv;
-    console.log(argv)
-    console.log(options)
-    console.log(network)
     const chainConfig = readChainConfig(network)
     console.log(chainConfig)
     const wallet = createWallet(chainConfig);
@@ -183,7 +181,7 @@ async function deploysBtc(wallet) {
     const sBTC = await SBTC.deploy();
 
     await sBTC.deployed();
-    console.log("sBTC deployed to:", await sBTC.address);
+    console.log("sBTC deployed to:", sBTC.address);
     return sBTC.address
 }
 
@@ -281,15 +279,25 @@ async function deployMintContract(gatewayAddr, gasService, sBtcAddr, wallet) {
     console.log("sBtc Addr:     ", sBtcAddr);
     console.log("gasService Addr:", gasService)
     const MintContract = await ethers.getContractFactory("MintContract", wallet);
-    const mintContract = await MintContract.deploy(
+    let mintContract = await MintContract.deploy(
         gatewayAddr,
         gasService,
         sBtcAddr
     );
-    await mintContract.deployed();
+    mintContract = await mintContract.deployed();
     console.log("mintContract address:", mintContract.address);
     console.log("sbtc address:", await mintContract.sbtc());
-
+    await mintContract.wait();
+    console.log(`Call sBtcContract.transferOwnership to Mintcontract Address ${mintContract.address}`);
+    await transferOwnershipToMintContract(sBtcAddr, mintContract.address, wallet);
+    // sBtcContract = await getContractByName("sBTC", sBtcAddr);
+    // const owner = await sBtcContract.owner();
+    // console.log(`Current sBTC owner: ${owner}`);
+    // const txTransferOwnership = await sBtcContract.transferOwnership(mintContract.address, true, false);
+    // const res = await txTransferOwnership.wait();
+    // console.log(res);
+    // const newOwner = await sBtcContract.owner();
+    // console.log("New sBTC owner:", newOwner);
     return mintContract.address;
 
 }

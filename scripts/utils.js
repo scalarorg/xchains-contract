@@ -72,15 +72,18 @@ async function getAxelarContractByName(name, address) {
   return constract
 }
 
-async function getContractByName(name, address) {
-  const [signer] = await ethers.getSigners();
-  const { abi } = require(`../artifacts/contracts/${name}.sol/${name}.json`);
-  const constract = new ethers.Contract(
-    address,
-    abi,
-    signer
-  );
-  return constract
+async function getContractByName(name, address, signer) {
+    if (!signer) {
+        [signer] = await ethers.getSigners();
+    }
+    console.log("Signer account:", await signer.getAddress());
+    const { abi } = require(`../artifacts/contracts/${name}.sol/${name}.json`);
+    const constract = new ethers.Contract(
+        address,
+        abi,
+        signer
+    );
+    return constract
 }
 module.exports = {
     getConfigPath,
