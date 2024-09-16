@@ -3,7 +3,7 @@ const fs = require("fs");
 const yargs = require('yargs');
 const envs = require("../envs.js");
 const path = require("path");
-const { readChainConfig, getConfigPath, createWallet } = require("./utils");
+const { readChainConfig, getConfigPath, createWallet, getContractAddress } = require("./utils");
 
 async function main() {
   const {n : network} = yargs
