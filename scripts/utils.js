@@ -17,11 +17,11 @@ function getContractAddress(chainConfig, contractName) {
 }
 function readChainData(chain, fileName) {
     try {
-      const filePath = path.join(getConfigPath(), chain, fileName)
-      const data = fs.readFileSync(filePath, 'utf8');
-      const chainConfig = JSON.parse(data);
-      return chainConfig
-
+        const filePath = path.join(getConfigPath(), chain, fileName)
+        console.log(`Read chain data ${filePath} from path $filePath`);
+        const data = fs.readFileSync(filePath, 'utf8');
+        const chainConfig = JSON.parse(data);
+        return chainConfig
   } catch (error) {
       console.error('Error reading or parsing the file:', error);
   }

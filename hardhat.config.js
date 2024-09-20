@@ -24,7 +24,7 @@ module.exports = {
       accounts: [envs.privateKeySigner],
     },
     "ethereum-local": {
-      url: envs.rpcUrlAnvil,
+      url: envs.rpcUrlLocal,
       accounts: [envs.privateKeySigner],
     },
     "sepolia": {
@@ -32,8 +32,8 @@ module.exports = {
       url: envs.rpcUrlSepolia,
       accounts: [envs.privateKeySigner],
     },
-    anvil: {
-      url: envs.rpcUrlAnvil,
+    "local": {
+      url: envs.rpcUrlLocal,
       accounts: [envs.privateKeySigner],
     },
   },
