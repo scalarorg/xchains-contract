@@ -4,7 +4,7 @@ const envs = require("../envs.js");
 const fs = require('fs');
 
 function getConfigPath() {
-    return envs.configPath || path.join(__dirname, "../", "config/chains");
+    return envs.runtimeChainsPath || path.join(__dirname, "../", "config/chains");
 }
 function getContractAddress(chainConfig, contractName) {
     if (chainConfig[contractName]) {
@@ -18,7 +18,7 @@ function getContractAddress(chainConfig, contractName) {
 function readChainData(chain, fileName) {
     try {
         const filePath = path.join(getConfigPath(), chain, fileName)
-        console.log(`Read chain data ${filePath} from path $filePath`);
+        console.log(`Read chain data from ${filePath}`);
         const data = fs.readFileSync(filePath, 'utf8');
         const chainConfig = JSON.parse(data);
         return chainConfig
@@ -58,6 +58,8 @@ function createWallet(chainConfig) {
     if (wallet && chainConfig.rpcUrl) {
         const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
         wallet = wallet.connect(provider);
+    } else if (chainConfig.rpcUrl) {
+        console.error("No RpcURL found in the chain config");
     }
     return wallet;
 }
