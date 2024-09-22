@@ -20,21 +20,21 @@ module.exports = {
   networks: {
     "ethereum-sepolia": {
       // url: "https://eth-sepolia.g.alchemy.com/v2/nNbspp-yjKP9GtAcdKi8xcLnBTptR2Zx",
-      url: envs.rpcUrlSepolia,
-      accounts: [envs.privateKeySigner],
+      url: envs.sepolia.rpcUrl,
+      accounts: [envs.sepolia.evmPrivateKey],
     },
     "ethereum-local": {
-      url: envs.rpcUrlLocal,
-      accounts: [envs.privateKeySigner],
+      url: envs.local.rpcUrl,
+      accounts: [envs.local.evmPrivateKey],
     },
     "sepolia": {
       // url: "https://eth-sepolia.g.alchemy.com/v2/nNbspp-yjKP9GtAcdKi8xcLnBTptR2Zx",
-      url: envs.rpcUrlSepolia,
-      accounts: [envs.privateKeySigner],
+      url: envs.sepolia.rpcUrl,
+      accounts: [envs.local.evmPrivateKey],
     },
     "local": {
-      url: envs.rpcUrlLocal,
-      accounts: [envs.privateKeySigner],
+      url: envs.local.rpcUrl,
+      accounts: [envs.local.evmPrivateKey],
     },
   },
 };
