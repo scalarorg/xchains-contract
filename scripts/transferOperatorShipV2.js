@@ -64,7 +64,9 @@ async function main() {
 
     // Call Transfer Operatorship
     const txTransferOpShip =
-      await axelarAuthWeightedContract.transferOperatorship(encodedParams);
+      await axelarAuthWeightedContract.transferOperatorship(encodedParams, {
+        gasLimit: 3000000,
+      });
     console.log("Transaction hash:", txTransferOpShip.hash);
     await txTransferOpShip.wait();
     console.log("Transaction confirmed");
