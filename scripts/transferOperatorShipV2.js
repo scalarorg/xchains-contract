@@ -30,9 +30,9 @@ async function main() {
     contractABI,
     wallet
   );
-  const currentEpoch = await axelarAuthWeightedContract.currentEpoch();
-  const currentHash = await axelarAuthWeightedContract.hashForEpoch(currentEpoch);
-  console.log(`Current Epoch: ${currentEpoch.toString()}, Hash: ${currentHash}`);
+  // const currentEpoch = await axelarAuthWeightedContract.currentEpoch();
+  // const currentHash = await axelarAuthWeightedContract.hashForEpoch(currentEpoch);
+  // console.log(`Current Epoch: ${currentEpoch.toString()}, Hash: ${currentHash}`);
   try {
     // TODO: Prepare params
     const keyPath = chainConfig.keyPath || path.join(getConfigPath(), network, "key");
@@ -70,12 +70,12 @@ async function main() {
     console.log("Transaction hash:", txTransferOpShip.hash);
     await txTransferOpShip.wait();
     console.log("Transaction confirmed");
-    newEpoch = await axelarAuthWeightedContract.currentEpoch();
-    console.log("New Epoch:", newEpoch.toString());
-    console.log(
-      "New Hash:",
-      await axelarAuthWeightedContract.hashForEpoch(newEpoch)
-    );
+    // newEpoch = await axelarAuthWeightedContract.currentEpoch();
+    // console.log("New Epoch:", newEpoch.toString());
+    // console.log(
+    //   "New Hash:",
+    //   await axelarAuthWeightedContract.hashForEpoch(newEpoch)
+    // );
   } catch (error) {
     console.error("Error executing transaction:", error);
   }
