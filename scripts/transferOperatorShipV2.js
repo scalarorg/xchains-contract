@@ -20,10 +20,10 @@ async function main() {
   }
   const wallet = createWallet(chainConfig);
 
-  const contractName = "AxelarAuthWeighted";
+  const contractName = "AxelarGateway";
   const contractArtifact = require(`../artifacts/contracts/axelar/${contractName}.sol/${contractName}.json`);
   const contractABI = contractArtifact.abi;
-  const authWeightedAddress = getContractAddress(chainConfig, "authWeighted");
+  const authWeightedAddress = getContractAddress(chainConfig, "gateway");
   console.log(`Auth weighted contract address: ${authWeightedAddress}`);
   const axelarAuthWeightedContract = new ethers.Contract(
     authWeightedAddress, // TODO
