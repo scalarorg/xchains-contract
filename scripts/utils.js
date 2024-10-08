@@ -53,7 +53,7 @@ function createWallet(chainConfig) {
         // const hdwallet = hdkey.fromMasterSeed(mnemonic);
         wallet = ethers.Wallet.fromMnemonic(mnemonic, `m/44'/60'/0'/0/${walletIndex}`);
     } else if (chainConfig.privateKey) {
-        wallet = new ethers.Wallet(privateKey);
+        wallet = new ethers.Wallet(chainConfig.privateKey);
     }
     if (wallet && chainConfig.rpcUrl) {
         const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
