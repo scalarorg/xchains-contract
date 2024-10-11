@@ -4,7 +4,11 @@ pragma solidity >=0.8.0 <0.9.0;
 import { Test } from "forge-std/src/Test.sol";
 import { console2 } from "forge-std/src/console2.sol";
 
-import { Foo } from "../src/Foo.sol";
+contract Foo {
+    function id(uint256 value) external pure returns (uint256) {
+        return value;
+    }
+}
 
 interface IERC20 {
     function balanceOf(address account) external view returns (uint256);

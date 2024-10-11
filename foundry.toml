@@ -9,7 +9,6 @@ optimizer = true
 optimizer_runs = 10_000
 out = "out"
 script = "script"
-solc = "0.8.9"
 test = "test"
 src = 'contracts'
 libs = ['node_modules', 'lib']

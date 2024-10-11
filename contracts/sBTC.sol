@@ -1,47 +1,30 @@
 // SPDX-License-Identifier: MIT
-// Compatible with OpenZeppelin Contracts ^5.0.0
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "boring-solidity/contracts/BoringOwnable.sol";
+
+import { console2 } from "forge-std/src/console2.sol";
+
 pragma solidity ^0.8.0;
 
-import { ERC20 } from "../lib/BoringSolidity/contracts/ERC20.sol";
-import { BoringOwnable } from "../lib/BoringSolidity/contracts/BoringOwnable.sol";
-import { BoringMath } from "../lib/BoringSolidity/contracts/libraries/BoringMath.sol";
-
-// contract ScalarToken is ERC20WithSupply, Ownable {
-//     constructor(address initialOwner)
-//         ERC20("ScalarToken", "STK")
-//         Ownable(initialOwner)
-//     {
-//         _mint(msg.sender, 100000 * 10 ** 18);
-//     }
-
-//     function mint(address to, uint256 amount) public onlyOwner {
-//         _mint(to, amount);
-//     }
-// }
-/// @title Cauldron
-/// @dev This contract allows contract calls to any contract (except BentoBox)
-/// from arbitrary callers thus, don't trust calls from this contract in any circumstances.
 contract sBTC is ERC20, BoringOwnable {
-    using BoringMath for uint256;
-    // ERC20 'variables'
-
-    string public constant symbol = "sBTC";
-    string public constant name = "Staked BTC";
-    uint8 public constant decimals = 18;
-    uint256 public override totalSupply;
-
-    function mint(address to, uint256 amount) public onlyOwner {
-        require(to != address(0), "sBTC: no mint to zero address");
-        totalSupply = totalSupply + amount;
-        balanceOf[to] += amount;
-        emit Transfer(address(0), to, amount);
+    constructor() ERC20("Scalar BTC", "sBTC") {
+        owner = msg.sender;
     }
 
-    function burn(uint256 amount) public {
-        require(amount <= balanceOf[msg.sender], "sBTC: not enough");
+    function mint(address to, uint256 amount) public onlyOwner {
+        require(amount > 0, "Amount must be greater than 0");
+        _mint(to, amount);
+    }
 
-        balanceOf[msg.sender] -= amount;
-        totalSupply -= amount;
-        emit Transfer(msg.sender, address(0), amount);
+    function burn(uint256 amount) public onlyOwner {
+        require(amount > 0, "Amount must be greater than 0");
+        require(amount <= balanceOf(msg.sender), "Insufficient balance");
+        _burn(msg.sender, amount);
+    }
+
+    function approve(address spender, uint256 value) public override returns (bool) {
+        require(balanceOf(msg.sender) >= value, "Not enough balance");
+        return super.approve(spender, value);
     }
 }

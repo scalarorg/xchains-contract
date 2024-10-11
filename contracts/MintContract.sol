@@ -5,7 +5,7 @@ import { AxelarExecutable } from "@axelar-network/axelar-gmp-sdk-solidity/contra
 import { IAxelarGateway } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
 import { IAxelarGasService } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
 import { IERC20 } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol";
-import { BoringOwnable } from "../lib/BoringSolidity/contracts/BoringOwnable.sol";
+import { BoringOwnable } from "boring-solidity/contracts/BoringOwnable.sol";
 import { sBTC } from "./sBTC.sol";
 /**
  * @title CallContract

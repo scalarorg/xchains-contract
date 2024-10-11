@@ -1,12 +1,12 @@
 {
   "name": "xchains-contracts",
   "scripts": {
-    "test": "hardhat test",
     "deployAll": "node scripts/deployAll.js deploy All --network ethereum-local --newSbtc true --newAxelarGateway true",
     "checkType": "bunx hardhat test --typecheck",
     "init": "bunx hardhat init-foundry",
     "fmt": "forge fmt",
-    "fmt:check": "forge fmt --check"
+    "fmt:check": "forge fmt --check",
+    "test": "forge test --match-path test/*.t.sol -vvv"
   },
   "devDependencies": {
     "@ledgerhq/hw-transport-node-hid": "^6.27.21",
@@ -19,7 +19,10 @@
     "ethers": "^5.7.2",
     "hardhat": "^2.22.6",
     "readline-sync": "^1.4.10",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "forge-std": "github:foundry-rs/forge-std#v1.8.1",
+    "prettier": "^3.0.0",
+    "solhint": "^3.6.2"
   },
   "dependencies": {
     "@axelar-network/axelar-cgp-solidity": "^6.3.1",
@@ -30,6 +33,7 @@
     "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@openzeppelin/contracts": "^5.0.2",
+    "boring-solidity": "github:boringcrypto/BoringSolidity",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "zod": "^3.23.8"
