@@ -1,6 +1,7 @@
 import "@nomicfoundation/hardhat-toolbox";
 import "dotenv/config";
 import { HardhatUserConfig } from "hardhat/config";
+import "@nomicfoundation/hardhat-foundry";
 import { Env } from "./env";
 
 const config: HardhatUserConfig = {

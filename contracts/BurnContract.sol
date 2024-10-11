@@ -1,16 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
-import { IAxelarGateway } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol';
-import { IAxelarGasService } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol';
-import { IERC20 } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol';
-import {BoringOwnable} from "../lib/BoringSolidity/contracts/BoringOwnable.sol";
-import {sBTC} from "./sBTC.sol";
+import { AxelarExecutable } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol";
+import { IAxelarGateway } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
+import { IAxelarGasService } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
+import { IERC20 } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol";
+import { BoringOwnable } from "../lib/BoringSolidity/contracts/BoringOwnable.sol";
+import { sBTC } from "./sBTC.sol";
 /**
  * @title CallContract
  * @notice Send a message from chain A to chain B and stores gmp message
  */
+
 contract BurnContract is AxelarExecutable, BoringOwnable {
     sBTC public sbtc;
     string public sourceChain;
@@ -44,7 +45,9 @@ contract BurnContract is AxelarExecutable, BoringOwnable {
         string calldata destinationAddress,
         uint256 _amount,
         string calldata btcTxHex
-    ) external {
+    )
+        external
+    {
         require(_amount > 0, "BurnContract: amount must be greater than 0");
         require(_amount <= sbtc.balanceOf(msg.sender), "BurnContract: insufficient balance");
         sbtc.transferFrom(msg.sender, address(this), _amount);
@@ -61,11 +64,17 @@ contract BurnContract is AxelarExecutable, BoringOwnable {
      * @param _sourceAddress address on src chain where tx is originating from
      * @param _payload encoded gmp message sent from src chain
      */
-    function _execute(string calldata _sourceChain, string calldata _sourceAddress, bytes calldata _payload) internal override {
+    function _execute(
+        string calldata _sourceChain,
+        string calldata _sourceAddress,
+        bytes calldata _payload
+    )
+        internal
+        override
+    {
         string memory stakerAddress = abi.decode(_payload, (string));
         sourceChain = _sourceChain;
         sourceAddress = _sourceAddress;
         emit Executed(sourceAddress, stakerAddress);
     }
-
 }

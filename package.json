@@ -3,7 +3,10 @@
   "scripts": {
     "test": "hardhat test",
     "deployAll": "node scripts/deployAll.js deploy All --network ethereum-local --newSbtc true --newAxelarGateway true",
-    "checkType": "bunx hardhat test --typecheck"
+    "checkType": "bunx hardhat test --typecheck",
+    "init": "bunx hardhat init-foundry",
+    "fmt": "forge fmt",
+    "fmt:check": "forge fmt --check"
   },
   "devDependencies": {
     "@ledgerhq/hw-transport-node-hid": "^6.27.21",
@@ -23,6 +26,7 @@
     "@axelar-network/axelar-gmp-sdk-solidity": "^5.9.0",
     "@cosmjs/cosmwasm-stargate": "^0.32.1",
     "@ledgerhq/hw-app-eth": "6.32.2",
+    "@nomicfoundation/hardhat-foundry": "^1.1.2",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@openzeppelin/contracts": "^5.0.2",

@@ -1,16 +1,17 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import { AxelarExecutable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
-import { IAxelarGateway } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol';
-import { IAxelarGasService } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol';
-import { IERC20 } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol';
-import {BoringOwnable} from "../lib/BoringSolidity/contracts/BoringOwnable.sol";
-import {sBTC} from "./sBTC.sol";
+import { AxelarExecutable } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol";
+import { IAxelarGateway } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
+import { IAxelarGasService } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
+import { IERC20 } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol";
+import { BoringOwnable } from "../lib/BoringSolidity/contracts/BoringOwnable.sol";
+import { sBTC } from "./sBTC.sol";
 /**
  * @title CallContract
  * @notice Send a message from chain A to chain B and stores gmp message
  */
+
 contract MintContract is AxelarExecutable, BoringOwnable {
     sBTC public sbtc;
     string public sourceChain;
@@ -42,16 +43,15 @@ contract MintContract is AxelarExecutable, BoringOwnable {
         string calldata destinationAddress,
         address _to,
         uint256 _amount
-    ) external payable {
-        require(msg.value > 0, 'Gas payment is required');
-        
+    )
+        external
+        payable
+    {
+        require(msg.value > 0, "Gas payment is required");
+
         bytes memory payload = abi.encode(_to, _amount);
         gasService.payNativeGasForContractCall{ value: msg.value }(
-            address(this),
-            destinationChain,
-            destinationAddress,
-            payload,
-            msg.sender
+            address(this), destinationChain, destinationAddress, payload, msg.sender
         );
         gateway.callContract(destinationChain, destinationAddress, payload);
     }
@@ -63,7 +63,14 @@ contract MintContract is AxelarExecutable, BoringOwnable {
      * @param _sourceAddress address on src chain where tx is originating from
      * @param _payload encoded gmp message sent from src chain
      */
-    function _execute(string calldata _sourceChain, string calldata _sourceAddress, bytes calldata _payload) internal override {
+    function _execute(
+        string calldata _sourceChain,
+        string calldata _sourceAddress,
+        bytes calldata _payload
+    )
+        internal
+        override
+    {
         address to;
         uint256 amount;
         (to, amount) = abi.decode(_payload, (address, uint256));

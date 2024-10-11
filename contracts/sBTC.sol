@@ -2,9 +2,9 @@
 // Compatible with OpenZeppelin Contracts ^5.0.0
 pragma solidity ^0.8.0;
 
-import {ERC20} from "../lib/BoringSolidity/contracts/ERC20.sol";
-import {BoringOwnable} from "../lib/BoringSolidity/contracts/BoringOwnable.sol";
-import {BoringMath} from "../lib/BoringSolidity/contracts/libraries/BoringMath.sol";    
+import { ERC20 } from "../lib/BoringSolidity/contracts/ERC20.sol";
+import { BoringOwnable } from "../lib/BoringSolidity/contracts/BoringOwnable.sol";
+import { BoringMath } from "../lib/BoringSolidity/contracts/libraries/BoringMath.sol";
 
 // contract ScalarToken is ERC20WithSupply, Ownable {
 //     constructor(address initialOwner)
@@ -24,6 +24,7 @@ import {BoringMath} from "../lib/BoringSolidity/contracts/libraries/BoringMath.s
 contract sBTC is ERC20, BoringOwnable {
     using BoringMath for uint256;
     // ERC20 'variables'
+
     string public constant symbol = "sBTC";
     string public constant name = "Staked BTC";
     uint8 public constant decimals = 18;
