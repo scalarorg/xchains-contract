@@ -3,11 +3,13 @@
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import { ICustomToken } from "./interface/ICustomToken.sol";
 /**
  * @title sBTC (Scalar BTC)
  * @notice A custom ERC20 token with minting and burning functionalities restricted to the owner.
  */
-contract sBTC is ERC20 {
+
+contract sBTC is ERC20, ICustomToken {
     address public owner;
 
     /**

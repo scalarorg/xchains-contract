@@ -1,14 +1,18 @@
+// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+pragma solidity ^0.8.0;
+
 import { AxelarExecutable } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol";
 import { IAxelarGateway } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
 import { IAxelarGasService } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
-import { sBTC } from "./sBTC.sol";
+import { ICustomToken } from "./interface/ICustomToken.sol";
+import { console2 } from "forge-std/src/console2.sol";
 
 /**
  * @title Protocol
  * @notice Sends a message from chain A to chain B and handles GMP messages.
  */
 contract Protocol is AxelarExecutable {
-    sBTC public token;
+    ICustomToken public immutable token;
     IAxelarGasService public immutable gasService;
 
     event Executed(string _from, string _to, uint256 _amount);
@@ -21,26 +25,25 @@ contract Protocol is AxelarExecutable {
      */
     constructor(address _gateway, address _gasReceiver, address _token) AxelarExecutable(_gateway) {
         gasService = IAxelarGasService(_gasReceiver);
-        token = IScalarToken(_token); // Update here
+        token = ICustomToken(_token);
     }
 
     /**
      * @notice Send payload from chain A to chain B
      * @dev Payload param is passed as GMP message.
-     * @param destinationChain Name of the destination chain (e.g., "WBitcoin").
-     * @param destinationAddress Address on destination chain to send payload to.
+     * @param _destinationChain Name of the destination chain (e.g., "WBitcoin").
+     * @param _destinationAddress Address on destination chain to send payload to.
      * @param _amount Amount to burn (unstake).
-     * @param btcTxHex Bitcoin transaction hex to unlock.
+     * @param _psbtBase64 Base64 encoded PSBT.
      */
     function unstake(
-        string calldata destinationChain,
-        string calldata destinationAddress,
+        string calldata _destinationChain,
+        string calldata _destinationAddress,
         uint256 _amount,
-        string calldata btcTxHex
+        string calldata _psbtBase64
     )
         external
     {
-
         require(_amount > 0, "Protocol: amount must be greater than 0");
 
         // Transfer tokens from user to the protocol contract.
@@ -52,9 +55,10 @@ contract Protocol is AxelarExecutable {
         emit Unstaked(msg.sender, _amount);
 
         // Prepare the payload and call the destination contract via Axelar gateway.
-        bytes memory payload = abi.encode(btcTxHex);
-        (bool success,) = gateway.callContract(destinationChain, destinationAddress, payload);
-        require(success, "Protocol: gateway call failed");
+        bytes memory payload = abi.encode(_psbtBase64);
+
+        console2.log("Sending payload to ", _destinationChain, " at ", _destinationAddress);
+        gateway.callContract(_destinationChain, _destinationAddress, payload);
     }
 
     /**

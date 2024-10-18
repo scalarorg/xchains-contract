@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.8.0 <0.9.0;
 
-import {sBTC} from "contracts/sBTC.sol";
-import {Test} from "forge-std/src/Test.sol";
+import { sBTC } from "../contracts/sBTC.sol";
+import { Test } from "forge-std/src/Test.sol";
 
 contract sBTCTest is Test {
     sBTC public token;
@@ -33,7 +33,6 @@ contract sBTCTest is Test {
         vm.expectRevert("Insufficient balance");
         token.burn(100);
     }
-
 
     function testOnlyOwnerMint() public {
         vm.prank(user);
