@@ -11,6 +11,7 @@ import { ICustomToken } from "./interface/ICustomToken.sol";
 
 contract sBTC is ERC20, ICustomToken {
     address public owner;
+    address public protocolContract;
 
     /**
      * @notice Sets the initial owner and token details (Scalar BTC).
@@ -22,8 +23,17 @@ contract sBTC is ERC20, ICustomToken {
     /**
      * @notice Modifier to restrict access to only the contract owner.
      */
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Ownable: caller is not the owner");
+        _;
+    }
+
+    /**
+     * @notice Modifier to restrict access to only the owner or the protocol contract.
+     */
+    modifier onlyOwnerOrProtocol() {
+        require(msg.sender == owner || msg.sender == protocolContract, "Ownable: caller is not the owner or protocol contract");
         _;
     }
 
@@ -32,7 +42,7 @@ contract sBTC is ERC20, ICustomToken {
      * @param to The address to mint tokens to.
      * @param amount The number of tokens to mint.
      */
-    function mint(address to, uint256 amount) external onlyOwner {
+    function mint(address to, uint256 amount) external onlyOwnerOrProtocol {
         require(amount > 0, "Amount must be greater than 0");
         _mint(to, amount);
     }
@@ -45,5 +55,9 @@ contract sBTC is ERC20, ICustomToken {
         require(amount > 0, "Amount must be greater than 0");
         require(amount <= balanceOf(msg.sender), "Insufficient balance");
         _burn(msg.sender, amount);
+    }
+
+    function setProtocolContract(address _protocolContract) external onlyOwner {
+        protocolContract = _protocolContract;
     }
 }

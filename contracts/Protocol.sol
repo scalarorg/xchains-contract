@@ -6,7 +6,6 @@ import { AxelarExecutable } from "@axelar-network/axelar-gmp-sdk-solidity/contra
 import { IAxelarGateway } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
 import { IAxelarGasService } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
 import { ICustomToken } from "./interface/ICustomToken.sol";
-import { console2 } from "forge-std/src/console2.sol";
 
 /**
  * @title Protocol
@@ -58,7 +57,6 @@ contract Protocol is AxelarExecutable {
         // Prepare the payload and call the destination contract via Axelar gateway.
         bytes memory payload = abi.encode(_psbtBase64);
 
-        console2.log("Sending payload to ", _destinationChain, " at ", _destinationAddress);
         gateway.callContract(_destinationChain, _destinationAddress, payload);
     }
 
