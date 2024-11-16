@@ -2,10 +2,10 @@
 
 pragma solidity ^0.8.0;
 
-import { AxelarExecutable } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol";
-import { IAxelarGateway } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
-import { IAxelarGasService } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
-import { ICustomToken } from "./interface/ICustomToken.sol";
+import {AxelarExecutable} from "@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol";
+import {IAxelarGateway} from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol";
+import {IAxelarGasService} from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
+import {ICustomToken} from "./interface/ICustomToken.sol";
 
 /**
  * @title Protocol
@@ -23,7 +23,11 @@ contract Protocol is AxelarExecutable {
      * @param _gasReceiver address of Axelar gas service on the deployed chain.
      * @param _token address of the ERC20 token.
      */
-    constructor(address _gateway, address _gasReceiver, address _token) AxelarExecutable(_gateway) {
+    constructor(
+        address _gateway,
+        address _gasReceiver,
+        address _token
+    ) AxelarExecutable(_gateway) {
         gasService = IAxelarGasService(_gasReceiver);
         token = ICustomToken(_token);
     }
@@ -41,9 +45,8 @@ contract Protocol is AxelarExecutable {
         string calldata _destinationAddress,
         uint256 _amount,
         string calldata _psbtBase64
-    )
-        external
-    {
+    ) external {
+        // TODO: Check the amount is equivalent to the amount in the PSBT?
         require(_amount > 0, "Protocol: amount must be greater than 0");
 
         // Transfer tokens from user to the protocol contract.
@@ -70,12 +73,16 @@ contract Protocol is AxelarExecutable {
         string calldata _sourceChain,
         string calldata _sourceAddress,
         bytes calldata _payload
-    )
-        internal
-        override
-    {
+    ) internal override {
         address to;
         uint256 amount;
+
+        // payload was relayed from the gateway, so we need to decode it
+        // payload = abi.encode(
+        //     ['address', 'uint256', 'bytes32'],
+        //     [destination_recipient_address, staking_amount, bitcoin_tx_hash]
+        // );
+
         (to, amount) = abi.decode(_payload, (address, uint256));
 
         // Assuming mint is a function in the token contract.

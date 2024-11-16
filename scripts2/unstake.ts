@@ -3,23 +3,11 @@ import { createPublicClient, createWalletClient, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { z } from "zod";
+import PROTOCOL_ABI_JSON from "../out/Protocol.sol/Protocol.json";
 
 config();
 
-const PROTOCOL_ABI = [
-  {
-    inputs: [
-      { name: "_destinationChain", type: "string" },
-      { name: "_destinationAddress", type: "string" },
-      { name: "_amount", type: "uint256" },
-      { name: "_psbtBase64", type: "string" },
-    ],
-    name: "unstake",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-] as const;
+const PROTOCOL_ABI = PROTOCOL_ABI_JSON.abi;
 
 const SBTC_CONTRACT_ADDRESS = "0xCf7790fB4ac7Ea948428E3635860944F1ef4F8D1";
 
@@ -72,14 +60,14 @@ async function main() {
     transport: http(projectEnv.RPC_URL),
   });
 
-  const destinationChain = "bitcoin-regtest"; // Replace with your destination chain
+  const destinationChain = "bitcoin-testnet"; // Replace with your destination chain
   const destinationAddress = "0x0000000000000000000000000000000000000000"; // Replace with your destination address
-  const amount = BigInt(100000);
+  const amount = BigInt(800000n);
   const psbtBase64 =
-    "cHNidP8BAFICAAAAAVrQluj7zrZI/RJ4h3pXKY5UQckb3hm1I7h+rwqUVXwJAAAAAAD9////AXImAAAAAAAAFgAUUNzsoVipyHLrQF1SKT01ERBXLJ4AAAAAAAEBKw8nAAAAAAAAIlEgkFj0s5tPU4QO+QWJFepTzvTiZxWVJMmxkN+zd/AYnZsBCP0qAQRAcLcPcAUzemcCvpzEo2FQK1NDQJ78/EHqIlXurFNBq4fau6zYbhnXnwPocabdeapr+WfBxW4PNsiXyI2lI4fVz0Dz1lfh+2lyuJkt+WBV0nKW/kGhhdNEhrd65rP82HzaMYVbeqxDCxU9vbQwN5EfzPbwEN47GINB3Fqmql4Rst6+RCAq4x6ocJrtqBlLo+L35+leaA6LZRNciYPAopjRe8U1Cq0gz13/V6FzxayDI8S6yj//ByjrcW858OWmAxIyDNKTWwysYcFQkpt0waBJVLeLS2A16XpeB4paDyjsltVHv+6azoA6wHiAUOedUwY3sr+WPseec56keJeLd7NiZJQ54gBFzctWbuUzR7zr5sTFLwsZS4rDpY/r4NGsZSJ8e0sUIO5JEcwAAA=="; // Replace with your PSBT
+    "cHNidP8BAFICAAAAAflAdaiII1fkBTGGT8vk5a3YUWMTPqgFB/KD0IpN9O/aAAAAAAD9////AUTNCQAAAAAAFgAUUNzsoVipyHLrQF1SKT01ERBXLJ4AAAAAAAEBKwA1DAAAAAAAIlEgUiPouA919Arm/mld5UVulY4HFUe3CUvidmtDCJyUOHRBFCrjHqhwmu2oGUuj4vfn6V5oDotlE1yJg8CimNF7xTUKGqpwf1oaV/8WEF+uunL1V6iWOpitlLONjh+Oud3IvilAigKedJbMsXBGnVfvyJliChOV2nMigMLRCbE3JTlzcM7hfDUmQ/+FKyFjhMith7xoGO5Ol90n9mK37h1fqFqMm2IVwVCSm3TBoElUt4tLYDXpel4HiloPKOyW1Ue/7prOgDrAFuIuioNMBacc5AXCkPpmmlMAQJR7esmfH/PGLWmWX25mR0dHHl1WKnImL8iqD3X/VURzLq83wrCHDtY3AZcpEkUgKuMeqHCa7agZS6Pi9+fpXmgOi2UTXImDwKKY0XvFNQqtIPNYZ068zmiDKsMCuC7Hzk6c3Y+FZoTKPVRWhqJAvhXYrMAAAA=="; // Replace with your PSBT
 
   try {
-    const { request } = await publicClient.simulateContract({
+    const simulationResult = await publicClient.simulateContract({
       address: projectEnv.PROTOCOL_CONTRACT_ADDRESS as `0x${string}`,
       abi: PROTOCOL_ABI,
       functionName: "unstake",
@@ -87,11 +75,19 @@ async function main() {
       account,
     });
 
-    const hash = await walletClient.writeContract(request);
-    console.log("Transaction sent:", hash);
+    console.log("Simulation successful!");
+    console.log("Simulated gas used:", simulationResult.request.gas);
+    console.log("Simulation result:", simulationResult.result);
 
-    const receipt = await publicClient.waitForTransactionReceipt({ hash });
-    console.log("Transaction confirmed:", receipt.transactionHash);
+    // Uncomment the following lines if you want to see the full simulation details
+    // console.log("Full simulation details:");
+    // console.log(JSON.stringify(simulationResult, null, 2));
+
+    // const hash = await walletClient.writeContract(request);
+    // console.log("Transaction sent:", hash);
+
+    // const receipt = await publicClient.waitForTransactionReceipt({ hash });
+    // console.log("Transaction confirmed:", receipt.transactionHash);
   } catch (error) {
     console.error("Error:", error);
   }
