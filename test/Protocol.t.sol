@@ -53,7 +53,7 @@ contract ProtocolTest is Test {
         // assert total supply
         assertEq(token.totalSupply(), 1000 ether);
 
-             // Call unstake function as the user
+        // Call unstake function as the user
         vm.startPrank(user);
         protocol.unstake("WBitcoin", "0x123", 100, "dummyBtcTxHex");
         vm.stopPrank();

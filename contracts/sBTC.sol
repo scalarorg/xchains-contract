@@ -23,7 +23,6 @@ contract sBTC is ERC20, ICustomToken {
     /**
      * @notice Modifier to restrict access to only the contract owner.
      */
-
     modifier onlyOwner() {
         require(msg.sender == owner, "Ownable: caller is not the owner");
         _;
@@ -33,7 +32,10 @@ contract sBTC is ERC20, ICustomToken {
      * @notice Modifier to restrict access to only the owner or the protocol contract.
      */
     modifier onlyOwnerOrProtocol() {
-        require(msg.sender == owner || msg.sender == protocolContract, "Ownable: caller is not the owner or protocol contract");
+        require(
+            msg.sender == owner || msg.sender == protocolContract,
+            "Ownable: caller is not the owner or protocol contract"
+        );
         _;
     }
 

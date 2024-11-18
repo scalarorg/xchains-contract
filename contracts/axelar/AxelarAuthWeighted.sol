@@ -2,9 +2,10 @@
 
 pragma solidity ^0.8.0;
 
-import { IAxelarAuthWeighted } from "./interfaces/IAexelarAuthWeighted.sol";
-import { ECDSA } from "./ECDSA.sol";
-import { Ownable } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol";
+import {IAxelarAuthWeighted} from "./interfaces/IAexelarAuthWeighted.sol";
+import {ECDSA} from "./ECDSA.sol";
+import {Ownable} from "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol";
+import {console2} from "forge-std/src/console2.sol";
 
 contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
     uint256 public currentEpoch;
@@ -14,11 +15,11 @@ contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
     uint256 internal constant OLD_KEY_RETENTION = 16;
 
     constructor(bytes[] memory recentOperators) Ownable(msg.sender) {
-        uint256 length = recentOperators.length;
-
-        for (uint256 i; i < length; ++i) {
-            _transferOperatorship(recentOperators[i]);
-        }
+        console2.log("AxelarAuthWeighted constructor");
+        // uint256 length = recentOperators.length;
+        // for (uint256 i; i < length; ++i) {
+        //     _transferOperatorship(recentOperators[i]);
+        // }
     }
 
     /**
@@ -29,17 +30,33 @@ contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
 
     /// @dev This function takes messageHash and proof data and reverts if proof is invalid
     /// @return True if provided operators are the current ones
-    function validateProof(bytes32 messageHash, bytes calldata proof) external view returns (bool) {
-        (address[] memory operators, uint256[] memory weights, uint256 threshold, bytes[] memory signatures) =
-            abi.decode(proof, (address[], uint256[], uint256, bytes[]));
+    function validateProof(
+        bytes32 messageHash,
+        bytes calldata proof
+    ) external view returns (bool) {
+        (
+            address[] memory operators,
+            uint256[] memory weights,
+            uint256 threshold,
+            bytes[] memory signatures
+        ) = abi.decode(proof, (address[], uint256[], uint256, bytes[]));
 
-        bytes32 operatorsHash = keccak256(abi.encode(operators, weights, threshold));
+        bytes32 operatorsHash = keccak256(
+            abi.encode(operators, weights, threshold)
+        );
         uint256 operatorsEpoch = epochForHash[operatorsHash];
         uint256 epoch = currentEpoch;
 
-        if (operatorsEpoch == 0 || epoch - operatorsEpoch >= OLD_KEY_RETENTION) revert InvalidOperators();
+        if (operatorsEpoch == 0 || epoch - operatorsEpoch >= OLD_KEY_RETENTION)
+            revert InvalidOperators();
 
-        _validateSignatures(messageHash, operators, weights, threshold, signatures);
+        _validateSignatures(
+            messageHash,
+            operators,
+            weights,
+            threshold,
+            signatures
+        );
 
         return operatorsEpoch == epoch;
     }
@@ -59,13 +76,19 @@ contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
      * \*************************
      */
     function _transferOperatorship(bytes memory params) internal {
-        (address[] memory newOperators, uint256[] memory newWeights, uint256 newThreshold) =
-            abi.decode(params, (address[], uint256[], uint256));
+        (
+            address[] memory newOperators,
+            uint256[] memory newWeights,
+            uint256 newThreshold
+        ) = abi.decode(params, (address[], uint256[], uint256));
         uint256 operatorsLength = newOperators.length;
         uint256 weightsLength = newWeights.length;
 
         // operators must be sorted binary or alphabetically in lower case
-        if (operatorsLength == 0 || !_isSortedAscAndContainsNoDuplicate(newOperators)) revert InvalidOperators();
+        if (
+            operatorsLength == 0 ||
+            !_isSortedAscAndContainsNoDuplicate(newOperators)
+        ) revert InvalidOperators();
 
         if (weightsLength != operatorsLength) revert InvalidWeights();
 
@@ -73,7 +96,8 @@ contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
         for (uint256 i; i < weightsLength; ++i) {
             totalWeight = totalWeight + newWeights[i];
         }
-        if (newThreshold == 0 || totalWeight < newThreshold) revert InvalidThreshold();
+        if (newThreshold == 0 || totalWeight < newThreshold)
+            revert InvalidThreshold();
 
         bytes32 newOperatorsHash = keccak256(params);
 
@@ -94,10 +118,7 @@ contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
         uint256[] memory weights,
         uint256 threshold,
         bytes[] memory signatures
-    )
-        internal
-        pure
-    {
+    ) internal pure {
         uint256 operatorsLength = operators.length;
         uint256 signaturesLength = signatures.length;
         uint256 operatorIndex;
@@ -107,7 +128,12 @@ contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
         for (uint256 i; i < signaturesLength; ++i) {
             address signer = ECDSA.recover(messageHash, signatures[i]);
             // looping through remaining operators to find a match
-            for (; operatorIndex < operatorsLength && signer != operators[operatorIndex]; ++operatorIndex) { }
+            for (
+                ;
+                operatorIndex < operatorsLength &&
+                    signer != operators[operatorIndex];
+                ++operatorIndex
+            ) {}
             // checking if we are out of operators
             if (operatorIndex == operatorsLength) revert MalformedSigners();
             // accumulating signatures weight
@@ -121,7 +147,9 @@ contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
         revert LowSignaturesWeight();
     }
 
-    function _isSortedAscAndContainsNoDuplicate(address[] memory accounts) internal pure returns (bool) {
+    function _isSortedAscAndContainsNoDuplicate(
+        address[] memory accounts
+    ) internal pure returns (bool) {
         uint256 accountsLength = accounts.length;
         address prevAccount = accounts[0];
 
