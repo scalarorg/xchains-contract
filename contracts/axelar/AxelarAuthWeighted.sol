@@ -5,7 +5,6 @@ pragma solidity ^0.8.0;
 import {IAxelarAuthWeighted} from "./interfaces/IAexelarAuthWeighted.sol";
 import {ECDSA} from "./ECDSA.sol";
 import {Ownable} from "@axelar-network/axelar-gmp-sdk-solidity/contracts/utils/Ownable.sol";
-import {console2} from "forge-std/src/console2.sol";
 
 contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
     uint256 public currentEpoch;
@@ -15,11 +14,10 @@ contract AxelarAuthWeighted is Ownable, IAxelarAuthWeighted {
     uint256 internal constant OLD_KEY_RETENTION = 16;
 
     constructor(bytes[] memory recentOperators) Ownable(msg.sender) {
-        console2.log("AxelarAuthWeighted constructor");
-        // uint256 length = recentOperators.length;
-        // for (uint256 i; i < length; ++i) {
-        //     _transferOperatorship(recentOperators[i]);
-        // }
+        uint256 length = recentOperators.length;
+        for (uint256 i; i < length; ++i) {
+            _transferOperatorship(recentOperators[i]);
+        }
     }
 
     /**

@@ -11,7 +11,7 @@ import {AxelarGateway} from "../contracts/axelar/AxelarGateway.sol";
 import {console2} from "forge-std/src/console2.sol";
 
 contract Deploy is BaseScript {
-    function run() public broadcast {
+    function run() public broadcast returns (sBTC, TokenDeployer, AxelarGasService, AxelarAuthWeighted, AxelarGateway, Protocol) {
         sBTC token = new sBTC();
         TokenDeployer tokenDeployer = new TokenDeployer();
         AxelarGasService gasService = new AxelarGasService(broadcaster);
@@ -19,23 +19,19 @@ contract Deploy is BaseScript {
         bytes[] memory operators = new bytes[](0);
         AxelarAuthWeighted authWeighted = new AxelarAuthWeighted(operators);
 
-        // console2.log("Auth weighted address:", address(authWeighted));
+        AxelarGateway axelarGateway = new AxelarGateway(
+            address(authWeighted),
+            address(tokenDeployer)
+        );
 
-        // address authWeightedAddress = address(authWeighted);
-        // console2.log("Auth weighted length:", authWeightedAddress.code.length);
+        Protocol protocol = new Protocol(
+            address(axelarGateway),
+            address(gasService),
+            address(token)
+        );
 
-        // AxelarGateway axelarGateway = new AxelarGateway(
-        //     address(authWeighted),
-        //     address(tokenDeployer)
-        // );
-
-        // Protocol protocol = new Protocol(
-        //     address(axelarGateway),
-        //     address(gasService),
-        //     address(token)
-        // );
-
-        // token.setProtocolContract(address(protocol));
+        token.setProtocolContract(address(protocol));
+        return (token, tokenDeployer, gasService, authWeighted, axelarGateway, protocol);
     }
 }
 
