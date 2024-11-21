@@ -3,7 +3,7 @@ import { createPublicClient, createWalletClient, http } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
 import { z } from "zod";
-import PROTOCOL_ABI_JSON from "../out/Protocol.sol/Protocol.json";
+import PROTOCOL_ABI_JSON from "../../out/Protocol.sol/Protocol.json";
 
 config();
 
