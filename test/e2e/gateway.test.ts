@@ -1,11 +1,13 @@
-import { describe, it, expect } from "bun:test";
+import { describe, it } from "bun:test";
 
-import { createPublicClient, http, decodeErrorResult } from "viem";
+import { createWalletClient, decodeErrorResult, http } from "viem";
+import { privateKeyToAccount } from "viem/accounts";
 import { sepolia } from "viem/chains";
-import { projectEnv } from "./envs";
 import GATEWAY_ABI from "./data/gateway-abi";
+import { projectEnv } from "./envs";
 
-const publicClient = createPublicClient({
+const walletClient = createWalletClient({
+  account: privateKeyToAccount(projectEnv.PRIVATE_KEY as `0x${string}`),
   chain: sepolia,
   transport: http(projectEnv.RPC_URL),
 });
@@ -13,7 +15,7 @@ const publicClient = createPublicClient({
 describe("Gateway", () => {
   it("should execute", async () => {
     try {
-      const res = await publicClient.simulateContract({
+      const res = await walletClient.writeContract({
         address: projectEnv.GATEWAY_CONTRACT_ADDRESS as `0x${string}`,
         abi: GATEWAY_ABI,
         functionName: "execute",
