@@ -14,3 +14,7 @@ deploy:
 	@echo "Deploying contracts to $(LOCAL_RPC_URL)"
 	@echo "Private key: $(PRIVATE_KEY)"
 	forge script scripts2/Deploy.s.sol:Deploy --rpc-url $(LOCAL_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast -vvvv
+
+.PHONY: deploy-protocol-sepolia
+deploy-protocol-sepolia:
+	forge script scripts2/DeployProtocol.s.sol:DeployProtocol --rpc-url $(SEPOLIA_RPC_URL) --private-key $(PRIVATE_KEY) --broadcast --etherscan-api-key $(ETHERSCAN_API_KEY) --verify -vvvv
