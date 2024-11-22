@@ -2,18 +2,25 @@
 
 pragma solidity ^0.8.0;
 
-import { IERC20 } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol';
-import { IAxelarGasService } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol';
-import { InterchainGasEstimation, GasInfo } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/gas-estimation/InterchainGasEstimation.sol';
-import { Upgradable } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Upgradable.sol';
-import { SafeTokenTransfer, SafeTokenTransferFrom } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol';
-import { SafeNativeTransfer } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeNativeTransfer.sol';
+import { IERC20 } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol";
+import { IAxelarGasService } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol";
+import {
+    InterchainGasEstimation,
+    GasInfo
+} from "@axelar-network/axelar-gmp-sdk-solidity/contracts/gas-estimation/InterchainGasEstimation.sol";
+import { Upgradable } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/upgradable/Upgradable.sol";
+import {
+    SafeTokenTransfer,
+    SafeTokenTransferFrom
+} from "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeTransfer.sol";
+import { SafeNativeTransfer } from "@axelar-network/axelar-gmp-sdk-solidity/contracts/libs/SafeNativeTransfer.sol";
 
 /**
  * @title AxelarGasService
  * @notice This contract manages gas payments and refunds for cross-chain communication on the Axelar network.
  * @dev The owner address of this contract should be the microservice that pays for gas.
- * @dev Users pay gas for cross-chain calls, and the gasCollector can collect accumulated fees and/or refund users if needed.
+ * @dev Users pay gas for cross-chain calls, and the gasCollector can collect accumulated fees and/or refund users if
+ * needed.
  */
 contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasService {
     using SafeTokenTransfer for IERC20;
@@ -42,7 +49,8 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
     /**
      * @notice Pay for gas for any type of contract execution on a destination chain.
      * @dev This function is called on the source chain before calling the gateway to execute a remote contract.
-     * @dev If estimateOnChain is true, the function will estimate the gas cost and revert if the payment is insufficient.
+     * @dev If estimateOnChain is true, the function will estimate the gas cost and revert if the payment is
+     * insufficient.
      * @param sender The address making the payment
      * @param destinationChain The target chain where the contract call will be made
      * @param destinationAddress The target address on the destination chain
@@ -61,20 +69,27 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         bool estimateOnChain,
         address refundAddress,
         bytes calldata params
-    ) external payable override {
+    )
+        external
+        payable
+        override
+    {
         if (params.length > 0) {
             revert InvalidParams();
         }
 
         if (estimateOnChain) {
-            uint256 gasEstimate = estimateGasFee(destinationChain, destinationAddress, payload, executionGasLimit, params);
+            uint256 gasEstimate =
+                estimateGasFee(destinationChain, destinationAddress, payload, executionGasLimit, params);
 
             if (gasEstimate > msg.value) {
                 revert InsufficientGasPayment(gasEstimate, msg.value);
             }
         }
 
-        emit NativeGasPaidForContractCall(sender, destinationChain, destinationAddress, keccak256(payload), msg.value, refundAddress);
+        emit NativeGasPaidForContractCall(
+            sender, destinationChain, destinationAddress, keccak256(payload), msg.value, refundAddress
+        );
     }
 
     /**
@@ -96,15 +111,12 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         address gasToken,
         uint256 gasFeeAmount,
         address refundAddress
-    ) external override {
+    )
+        external
+        override
+    {
         emit GasPaidForContractCall(
-            sender,
-            destinationChain,
-            destinationAddress,
-            keccak256(payload),
-            gasToken,
-            gasFeeAmount,
-            refundAddress
+            sender, destinationChain, destinationAddress, keccak256(payload), gasToken, gasFeeAmount, refundAddress
         );
 
         IERC20(gasToken).safeTransferFrom(msg.sender, address(this), gasFeeAmount);
@@ -133,7 +145,10 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         address gasToken,
         uint256 gasFeeAmount,
         address refundAddress
-    ) external override {
+    )
+        external
+        override
+    {
         emit GasPaidForContractCallWithToken(
             sender,
             destinationChain,
@@ -164,8 +179,14 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         string calldata destinationAddress,
         bytes calldata payload,
         address refundAddress
-    ) external payable override {
-        emit NativeGasPaidForContractCall(sender, destinationChain, destinationAddress, keccak256(payload), msg.value, refundAddress);
+    )
+        external
+        payable
+        override
+    {
+        emit NativeGasPaidForContractCall(
+            sender, destinationChain, destinationAddress, keccak256(payload), msg.value, refundAddress
+        );
     }
 
     /**
@@ -187,16 +208,13 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         string calldata symbol,
         uint256 amount,
         address refundAddress
-    ) external payable override {
+    )
+        external
+        payable
+        override
+    {
         emit NativeGasPaidForContractCallWithToken(
-            sender,
-            destinationChain,
-            destinationAddress,
-            keccak256(payload),
-            symbol,
-            amount,
-            msg.value,
-            refundAddress
+            sender, destinationChain, destinationAddress, keccak256(payload), symbol, amount, msg.value, refundAddress
         );
     }
 
@@ -219,8 +237,13 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         address gasToken,
         uint256 gasFeeAmount,
         address refundAddress
-    ) external override {
-        emit GasPaidForExpressCall(sender, destinationChain, destinationAddress, keccak256(payload), gasToken, gasFeeAmount, refundAddress);
+    )
+        external
+        override
+    {
+        emit GasPaidForExpressCall(
+            sender, destinationChain, destinationAddress, keccak256(payload), gasToken, gasFeeAmount, refundAddress
+        );
 
         IERC20(gasToken).safeTransferFrom(msg.sender, address(this), gasFeeAmount);
     }
@@ -248,7 +271,10 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         address gasToken,
         uint256 gasFeeAmount,
         address refundAddress
-    ) external override {
+    )
+        external
+        override
+    {
         emit GasPaidForExpressCallWithToken(
             sender,
             destinationChain,
@@ -279,8 +305,14 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         string calldata destinationAddress,
         bytes calldata payload,
         address refundAddress
-    ) external payable override {
-        emit NativeGasPaidForExpressCall(sender, destinationChain, destinationAddress, keccak256(payload), msg.value, refundAddress);
+    )
+        external
+        payable
+        override
+    {
+        emit NativeGasPaidForExpressCall(
+            sender, destinationChain, destinationAddress, keccak256(payload), msg.value, refundAddress
+        );
     }
 
     /**
@@ -302,16 +334,13 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         string calldata symbol,
         uint256 amount,
         address refundAddress
-    ) external payable override {
+    )
+        external
+        payable
+        override
+    {
         emit NativeGasPaidForExpressCallWithToken(
-            sender,
-            destinationChain,
-            destinationAddress,
-            keccak256(payload),
-            symbol,
-            amount,
-            msg.value,
-            refundAddress
+            sender, destinationChain, destinationAddress, keccak256(payload), symbol, amount, msg.value, refundAddress
         );
     }
 
@@ -330,7 +359,10 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         address gasToken,
         uint256 gasFeeAmount,
         address refundAddress
-    ) external override {
+    )
+        external
+        override
+    {
         emit GasAdded(txHash, logIndex, gasToken, gasFeeAmount, refundAddress);
 
         IERC20(gasToken).safeTransferFrom(msg.sender, address(this), gasFeeAmount);
@@ -343,17 +375,14 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
      * @param logIndex The log index for the cross-chain call
      * @param refundAddress The address where refunds, if any, should be sent
      */
-    function addNativeGas(
-        bytes32 txHash,
-        uint256 logIndex,
-        address refundAddress
-    ) external payable override {
+    function addNativeGas(bytes32 txHash, uint256 logIndex, address refundAddress) external payable override {
         emit NativeGasAdded(txHash, logIndex, msg.value, refundAddress);
     }
 
     /**
      * @notice Add additional gas payment using ERC20 tokens after initiating an express cross-chain call.
-     * @dev This function can be called on the source chain after calling the gateway to express execute a remote contract.
+     * @dev This function can be called on the source chain after calling the gateway to express execute a remote
+     * contract.
      * @param txHash The transaction hash of the cross-chain call
      * @param logIndex The log index for the cross-chain call
      * @param gasToken The ERC20 token address used to add gas
@@ -366,7 +395,10 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         address gasToken,
         uint256 gasFeeAmount,
         address refundAddress
-    ) external override {
+    )
+        external
+        override
+    {
         emit ExpressGasAdded(txHash, logIndex, gasToken, gasFeeAmount, refundAddress);
 
         IERC20(gasToken).safeTransferFrom(msg.sender, address(this), gasFeeAmount);
@@ -374,16 +406,13 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
 
     /**
      * @notice Add additional gas payment using native currency after initiating an express cross-chain call.
-     * @dev This function can be called on the source chain after calling the gateway to express execute a remote contract.
+     * @dev This function can be called on the source chain after calling the gateway to express execute a remote
+     * contract.
      * @param txHash The transaction hash of the cross-chain call
      * @param logIndex The log index for the cross-chain call
      * @param refundAddress The address where refunds, if any, should be sent
      */
-    function addNativeExpressGas(
-        bytes32 txHash,
-        uint256 logIndex,
-        address refundAddress
-    ) external payable override {
+    function addNativeExpressGas(bytes32 txHash, uint256 logIndex, address refundAddress) external payable override {
         emit NativeExpressGasAdded(txHash, logIndex, msg.value, refundAddress);
     }
 
@@ -417,7 +446,10 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         address payable receiver,
         address[] calldata tokens,
         uint256[] calldata amounts
-    ) external onlyCollector {
+    )
+        external
+        onlyCollector
+    {
         if (receiver == address(0)) revert InvalidAddress();
 
         uint256 tokensLength = tokens.length;
@@ -440,11 +472,7 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
     /**
      * @dev Deprecated refund function, kept for backward compatibility.
      */
-    function refund(
-        address payable receiver,
-        address token,
-        uint256 amount
-    ) external onlyCollector {
+    function refund(address payable receiver, address token, uint256 amount) external onlyCollector {
         _refund(bytes32(0), 0, receiver, token, amount);
     }
 
@@ -464,7 +492,10 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         address payable receiver,
         address token,
         uint256 amount
-    ) external onlyCollector {
+    )
+        external
+        onlyCollector
+    {
         _refund(txHash, logIndex, receiver, token, amount);
     }
 
@@ -477,7 +508,9 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
         address payable receiver,
         address token,
         uint256 amount
-    ) private {
+    )
+        private
+    {
         if (receiver == address(0)) revert InvalidAddress();
 
         emit Refunded(txHash, logIndex, receiver, token, amount);
@@ -494,8 +527,8 @@ contract AxelarGasService is InterchainGasEstimation, Upgradable, IAxelarGasServ
      * @return bytes32 Hash of the contract identifier
      */
     function contractId() external pure returns (bytes32) {
-        return keccak256('axelar-gas-service');
+        return keccak256("axelar-gas-service");
     }
 
-     function _setup(bytes calldata data) internal override {}
+    function _setup(bytes calldata data) internal override { }
 }

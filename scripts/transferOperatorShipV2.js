@@ -1,7 +1,6 @@
-const { ethers } = require("hardhat");
+const { ethers, computeAddress } = require("ethers");
 const fs = require("fs");
 const yargs = require('yargs');
-const envs = require("../envs.js");
 const path = require("path");
 const { readChainConfig, getConfigPath, createWallet, getContractAddress } = require("./utils");
 
@@ -56,7 +55,7 @@ async function main() {
     const sortedOperators = combinedArray.map((item) => item.address);
     const sortedWeights = combinedArray.map((item) => item.weight);
     const types = ["address[]", "uint256[]", "uint256"];
-    const encodedParams = ethers.utils.defaultAbiCoder.encode(types, [
+    const encodedParams = ethers.AbiCoder.defaultAbiCoder().encode(types, [
       sortedOperators,
       sortedWeights,
       newThreshold,
@@ -90,7 +89,7 @@ function readOperatorsInfo(keyPath) {
   const threshold = jsonData.threshold_weight;
   const operators = jsonData.participants.map((participant) => {
     const pubKey = "0x" + participant.pub_key;
-    return ethers.utils.computeAddress(pubKey);
+    return computeAddress(pubKey);
   });
   const weights = jsonData.participants.map((participant) => {
     return participant.weight;

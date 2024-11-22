@@ -9,5 +9,7 @@ interface ITokenDeployer {
         uint8 decimals,
         uint256 cap,
         bytes32 salt
-    ) external returns (address tokenAddress);
+    )
+        external
+        returns (address tokenAddress);
 }

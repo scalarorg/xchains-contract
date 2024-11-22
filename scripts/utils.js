@@ -1,6 +1,6 @@
 const path = require("path");
-const { ethers } = require("hardhat");
-const envs = require("../envs.js");
+const { ethers } = require("ethers");
+const envs = require("../env.js");
 const fs = require('fs');
 
 function getConfigPath() {
@@ -56,7 +56,7 @@ function createWallet(chainConfig) {
         wallet = new ethers.Wallet(chainConfig.privateKey);
     }
     if (wallet && chainConfig.rpcUrl) {
-        const provider = new ethers.providers.JsonRpcProvider(chainConfig.rpcUrl);
+        const provider = new ethers.JsonRpcProvider(chainConfig.rpcUrl);
         wallet = wallet.connect(provider);
     } else if (chainConfig.rpcUrl) {
         console.error("No RpcURL found in the chain config");

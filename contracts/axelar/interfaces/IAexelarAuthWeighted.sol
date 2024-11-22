@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import { IAxelarAuth } from './IAxelarAuth.sol';
+import { IAxelarAuth } from "./IAxelarAuth.sol";
 
 interface IAxelarAuthWeighted is IAxelarAuth {
     error InvalidOperators();

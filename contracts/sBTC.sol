@@ -1,46 +1,65 @@
 // SPDX-License-Identifier: MIT
-// Compatible with OpenZeppelin Contracts ^5.0.0
+
 pragma solidity ^0.8.0;
 
-import {ERC20} from "../lib/BoringSolidity/contracts/ERC20.sol";
-import {BoringOwnable} from "../lib/BoringSolidity/contracts/BoringOwnable.sol";
-import {BoringMath} from "../lib/BoringSolidity/contracts/libraries/BoringMath.sol";    
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import { ICustomToken } from "./interface/ICustomToken.sol";
+/**
+ * @title sBTC (Scalar BTC)
+ * @notice A custom ERC20 token with minting and burning functionalities restricted to the owner.
+ */
 
-// contract ScalarToken is ERC20WithSupply, Ownable {
-//     constructor(address initialOwner)
-//         ERC20("ScalarToken", "STK")
-//         Ownable(initialOwner)
-//     {
-//         _mint(msg.sender, 100000 * 10 ** 18);
-//     }
+contract sBTC is ERC20, ICustomToken {
+    address public owner;
+    address public protocolContract;
 
-//     function mint(address to, uint256 amount) public onlyOwner {
-//         _mint(to, amount);
-//     }
-// }
-/// @title Cauldron
-/// @dev This contract allows contract calls to any contract (except BentoBox)
-/// from arbitrary callers thus, don't trust calls from this contract in any circumstances.
-contract sBTC is ERC20, BoringOwnable {
-    using BoringMath for uint256;
-    // ERC20 'variables'
-    string public constant symbol = "sBTC";
-    string public constant name = "Staked BTC";
-    uint8 public constant decimals = 18;
-    uint256 public override totalSupply;
-
-    function mint(address to, uint256 amount) public onlyOwner {
-        require(to != address(0), "sBTC: no mint to zero address");
-        totalSupply = totalSupply + amount;
-        balanceOf[to] += amount;
-        emit Transfer(address(0), to, amount);
+    /**
+     * @notice Sets the initial owner and token details (Scalar BTC).
+     */
+    constructor() ERC20("Scalar BTC", "sBTC") {
+        owner = msg.sender;
     }
 
-    function burn(uint256 amount) public {
-        require(amount <= balanceOf[msg.sender], "sBTC: not enough");
+    /**
+     * @notice Modifier to restrict access to only the contract owner.
+     */
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Ownable: caller is not the owner");
+        _;
+    }
 
-        balanceOf[msg.sender] -= amount;
-        totalSupply -= amount;
-        emit Transfer(msg.sender, address(0), amount);
+    /**
+     * @notice Modifier to restrict access to only the owner or the protocol contract.
+     */
+    modifier onlyOwnerOrProtocol() {
+        require(
+            msg.sender == owner || msg.sender == protocolContract,
+            "Ownable: caller is not the owner or protocol contract"
+        );
+        _;
+    }
+
+    /**
+     * @notice Mint tokens to the specified address. Only callable by the owner.
+     * @param to The address to mint tokens to.
+     * @param amount The number of tokens to mint.
+     */
+    function mint(address to, uint256 amount) external onlyOwnerOrProtocol {
+        require(amount > 0, "Amount must be greater than 0");
+        _mint(to, amount);
+    }
+
+    /**
+     * @notice Burn a specific amount of tokens from the owner's account. Only callable by the owner.
+     * @param amount The amount of tokens to burn.
+     */
+    function burn(uint256 amount) external {
+        require(amount > 0, "Amount must be greater than 0");
+        require(amount <= balanceOf(msg.sender), "Insufficient balance");
+        _burn(msg.sender, amount);
+    }
+
+    function setProtocolContract(address _protocolContract) external onlyOwner {
+        protocolContract = _protocolContract;
     }
 }
